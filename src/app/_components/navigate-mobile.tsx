@@ -25,7 +25,7 @@ export const NavigateMobile = () => {
 			<DrawerTrigger>
 				<div className="relative size-6">
 					<Image
-						src="/icon/menu.svg"
+						src="/bernardofofg/icon/menu.svg"
 						className="object-contain"
 						fill
 						alt="icon-menu"
