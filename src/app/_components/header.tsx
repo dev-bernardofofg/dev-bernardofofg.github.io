@@ -43,8 +43,10 @@ export const Header = () => {
 			{!isDesktop && (
 				<>
 					<div className="flex flex-col">
-						<h1 className="text-neutral-50">Bernardo Filipe</h1>
-						<h3 className="text-neutral-400">Desenvolvedor Fullstack</h3>
+						<h1 className="text-neutral-50 text-2xl">Bernardo Filipe</h1>
+						<h3 className="text-neutral-400 text-sm">
+							Desenvolvedor Fullstack
+						</h3>
 					</div>{' '}
 					<NavigateMobile />
 				</>
