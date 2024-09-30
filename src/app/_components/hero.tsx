@@ -6,7 +6,7 @@ export const Hero = () => {
 	return (
 		<section className="max-w-7xl mx-auto flex w-full items-center">
 			<div className="flex flex-col flex-1 gap-4 text-center items-center">
-				<div className="flex flex-col gap-2">
+				<div className="flex flex-col gap-2 font-bold">
 					<h1 className="base:text-4xl md:text-7xl">Bernardo Filipe</h1>
 					<h3 className="base:text-xl md:text-4xl">
 						Desenvolvedor <span className="text-primary">Full-Stack</span>
@@ -17,7 +17,7 @@ export const Hero = () => {
 					</p>
 				</div>
 				<div className="flex gap-4 items-center">
-					<Button>Entre em contato</Button>
+					<Button className="text-base">Entre em contato</Button>
 					<Link
 						href="#projects"
 						className="text-primary flex items-center gap-2 h-12 transition-all hover:opacity-70"
