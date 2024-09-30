@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { Chakra_Petch } from 'next/font/google';
 import './globals.css';
 import { Header } from './_components/header';
 
-const poppins = Poppins({
+const chakra = Chakra_Petch({
 	subsets: ['latin'],
-	weight: ['200', '300', '400', '500'],
+	weight: ['300', '400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -20,9 +20,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${poppins.className} dark bg-neutral-800`}>
+			<body className={`${chakra.className} dark bg-neutral-800`}>
 				<div className="base:p-2 md:p-4 w-full h-screen">
-					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full base:p-4 md:p-8">
+					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full base:p-4 md:p-8 space-y-16 ">
 						<Header />
 						{children}
 					</div>
