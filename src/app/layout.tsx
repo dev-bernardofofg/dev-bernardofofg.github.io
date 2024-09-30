@@ -22,7 +22,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${poppins.className} dark bg-neutral-800`}>
 				<div className="base:p-2 md:p-4 w-full h-screen">
-					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full base:p-4 md:p-8">
+					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full base:p-4 md:p-8 space-y-16 ">
 						<Header />
 						{children}
 					</div>
