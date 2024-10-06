@@ -1,4 +1,5 @@
 import { About } from './_components/about';
+import { Experiences } from './_components/experiences';
 import { Hero } from './_components/hero';
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
 		<main className="flex w-full flex-col gap-16 items-center justify-center bg-neutral-900 text-neutral-100">
 			<Hero />
 			<About />
+			<Experiences />
 		</main>
 	);
 }
