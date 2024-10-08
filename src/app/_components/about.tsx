@@ -5,8 +5,8 @@ import { SOCIAL_LINK } from '@/lib/constants';
 export const About = () => {
 	return (
 		<section
-			className="max-w-7xl mx-auto bg-neutral-950 flex w-full items-center rounded-xl border-2 border-white/10 shadow-md relative"
-			id="#about"
+			className="max-w-7xl mx-auto bg-neutral-950 flex w-full items-center rounded-xl border-2 border-white/10 shadow-md relative scroll-mt-12"
+			id="about"
 		>
 			<div className="relative w-full base:h-[450px] md:h-[720px] base:blur-md md:blur-none flex-1 animate-levitate base:absolute md:relative">
 				<Image src="/element/wrapper.svg" fill alt="wrapper" />

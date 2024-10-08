@@ -4,19 +4,34 @@ import Link from 'next/link';
 import { NavigateMobile } from './navigate-mobile';
 import { useMediaQuery } from '../_hooks/use-media-query';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const LINKS_NAVIGATE = [
-	{ name: 'Início', href: '/' },
+	{ name: 'Início', href: '/#hero' },
 	{ name: 'Sobre', href: '/#about' },
-	{ name: 'Experiências', href: '/#' },
+	{ name: 'Experiências', href: '/#experience' },
 	{ name: 'Projetos', href: '/#' },
 	{ name: 'Conhecimentos', href: '/#' },
 ];
 
 export const Header = () => {
 	const isDesktop = useMediaQuery('(min-width: 998px)');
-	const [pathName, setPathName] = useState('');
+	const [pathNameActive, setPathNameActive] = useState('/#hero'); // Início marcado por padrão
+
+	useEffect(() => {
+		// Atualiza o estado se a hash mudar
+		const handleHashChange = () => {
+			setPathNameActive(window.location.hash || '/#hero');
+		};
+
+		// Adiciona o event listener para mudanças de hash
+		window.addEventListener('hashchange', handleHashChange);
+
+		// Limpa o listener ao desmontar o componente
+		return () => {
+			window.removeEventListener('hashchange', handleHashChange);
+		};
+	}, []);
 
 	const hoverLineAnimation = {
 		hover: { width: '100%', opacity: 1, transition: { duration: 0.3 } },
@@ -24,7 +39,7 @@ export const Header = () => {
 	};
 
 	const handleGetPathName = (href: string) => {
-		setPathName(href);
+		setPathNameActive(href);
 	};
 
 	return (
@@ -37,7 +52,7 @@ export const Header = () => {
 							href={href}
 							key={name}
 							className={`relative transition-colors ${
-								pathName === href ? 'text-primary' : 'text-white'
+								pathNameActive === href ? 'text-primary' : 'text-white'
 							}`}
 							onClick={() => handleGetPathName(href)}
 						>
