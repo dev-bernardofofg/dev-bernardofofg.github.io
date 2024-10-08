@@ -5,29 +5,33 @@ import { NavigateMobile } from './navigate-mobile';
 import { useMediaQuery } from '../_hooks/use-media-query';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const LINKS_NAVIGATE = [
 	{ name: 'Início', href: '/#hero' },
 	{ name: 'Sobre', href: '/#about' },
 	{ name: 'Experiências', href: '/#experience' },
-	{ name: 'Projetos', href: '/#' },
-	{ name: 'Conhecimentos', href: '/#' },
+	{ name: 'Projetos', href: '/#projects' },
+	{ name: 'Conhecimentos', href: '/#knowledge' },
 ];
 
 export const Header = () => {
 	const isDesktop = useMediaQuery('(min-width: 998px)');
-	const [pathNameActive, setPathNameActive] = useState('/#hero'); // Início marcado por padrão
+	const pathName = usePathname();
+	const [pathNameActive, setPathNameActive] = useState(pathName);
 
 	useEffect(() => {
-		// Atualiza o estado se a hash mudar
+		// Define the initial hash when the component mounts
+		setPathNameActive(window.location.hash);
+
 		const handleHashChange = () => {
-			setPathNameActive(window.location.hash || '/#hero');
+			setPathNameActive(window.location.hash);
 		};
 
-		// Adiciona o event listener para mudanças de hash
+		// Listen for hash changes
 		window.addEventListener('hashchange', handleHashChange);
 
-		// Limpa o listener ao desmontar o componente
+		// Cleanup event listener on component unmount
 		return () => {
 			window.removeEventListener('hashchange', handleHashChange);
 		};
