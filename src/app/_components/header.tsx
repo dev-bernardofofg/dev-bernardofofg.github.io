@@ -7,8 +7,8 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 export const LINKS_NAVIGATE = [
-	{ name: 'Início', href: '/#teste' },
-	{ name: 'Sobre', href: '/#' },
+	{ name: 'Início', href: '/' },
+	{ name: 'Sobre', href: '/#about' },
 	{ name: 'Experiências', href: '/#' },
 	{ name: 'Projetos', href: '/#' },
 	{ name: 'Conhecimentos', href: '/#' },
@@ -28,7 +28,7 @@ export const Header = () => {
 	};
 
 	return (
-		<header className="flex base:justify-between md:justify-center max-w-7xl mx-auto p-4">
+		<header className="flex base:justify-between md:justify-center max-w-7xl mx-auto p-4 sticky base:-top-4 md:-top-10 z-50 transition-all">
 			{/* Navegação desktop */}
 			{isDesktop ? (
 				<nav className="flex items-center gap-4 shadow-xl bg-neutral-800 rounded-lg p-4">
