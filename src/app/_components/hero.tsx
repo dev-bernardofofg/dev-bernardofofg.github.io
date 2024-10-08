@@ -2,9 +2,13 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowBigUpDashIcon } from 'lucide-react';
+
 export const Hero = () => {
 	return (
-		<section className="max-w-7xl mx-auto flex w-full items-center">
+		<section
+			className="max-w-7xl mx-auto flex w-full items-center scroll-mt-64"
+			id="hero"
+		>
 			<div className="flex flex-col flex-1 gap-4 text-center items-center">
 				<div className="flex flex-col gap-2 font-bold">
 					<h1 className="base:text-4xl md:text-7xl">Bernardo Filipe</h1>

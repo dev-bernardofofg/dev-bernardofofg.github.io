@@ -5,7 +5,10 @@ import { ptBR } from 'date-fns/locale';
 
 export const Experiences = () => {
 	return (
-		<section className="max-w-7xl mx-auto flex w-full items-center flex-col gap-8">
+		<section
+			className="max-w-7xl mx-auto flex w-full items-center flex-col gap-8"
+			id="experience"
+		>
 			<div className="w-full font-bold text-4xl">
 				<h2>
 					Experiências <span className="text-primary">.</span>
@@ -15,7 +18,7 @@ export const Experiences = () => {
 			<div className="w-full flex gap-8">
 				<Tabs defaultValue="watechnology" className="w-full flex gap-8">
 					<TabsList
-						className="flex flex-col items-start bg-neutral-950 max-w-[300px]
+						className="flex flex-col items-start bg-neutral-800 max-w-[300px]
           "
 					>
 						<TabsTrigger value="watechnology">WA Technology</TabsTrigger>
