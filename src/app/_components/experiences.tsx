@@ -16,9 +16,12 @@ export const Experiences = () => {
 			</div>
 
 			<div className="w-full flex gap-8">
-				<Tabs defaultValue="watechnology" className="w-full flex gap-8">
+				<Tabs
+					defaultValue="watechnology"
+					className="w-full flex gap-8 base:flex-col md:flex-row"
+				>
 					<TabsList
-						className="flex flex-col items-start bg-neutral-800 max-w-[300px]
+						className="flex flex-col items-start bg-neutral-800 base:max-w-full md:max-w-[300px]
           "
 					>
 						<TabsTrigger value="watechnology">WA Technology</TabsTrigger>
@@ -32,7 +35,7 @@ export const Experiences = () => {
 								key={v.tabId}
 								className="w-full space-y-6 font-bold text-xl"
 							>
-								<div className="flex justify-between w-full ">
+								<div className="flex justify-between w-full base:flex-col md:flex-row">
 									<h3>{v.title}</h3>
 
 									<div className="space-x-2 text-neutral-500">

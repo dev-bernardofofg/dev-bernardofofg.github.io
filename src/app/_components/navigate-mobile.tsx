@@ -34,7 +34,7 @@ export const NavigateMobile = () => {
 			</DrawerTrigger>
 			<DrawerContent>
 				<DrawerHeader>
-					<DrawerTitle>Que sessão vocÊ deseja ir?</DrawerTitle>
+					<DrawerTitle>Que sessão você deseja ir?</DrawerTitle>
 					<DrawerDescription>
 						Clique em uma das opções para ser redirecionado.
 					</DrawerDescription>
