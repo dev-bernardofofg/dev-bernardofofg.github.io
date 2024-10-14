@@ -78,6 +78,9 @@ const config = {
 				base: '320px',
 				md: '998px',
 			},
+			boxShadow: {
+				shape: '0px 0px 24px 0px rgba(240, 83, 83, 0.20)',
+			},
 		},
 	},
 	plugins: [require('tailwindcss-animate')],

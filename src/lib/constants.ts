@@ -74,8 +74,26 @@ type JOBS_TYPE = {
 
 export const PROJECTS: JOBS_TYPE[] = [
 	{
-		link: '/',
-		paragraph: '/',
-		title: '/',
+		title: 'Alvo - Landing Page',
+		paragraph:
+			'Projeto desenvolvido para uma empresa de terceiração de serviços.',
+		link: 'https://github.com/BernardoFOFG/LP-Alvo',
+	},
+	{
+		title: 'EldenRing - API',
+		paragraph: 'Projeto para melhorar a prática de consumir API Rest.',
+		link: 'https://github.com/BernardoFOFG/elden-ring-api',
+	},
+	{
+		title: 'FE (Front-end) - Perguntas de Entrevista',
+		paragraph:
+			'Projeto desenvolvido após vários dias de pesquisa sobre entrevistas de emprego para desenvolvedores front-end. Neste projeto, compilei as principais perguntas feitas durante as entrevistas.',
+		link: 'https://github.com/BernardoFOFG/fe-interview-questions',
+	},
+	{
+		title: 'Devstore - Rocketseat',
+		paragraph:
+			'Este projeto foi desenvolvido durante o curso Ignite da Rocketseat, que explora em profundidade as melhores práticas e estratégias para aumentar as taxas de conversão em e-commerces.',
+		link: 'https://github.com/BernardoFOFG/ignite-devstore-api',
 	},
 ];
