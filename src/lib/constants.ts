@@ -65,3 +65,17 @@ export const JOBS_DESCRIPTION: JOBS_DESCRIPTION_TYPE[] = [
 		tabId: 'watechnology',
 	},
 ];
+
+type JOBS_TYPE = {
+	title: string;
+	paragraph: string;
+	link: string;
+};
+
+export const PROJECTS: JOBS_TYPE[] = [
+	{
+		link: '/',
+		paragraph: '/',
+		title: '/',
+	},
+];
