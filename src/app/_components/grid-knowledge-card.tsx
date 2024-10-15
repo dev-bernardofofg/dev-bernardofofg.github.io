@@ -37,7 +37,7 @@ export const GridKnowledgeCard = () => {
 			<div className="grid base:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1">
 				{KNOWLEDGE.map((know) => (
 					<div
-						className="flex justify-center items-center border-2 rounded-lg hover:border-primary p-4 transition-all"
+						className="flex justify-center items-center border-2 rounded-lg hover:border-primary p-4 transition-all shadow-md"
 						key={know.icon}
 						onMouseOver={() => handleHovered(know.technology)}
 						onMouseLeave={() => handleHovered('')}
