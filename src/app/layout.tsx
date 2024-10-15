@@ -22,7 +22,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${chakra.className} dark bg-neutral-800`}>
 				<div className="base:p-2 md:p-4 w-full h-screen">
-					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full base:p-4 md:p-0 space-y-16 overflow-y-auto  [&::-webkit-scrollbar]:hidden">
+					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full base:p-4 md:p-0 space-y-16 overflow-y-auto [&::-webkit-scrollbar]:hidden base:px-0 md:px-4">
 						<Header />
 						{children}
 					</div>
