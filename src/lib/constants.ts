@@ -59,7 +59,7 @@ export const JOBS_DESCRIPTION: JOBS_DESCRIPTION_TYPE[] = [
 		title: 'Desenvolvedor Front-end Pleno',
 		company: 'WA Technology',
 		description:
-			'Fui integrado nessa empresa, pois um projeto desenvolvido da NETec acabou indo para escala global, e lá tivemos espaço de mercado. Nesse projeto, fui o lider do desenvolvimento front-end, e a principais tecnologias utilizadas foram: React.JS, ChakraUI, ContextAPI.',
+			'Fui integrado a esta empresa após um projeto desenvolvido pela NETec alcançar escala global, o que abriu novas oportunidades de mercado. Nesse projeto, atuei como líder do desenvolvimento front-end, utilizando principalmente as seguintes tecnologias: React.JS, Chakra UI e Context API.',
 		dateStart: new Date('2024/01/01'),
 		dateEnd: new Date(),
 		tabId: 'watechnology',
