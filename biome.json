@@ -24,6 +24,9 @@
 				"noUnusedVariables": "warn",
 				"noUnusedImports": "warn",
 				"noUnusedFunctionParameters": "warn"
+			},
+			"nursery": {
+				"useSortedClasses":"warn"
 			}
 		}
 	},

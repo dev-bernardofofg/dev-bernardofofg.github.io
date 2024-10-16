@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export const Footer = () => {
 	return (
-		<footer className="flex items-center bg-neutral-950 mx-auto justify-between p-8 base:flex-col-reverse md:flex-row gap-4">
+		<footer className="mx-auto flex base:flex-col-reverse items-center justify-between gap-4 bg-neutral-950 p-8 md:flex-row">
 			<h2 className="font-bold text-neutral-400">Feito por Bernardo Filipe</h2>
 
 			<div className="relative size-10">

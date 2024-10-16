@@ -5,13 +5,13 @@ import { SOCIAL_LINK } from '@/lib/constants';
 export const About = () => {
 	return (
 		<section
-			className="max-w-7xl mx-auto bg-neutral-950 flex w-full items-center rounded-xl border-2 border-white/10 shadow-md relative scroll-mt-12"
+			className="relative mx-auto flex w-full max-w-7xl scroll-mt-12 items-center rounded-xl border-2 border-white/10 bg-neutral-950 shadow-md"
 			id="about"
 		>
-			<div className="relative w-full base:h-[450px] md:h-[720px] base:blur-md md:blur-none flex-1 animate-levitate base:absolute md:relative">
+			<div className="base:absolute relative base:h-[450px] w-full flex-1 animate-levitate base:blur-md md:relative md:h-[720px] md:blur-none">
 				<Image src="/element/wrapper.svg" fill alt="wrapper" />
 			</div>
-			<div className="flex-1 space-y-6 relative z-10 base:p-6 md:p-2 max-w-md mx-auto">
+			<div className="relative z-10 mx-auto max-w-md flex-1 space-y-6 base:p-6 md:p-2">
 				<div className="font-bold">
 					<h3 className="text-primary">Quem sou</h3>
 					<h1 className="text-4xl">Bernardo Filipe</h1>
@@ -22,7 +22,7 @@ export const About = () => {
 						Meu nome é Bernardo Filipe, sou um desenvolvedor full-stack, mas sou
 						especializado em desenvolvimento front-end. Atualmente trabalho como
 						desenvolvedor front-end na empresa{' '}
-						<span className="text-primary font-bold">WA Technology</span>.
+						<span className="font-bold text-primary">WA Technology</span>.
 						Desenvolvo interfaces modernas para iGaming, focadas na usabilidades
 						dos usuários, com animações, facil interação do usuário,
 						responsividade e SEO.

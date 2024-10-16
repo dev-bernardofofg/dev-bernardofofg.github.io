@@ -44,10 +44,10 @@ export const Header = () => {
 	};
 
 	return (
-		<header className="flex base:justify-between md:justify-center p-4 sticky top-0 z-50 transition-all base:bg-white/5 md:bg-transparent backdrop-blur-md base:rounded-full md:rounded-xl">
+		<header className="sticky top-0 z-50 flex base:justify-between base:rounded-full base:bg-white/5 p-4 backdrop-blur-md transition-all md:justify-center md:rounded-xl md:bg-transparent">
 			{/* Navegação desktop */}
 			{isDesktop ? (
-				<nav className="flex items-center gap-4 shadow-xl bg-neutral-800 rounded-lg p-4">
+				<nav className="flex items-center gap-4 rounded-lg bg-neutral-800 p-4 shadow-xl">
 					{LINKS_NAVIGATE.map(({ name, href }) => (
 						<Link
 							href={href}
@@ -70,9 +70,9 @@ export const Header = () => {
 				</nav>
 			) : (
 				// Navegação mobile
-				<div className="flex justify-between w-full">
+				<div className="flex w-full justify-between">
 					<div className="flex flex-col">
-						<h1 className="text-neutral-50 text-2xl">Bernardo Filipe</h1>
+						<h1 className="text-2xl text-neutral-50">Bernardo Filipe</h1>
 						<h3 className="text-neutral-400 text-sm">
 							Desenvolvedor Fullstack
 						</h3>

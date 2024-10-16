@@ -6,7 +6,7 @@ import { ptBR } from 'date-fns/locale';
 export const Experiences = () => {
 	return (
 		<section
-			className="max-w-7xl mx-auto flex w-full items-center flex-col gap-8"
+			className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8"
 			id="experience"
 		>
 			<div className="w-full font-bold text-4xl">
@@ -15,27 +15,24 @@ export const Experiences = () => {
 				</h2>
 			</div>
 
-			<div className="w-full flex gap-8">
+			<div className="flex w-full gap-8">
 				<Tabs
 					defaultValue="watechnology"
-					className="w-full flex gap-8 base:flex-col md:flex-row"
+					className="flex w-full base:flex-col gap-8 md:flex-row"
 				>
-					<TabsList
-						className="flex flex-col items-start bg-neutral-800 base:max-w-full md:max-w-[300px]
-          "
-					>
+					<TabsList className="flex base:max-w-full flex-col items-start bg-neutral-800 md:max-w-[300px] ">
 						<TabsTrigger value="watechnology">WA Technology</TabsTrigger>
 						<TabsTrigger value="netec">NETec</TabsTrigger>
 						<TabsTrigger value="emprel">EMPREL</TabsTrigger>
 					</TabsList>
-					<div className="flex flex-1 w-full">
+					<div className="flex w-full flex-1">
 						{JOBS_DESCRIPTION.map((v) => (
 							<TabsContent
 								value={v.tabId}
 								key={v.tabId}
 								className="w-full space-y-6 font-bold text-xl"
 							>
-								<div className="flex justify-between w-full base:flex-col md:flex-row">
+								<div className="flex w-full base:flex-col justify-between md:flex-row">
 									<h3>{v.title}</h3>
 
 									<div className="space-x-2 text-neutral-500">

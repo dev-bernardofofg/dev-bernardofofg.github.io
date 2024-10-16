@@ -18,7 +18,7 @@ export const GridKnowledgeCard = () => {
 
 	return (
 		<>
-			<div className="flex flex-col gap-4 flex-1">
+			<div className="flex flex-1 flex-col gap-4">
 				<h2 className="font-bold text-4xl">
 					Conhecimento <span className="text-primary">.</span>
 				</h2>
@@ -28,16 +28,16 @@ export const GridKnowledgeCard = () => {
 					</span>
 				)}
 				{hovered !== '' && (
-					<span className="text-neutral-400 max-w-4xl">
+					<span className="max-w-4xl text-neutral-400">
 						{hoveredKnowledge ? hoveredKnowledge.description : ''}
 					</span>
 				)}
 			</div>
 
-			<div className="grid base:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1">
+			<div className="grid flex-1 base:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
 				{KNOWLEDGE.map((know) => (
 					<div
-						className="flex justify-center items-center border-2 rounded-lg hover:border-primary p-4 transition-all shadow-md"
+						className="flex items-center justify-center rounded-lg border-2 p-4 shadow-md transition-all hover:border-primary"
 						key={know.icon}
 						onMouseOver={() => handleHovered(know.technology)}
 						onMouseLeave={() => handleHovered('')}

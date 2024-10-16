@@ -6,10 +6,10 @@ import { ArrowBigUpDashIcon } from 'lucide-react';
 export const Hero = () => {
 	return (
 		<section
-			className="max-w-7xl mx-auto flex w-full items-center scroll-mt-64"
+			className="mx-auto flex w-full max-w-7xl scroll-mt-64 items-center"
 			id="hero"
 		>
-			<div className="flex flex-col flex-1 gap-4 text-center items-center">
+			<div className="flex flex-1 flex-col items-center gap-4 text-center">
 				<div className="flex flex-col gap-2 font-bold">
 					<h1 className="base:text-4xl md:text-7xl">Bernardo Filipe</h1>
 					<h3 className="base:text-xl md:text-4xl">
@@ -20,18 +20,18 @@ export const Hero = () => {
 						empresa.
 					</p>
 				</div>
-				<div className="flex gap-4 items-center">
+				<div className="flex items-center gap-4">
 					<Button className="text-base">Entre em contato</Button>
 					<Link
 						href="#projects"
-						className="text-primary flex items-center gap-2 h-12 transition-all hover:opacity-70"
+						className="flex h-12 items-center gap-2 text-primary transition-all hover:opacity-70"
 					>
 						<span className="font-bold">Projetos</span>
-						<ArrowBigUpDashIcon className="rotate-45 size-7" />
+						<ArrowBigUpDashIcon className="size-7 rotate-45" />
 					</Link>
 				</div>
 			</div>
-			<div className="relative w-full flex-1 h-[500px] base:hidden md:flex animate-levitate">
+			<div className="relative base:hidden h-[500px] w-full flex-1 animate-levitate md:flex">
 				<Image src="/element/wrapper.svg" fill alt="hero element" />
 			</div>
 		</section>

@@ -10,7 +10,7 @@ interface SocialLinkProps {
 export const SocialLink = ({ href, icon, name }: SocialLinkProps) => {
 	return (
 		<Link href={href} target="_blank">
-			<div className="border-2 border-white/10 rounded-xl p-2 hover:border-primary transition-all duration-500">
+			<div className="rounded-xl border-2 border-white/10 p-2 transition-all duration-500 hover:border-primary">
 				<span className="hidden">{name}</span>
 				<div className="relative base:size-6 md:size-8">
 					<Image src={icon} fill alt="social-icon" className="text-primary" />

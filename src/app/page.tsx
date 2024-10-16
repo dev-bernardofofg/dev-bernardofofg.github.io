@@ -6,7 +6,7 @@ import { Projects } from './_components/projects';
 
 export default function Home() {
 	return (
-		<main className="flex w-full flex-col gap-16 items-center justify-center bg-neutral-900 text-neutral-100">
+		<main className="flex w-full flex-col items-center justify-center gap-16 bg-neutral-900 text-neutral-100">
 			<Hero />
 			<About />
 			<Experiences />

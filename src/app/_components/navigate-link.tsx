@@ -15,8 +15,7 @@ export const NavigateLink = ({ title, href, onClick }: NavigaTeLinkProps) => {
 		<Link
 			href={href}
 			onClick={onClick}
-			className={`h-10 
-    ${pathname ? 'border-primary' : 'border-transparent'} border-l-4 w-full flex items-center pl-2`}
+			className={`h-10 ${pathname ? 'border-primary' : 'border-transparent'} flex w-full items-center border-l-4 pl-2`}
 		>
 			{title}
 		</Link>
