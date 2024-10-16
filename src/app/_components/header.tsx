@@ -44,7 +44,7 @@ export const Header = () => {
 	};
 
 	return (
-		<header className="sticky top-0 z-50 flex base:justify-between base:rounded-full base:bg-white/5 p-4 backdrop-blur-md transition-all md:justify-center md:rounded-xl md:bg-transparent">
+		<header className="sticky top-0 z-50 flex base:justify-between base:rounded-none base:bg-white/5 p-4 backdrop-blur-md transition-all md:justify-center md:rounded-xl md:bg-transparent">
 			{/* Navegação desktop */}
 			{isDesktop ? (
 				<nav className="flex items-center gap-4 rounded-lg bg-neutral-800 p-4 shadow-xl">
