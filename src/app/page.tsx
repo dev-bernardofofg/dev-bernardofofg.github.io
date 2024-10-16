@@ -1,4 +1,5 @@
 import { About } from './_components/about';
+import { ContactUs } from './_components/contact-us';
 import { Experiences } from './_components/experiences';
 import { Hero } from './_components/hero';
 import { Knowledge } from './_components/knowledge';
@@ -12,6 +13,7 @@ export default function Home() {
 			<Experiences />
 			<Projects />
 			<Knowledge />
+			<ContactUs />
 		</main>
 	);
 }

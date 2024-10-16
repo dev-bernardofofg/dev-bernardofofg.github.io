@@ -21,7 +21,9 @@ export const Hero = () => {
 					</p>
 				</div>
 				<div className="flex items-center gap-4">
-					<Button className="text-base">Entre em contato</Button>
+					<Button className="text-base" asChild>
+						<Link href="#contact">Entre em contato </Link>
+					</Button>
 					<Link
 						href="#projects"
 						className="flex h-12 items-center gap-2 text-primary transition-all hover:opacity-70"
