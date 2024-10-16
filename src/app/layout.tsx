@@ -10,8 +10,7 @@ const chakra = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-	title: 'Boilerplate Title',
-	description: 'Boilerplate Description',
+	title: 'Portfólio - Bernardo Filipe',
 };
 
 export default function RootLayout({
@@ -22,8 +21,8 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${chakra.className} dark bg-neutral-800`}>
-				<div className="base:p-2 md:p-4 w-full h-screen">
-					<div className="bg-neutral-900 rounded-2xl shadow-lg size-full space-y-16 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+				<div className="h-screen w-full base:p-2 md:p-4">
+					<div className="size-full space-y-16 overflow-y-auto rounded-2xl bg-neutral-900 shadow-lg [&::-webkit-scrollbar]:hidden">
 						<Header />
 						<div className="base:px-2 md:px-4">{children}</div>
 						<Footer />
