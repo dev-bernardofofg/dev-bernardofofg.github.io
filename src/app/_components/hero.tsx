@@ -2,10 +2,11 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowBigUpDashIcon } from 'lucide-react';
+import { AnimatedSection } from './animate-section';
 
 export const Hero = () => {
 	return (
-		<section
+		<AnimatedSection
 			className="mx-auto flex w-full max-w-7xl scroll-mt-64 items-center"
 			id="hero"
 		>
@@ -36,6 +37,6 @@ export const Hero = () => {
 			<div className="relative base:hidden h-[500px] w-full flex-1 animate-levitate md:flex">
 				<Image src="/element/wrapper.svg" fill alt="hero element" />
 			</div>
-		</section>
+		</AnimatedSection>
 	);
 };

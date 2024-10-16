@@ -1,10 +1,11 @@
 import { PROJECTS } from '@/lib/constants';
 import { CardProject } from './card-project';
+import { AnimatedSection } from './animate-section';
 
 export const Projects = () => {
 	return (
-		<section
-			className="mx-auto mb-4 flex w-full max-w-7xl flex-col gap-8"
+		<AnimatedSection
+			className="mx-auto mb-4 flex w-full max-w-7xl scroll-mt-32 flex-col gap-8"
 			id="projects"
 		>
 			<h2 className="text-center font-bold text-4xl">
@@ -21,6 +22,6 @@ export const Projects = () => {
 					/>
 				))}
 			</div>
-		</section>
+		</AnimatedSection>
 	);
 };

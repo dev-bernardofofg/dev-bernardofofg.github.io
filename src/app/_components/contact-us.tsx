@@ -1,8 +1,9 @@
+import { AnimatedSection } from './animate-section';
 import { FormContact } from './form-contact';
 
 export const ContactUs = () => {
 	return (
-		<section
+		<AnimatedSection
 			className="mx-auto flex w-full max-w-7xl flex-col items-center gap-4"
 			id="contact"
 		>
@@ -12,6 +13,6 @@ export const ContactUs = () => {
 				</h2>
 			</div>
 			<FormContact />
-		</section>
+		</AnimatedSection>
 	);
 };

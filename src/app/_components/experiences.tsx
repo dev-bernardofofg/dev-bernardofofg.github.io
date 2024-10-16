@@ -2,11 +2,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { JOBS_DESCRIPTION } from '@/lib/constants';
 import { format, formatDistance } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { AnimatedSection } from './animate-section';
 
 export const Experiences = () => {
 	return (
-		<section
-			className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8"
+		<AnimatedSection
+			className="mx-auto flex w-full max-w-7xl scroll-mt-28 flex-col items-center gap-8"
 			id="experience"
 		>
 			<div className="w-full font-bold text-4xl">
@@ -59,6 +60,6 @@ export const Experiences = () => {
 					</div>
 				</Tabs>
 			</div>
-		</section>
+		</AnimatedSection>
 	);
 };

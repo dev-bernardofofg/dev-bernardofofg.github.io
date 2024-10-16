@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { SocialLink } from './social-link';
 import { SOCIAL_LINK } from '@/lib/constants';
+import { AnimatedSection } from './animate-section';
 
 export const About = () => {
 	return (
-		<section
+		<AnimatedSection
 			className="relative mx-auto flex w-full max-w-7xl scroll-mt-12 items-center rounded-xl border-2 border-white/10 bg-neutral-950 shadow-md"
 			id="about"
 		>
@@ -39,6 +40,6 @@ export const About = () => {
 					))}
 				</div>
 			</div>
-		</section>
+		</AnimatedSection>
 	);
 };
