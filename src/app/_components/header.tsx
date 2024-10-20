@@ -13,6 +13,7 @@ export const LINKS_NAVIGATE = [
 	{ name: 'Experiências', href: '/#experience' },
 	{ name: 'Projetos', href: '/#projects' },
 	{ name: 'Conhecimentos', href: '/#knowledge' },
+	{ name: 'Fale conosco', href: '/#contact' },
 ];
 
 export const Header = () => {
