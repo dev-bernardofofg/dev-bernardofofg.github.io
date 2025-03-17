@@ -3,6 +3,7 @@
 import { KNOWLEDGE } from '@/lib/constants';
 import Image from 'next/image';
 import { useState } from 'react';
+import { HoverCard } from './hover-card';
 
 export const GridKnowledgeCard = () => {
 	const [hovered, setHovered] = useState('');
@@ -36,17 +37,18 @@ export const GridKnowledgeCard = () => {
 
 			<div className="grid flex-1 base:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
 				{KNOWLEDGE.map((know) => (
-					<div
-						className="flex items-center justify-center rounded-lg border-2 p-4 shadow-md transition-all hover:border-primary"
-						key={know.icon}
-						onMouseOver={() => handleHovered(know.technology)}
-						onMouseLeave={() => handleHovered('')}
-						onFocus={() => handleHovered(know.technology)}
-					>
-						<div className="relative size-16">
-							<Image src={know.icon} fill alt={know.technology} />
+					<HoverCard description={know.technology} key={know.icon}>
+						<div
+							className="flex items-center justify-center rounded-lg border-2 p-4 shadow-md transition-all hover:border-primary"
+							onMouseOver={() => handleHovered(know.technology)}
+							onMouseLeave={() => handleHovered('')}
+							onFocus={() => handleHovered(know.technology)}
+						>
+							<div className="relative size-16">
+								<Image src={know.icon} fill alt={know.technology} />
+							</div>
 						</div>
-					</div>
+					</HoverCard>
 				))}
 			</div>
 		</>
