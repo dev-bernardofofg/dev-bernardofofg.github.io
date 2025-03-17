@@ -50,7 +50,7 @@ export const JOBS_DESCRIPTION: JOBS_DESCRIPTION_TYPE[] = [
 		title: 'Desenvolvedor Front-end Junior',
 		company: 'NETec',
 		description:
-			'Desenvolvimento de websites utilizando HTML, CSS e Javascript, destacando-se o uso predominante do framework ReactJS e a integração de diversas bibliotecas, tais como Date-fns, React Hook Form e Chakra.UI. Além de estar sempre tendo que transformar protótipos do Figma em código de forma fiel, garantindo uma implementação idêntica e eficiente.',
+			'Desenvolvimento de websites utilizando HTML, CSS e Javascript, destacando-se o uso predominante do framework React.JS/Next.JS e a integração de diversas bibliotecas, tais como Date-fns, React Hook Form e Chakra.UI. Além de estar sempre tendo que transformar protótipos do Figma em código de forma fiel, garantindo uma implementação idêntica e eficiente.',
 		dateStart: new Date('2023/07/21'),
 		dateEnd: new Date(),
 		tabId: 'netec',
@@ -59,7 +59,7 @@ export const JOBS_DESCRIPTION: JOBS_DESCRIPTION_TYPE[] = [
 		title: 'Desenvolvedor Front-end Pleno',
 		company: 'WA Technology',
 		description:
-			'Fui integrado a esta empresa após um projeto desenvolvido pela NETec alcançar escala global, o que abriu novas oportunidades de mercado. Nesse projeto, atuei como líder do desenvolvimento front-end, utilizando principalmente as seguintes tecnologias: React.JS, Chakra UI e Context API.',
+			'Fui integrado a esta empresa após um projeto desenvolvido pela NETec alcançar escala global, o que abriu novas oportunidades de mercado. Nesse projeto, atuei como líder do desenvolvimento front-end, utilizando principalmente as seguintes tecnologias: React.JS, Next.JS, Chakra UI e Context API.',
 		dateStart: new Date('2024/01/01'),
 		dateEnd: new Date(),
 		tabId: 'watechnology',
@@ -76,13 +76,14 @@ export const PROJECTS: PROJECTS_TYPE[] = [
 	{
 		title: 'Alvo - Landing Page',
 		paragraph:
-			'Projeto desenvolvido para uma empresa de terceiração de serviços.',
-		link: 'https://github.com/BernardoFOFG/LP-Alvo',
+			'Landing page desenvolvida para uma empresa de terceirização de serviços, oferecendo uma apresentação profissional e eficiente.',
+		link: 'https://lp-alvo.vercel.app/',
 	},
 	{
-		title: 'EldenRing - API',
-		paragraph: 'Projeto para melhorar a prática de consumir API Rest.',
-		link: 'https://github.com/BernardoFOFG/elden-ring-api',
+		title: 'ConverseIA - Landing Page',
+		paragraph:
+			'Landing page desenvolvida para uma empresa de gerenciamento de clientes que utiliza inteligência artificial para otimizar a comunicação e a experiência do usuário.',
+		link: 'https://www.converseia.com/',
 	},
 	{
 		title: 'FE (Front-end) - Perguntas de Entrevista',
