@@ -1,0 +1,121 @@
+{
+  "common": {
+    "viewProject": "Visualizar projeto",
+    "downloadCV": "Download CV",
+    "contact": "Fale comigo",
+    "sending": "Enviando...",
+    "send": "Enviar"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "experiences": "Experiências",
+    "projects": "Projetos",
+    "knowledge": "Conhecimentos",
+    "contact": "Contato"
+  },
+  "hero": {
+    "available": "Disponível para projetos",
+    "name": "Bernardo Filipe",
+    "role": "Desenvolvedor Full-Stack",
+    "description": "Especializado em front-end com React e Next.js, focado em entregar soluções de alta qualidade e performance para sua empresa.",
+    "cta": "Entre em contato",
+    "viewProjects": "Ver projetos"
+  },
+  "about": {
+    "label": "Quem sou",
+    "name": "Bernardo Filipe",
+    "role": "Full-Stack Developer",
+    "description": "Desenvolvedor full-stack especializado em front-end com React e Next.js. Focado em criar experiências digitais de alta qualidade, com código limpo e performance otimizada. Atualmente aberto a novas oportunidades de trabalho."
+  },
+  "experiences": {
+    "title": "Experiências",
+    "jobs": {
+      "senfio": {
+        "title": "Desenvolvedor Front-end Pleno",
+        "company": "Senfio",
+        "description": "Desenvolvimento de backoffices para o setor de monitoramento de saúde utilizando principalmente as seguintes tecnologias: React.JS, Next.JS, TailwindCSS, ShadcnUI e Context API."
+      },
+      "watechnology": {
+        "title": "Desenvolvedor Front-end Pleno",
+        "company": "WA Technology",
+        "description": "Fui integrado a esta empresa após um projeto desenvolvido pela NETec alcançar escala global, o que abriu novas oportunidades de mercado. Nesse projeto, atuei como líder do desenvolvimento front-end, utilizando principalmente as seguintes tecnologias: React.JS, Next.JS, Chakra UI e Context API."
+      },
+      "netec": {
+        "title": "Desenvolvedor Front-end Junior",
+        "company": "NETec",
+        "description": "Desenvolvimento de websites utilizando HTML, CSS e Javascript, destacando-se o uso predominante do framework React.JS/Next.JS e a integração de diversas bibliotecas, tais como Date-fns, React Hook Form e Chakra.UI. Além de estar sempre tendo que transformar protótipos do Figma em código de forma fiel, garantindo uma implementação idêntica e eficiente."
+      },
+      "emprel": {
+        "title": "Estágio em Desenvolvimento",
+        "company": "EMPREL",
+        "description": "Trabalhei como estagiário na EMPREL, onde trabalhei diretamente com alguns projetos do estado de Pernambuco, e basicamente meu trabalho no período foi dar manutenção em sistemas legados utilizando principalmente PHP e Symfony."
+      }
+    }
+  },
+  "projects": {
+    "title": "Projetos",
+    "items": {
+      "alvo": {
+        "title": "Alvo - Landing Page",
+        "description": "Landing page desenvolvida para uma empresa de terceirização de serviços, oferecendo uma apresentação profissional e eficiente."
+      },
+      "converseia": {
+        "title": "ConverseIA - Landing Page",
+        "description": "Landing page desenvolvida para uma empresa de gerenciamento de clientes que utiliza inteligência artificial para otimizar a comunicação e a experiência do usuário."
+      },
+      "fe": {
+        "title": "FE (Front-end) - Perguntas de Entrevista",
+        "description": "Projeto desenvolvido após vários dias de pesquisa sobre entrevistas de emprego para desenvolvedores front-end. Neste projeto, compilei as principais perguntas feitas durante as entrevistas."
+      },
+      "devstore": {
+        "title": "Devstore - Rocketseat",
+        "description": "Este projeto foi desenvolvido durante o curso Ignite da Rocketseat, que explora em profundidade as melhores práticas e estratégias para aumentar as taxas de conversão em e-commerces."
+      }
+    }
+  },
+  "knowledge": {
+    "title": "Conhecimento",
+    "hoverHint": "*Passe o mouse para ler a descrição*",
+    "tapHint": "*Toque em uma tecnologia para ver a descrição*",
+    "categories": {
+      "all": "Todos",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Ferramentas"
+    },
+    "levels": {
+      "1": "Iniciante",
+      "2": "Básico",
+      "3": "Intermediário",
+      "4": "Avançado",
+      "5": "Expert"
+    }
+  },
+  "contact": {
+    "title": "Entre em contato conosco",
+    "form": {
+      "name": "Nome completo",
+      "email": "Email",
+      "phone": "Telefone",
+      "message": "Descreva o motivo do contato",
+      "submit": "Enviar",
+      "submitting": "Enviando..."
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Verifique o formato do email.",
+      "phoneRequired": "Telefone é obrigatório"
+    },
+    "toast": {
+      "successTitle": "Pedido de contato enviado com sucesso!",
+      "successDescription": "Entraremos em contato com você o mais rápido possível!",
+      "errorTitle": "Ops... houve um problema",
+      "errorDescription": "Estaremos corrigindo o mais rápido possível"
+    }
+  },
+  "footer": {
+    "madeBy": "Feito por Bernardo Filipe"
+  }
+}

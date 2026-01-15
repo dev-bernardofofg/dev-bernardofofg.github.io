@@ -1,0 +1,121 @@
+{
+  "common": {
+    "viewProject": "View project",
+    "downloadCV": "Download CV",
+    "contact": "Contact me",
+    "sending": "Sending...",
+    "send": "Send"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experiences": "Experience",
+    "projects": "Projects",
+    "knowledge": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "Available for projects",
+    "name": "Bernardo Filipe",
+    "role": "Full-Stack Developer",
+    "description": "Specialized in front-end with React and Next.js, focused on delivering high-quality and high-performance solutions for your company.",
+    "cta": "Get in touch",
+    "viewProjects": "View projects"
+  },
+  "about": {
+    "label": "About me",
+    "name": "Bernardo Filipe",
+    "role": "Full-Stack Developer",
+    "description": "Full-stack developer specialized in front-end with React and Next.js. Focused on creating high-quality digital experiences with clean code and optimized performance. Currently open to new job opportunities."
+  },
+  "experiences": {
+    "title": "Experience",
+    "jobs": {
+      "senfio": {
+        "title": "Mid-level Front-end Developer",
+        "company": "Senfio",
+        "description": "Development of backoffices for the health monitoring sector using mainly the following technologies: React.JS, Next.JS, TailwindCSS, ShadcnUI and Context API."
+      },
+      "watechnology": {
+        "title": "Mid-level Front-end Developer",
+        "company": "WA Technology",
+        "description": "I joined this company after a project developed by NETec reached global scale, which opened new market opportunities. In this project, I acted as the front-end development lead, using mainly the following technologies: React.JS, Next.JS, Chakra UI and Context API."
+      },
+      "netec": {
+        "title": "Junior Front-end Developer",
+        "company": "NETec",
+        "description": "Website development using HTML, CSS and Javascript, with predominant use of the React.JS/Next.JS framework and integration of various libraries such as Date-fns, React Hook Form and Chakra.UI. Always transforming Figma prototypes into code faithfully, ensuring identical and efficient implementation."
+      },
+      "emprel": {
+        "title": "Development Intern",
+        "company": "EMPREL",
+        "description": "I worked as an intern at EMPREL, where I worked directly on some projects for the state of Pernambuco, and basically my work during this period was to maintain legacy systems using mainly PHP and Symfony."
+      }
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "items": {
+      "alvo": {
+        "title": "Alvo - Landing Page",
+        "description": "Landing page developed for an outsourcing services company, offering a professional and efficient presentation."
+      },
+      "converseia": {
+        "title": "ConverseIA - Landing Page",
+        "description": "Landing page developed for a customer management company that uses artificial intelligence to optimize communication and user experience."
+      },
+      "fe": {
+        "title": "FE (Front-end) - Interview Questions",
+        "description": "Project developed after several days of research on job interviews for front-end developers. In this project, I compiled the main questions asked during interviews."
+      },
+      "devstore": {
+        "title": "Devstore - Rocketseat",
+        "description": "This project was developed during the Rocketseat Ignite course, which explores in depth the best practices and strategies to increase conversion rates in e-commerces."
+      }
+    }
+  },
+  "knowledge": {
+    "title": "Skills",
+    "hoverHint": "*Hover to read the description*",
+    "tapHint": "*Tap a technology to see the description*",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools"
+    },
+    "levels": {
+      "1": "Beginner",
+      "2": "Basic",
+      "3": "Intermediate",
+      "4": "Advanced",
+      "5": "Expert"
+    }
+  },
+  "contact": {
+    "title": "Get in touch with us",
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Describe the reason for contact",
+      "submit": "Send",
+      "submitting": "Sending..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please check the email format.",
+      "phoneRequired": "Phone is required"
+    },
+    "toast": {
+      "successTitle": "Contact request sent successfully!",
+      "successDescription": "We will get back to you as soon as possible!",
+      "errorTitle": "Oops... there was a problem",
+      "errorDescription": "We will fix it as soon as possible"
+    }
+  },
+  "footer": {
+    "madeBy": "Made by Bernardo Filipe"
+  }
+}
