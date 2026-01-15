@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { SOCIAL_LINK } from '@/lib/constants';
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SocialLink } from './social-link';
@@ -22,11 +23,11 @@ const itemVariants = {
 };
 
 export const About = () => {
+  const t = useTranslations('about');
+  const tCommon = useTranslations('common');
+
   return (
-    <section
-      className="mx-auto w-full max-w-7xl scroll-mt-12 px-4"
-      id="about"
-    >
+    <section className="mx-auto w-full max-w-7xl scroll-mt-12 px-4" id="about">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -56,19 +57,16 @@ export const About = () => {
         {/* Lado direito - Conteúdo */}
         <div className="relative z-10 flex flex-1 flex-col gap-6">
           <motion.div variants={itemVariants} className="space-y-2">
-            <span className="text-sm font-medium text-primary">Quem sou</span>
-            <h2 className="font-bold text-4xl text-white">Bernardo Filipe</h2>
-            <p className="text-lg text-neutral-400">Full-Stack Developer</p>
+            <span className="text-sm font-medium text-primary">{t('label')}</span>
+            <h2 className="font-bold text-4xl text-white">{t('name')}</h2>
+            <p className="text-lg text-neutral-400">{t('role')}</p>
           </motion.div>
 
           <motion.p
             variants={itemVariants}
             className="text-neutral-400 leading-relaxed"
           >
-            Desenvolvedor full-stack especializado em front-end com React e
-            Next.js. Focado em criar experiências digitais de alta qualidade,
-            com código limpo e performance otimizada. Atualmente aberto a novas
-            oportunidades de trabalho.
+            {t('description')}
           </motion.p>
 
           {/* Ações */}
@@ -92,7 +90,7 @@ export const About = () => {
             <Button variant="outline" className="gap-2" asChild>
               <Link href="/cv.pdf" target="_blank" download>
                 <Download className="size-4" />
-                Download CV
+                {tCommon('downloadCV')}
               </Link>
             </Button>
           </motion.div>

@@ -2,24 +2,28 @@
 
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from '../_hooks/use-media-query';
+import { LanguageSwitcher } from './language-switcher';
 import { NavigateMobile } from './navigate-mobile';
 
-export const LINKS_NAVIGATE = [
-  { name: 'Início', href: '/#hero' },
-  { name: 'Sobre', href: '/#about' },
-  { name: 'Experiências', href: '/#experience' },
-  { name: 'Projetos', href: '/#projects' },
-  { name: 'Conhecimentos', href: '/#knowledge' },
-  { name: 'Contato', href: '/#contact' },
-];
-
 export const Header = () => {
+  const t = useTranslations('nav');
+  const tCommon = useTranslations('common');
   const isDesktop = useMediaQuery('(min-width: 998px)');
   const [pathNameActive, setPathNameActive] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const LINKS_NAVIGATE = [
+    { name: t('home'), href: '/#hero' },
+    { name: t('about'), href: '/#about' },
+    { name: t('experiences'), href: '/#experience' },
+    { name: t('projects'), href: '/#projects' },
+    { name: t('knowledge'), href: '/#knowledge' },
+    { name: t('contact'), href: '/#contact' },
+  ];
 
   useEffect(() => {
     setPathNameActive(window.location.hash || '/#hero');
@@ -76,7 +80,7 @@ export const Header = () => {
               return (
                 <Link
                   href={href}
-                  key={name}
+                  key={href}
                   onClick={() => setPathNameActive(href)}
                   className={cn(
                     'relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
@@ -96,17 +100,23 @@ export const Header = () => {
             })}
           </nav>
         ) : (
-          <NavigateMobile />
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <NavigateMobile />
+          </div>
         )}
 
-        {/* CTA desktop */}
+        {/* CTA desktop + Language Switcher */}
         {isDesktop && (
-          <Link
-            href="/#contact"
-            className="rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20"
-          >
-            Fale comigo
-          </Link>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <Link
+              href="/#contact"
+              className="rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20"
+            >
+              {tCommon('contact')}
+            </Link>
+          </div>
         )}
       </div>
     </motion.header>

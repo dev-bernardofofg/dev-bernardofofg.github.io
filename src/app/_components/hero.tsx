@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useTypewriter } from '../_hooks/use-typewriter';
 import { TechOrbit } from './tech-orbit';
@@ -37,8 +38,10 @@ const buttonVariants = {
 };
 
 export const Hero = () => {
+  const t = useTranslations('hero');
+
   const { displayText, isComplete } = useTypewriter({
-    text: 'Desenvolvedor Full-Stack',
+    text: t('role'),
     speed: 70,
     delay: 800,
   });
@@ -78,13 +81,13 @@ export const Hero = () => {
           className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm"
         >
           <span className="size-2 animate-pulse rounded-full bg-primary" />
-          <span className="text-primary">Disponível para projetos</span>
+          <span className="text-primary">{t('available')}</span>
         </motion.div>
 
         {/* Título */}
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
           <h1 className="bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text font-bold text-transparent base:text-5xl md:text-7xl">
-            Bernardo Filipe
+            {t('name')}
           </h1>
 
           {/* Subtítulo com typewriter */}
@@ -101,8 +104,7 @@ export const Hero = () => {
           variants={itemVariants}
           className="max-w-lg text-neutral-400 base:text-base md:text-lg"
         >
-          Especializado em front-end com React e Next.js, focado em entregar
-          soluções de alta qualidade e performance para sua empresa.
+          {t('description')}
         </motion.p>
 
         {/* Botões */}
@@ -112,7 +114,7 @@ export const Hero = () => {
         >
           <Button size="lg" className="group text-base" asChild>
             <Link href="#contact">
-              Entre em contato
+              {t('cta')}
               <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -120,7 +122,7 @@ export const Hero = () => {
             href="#projects"
             className="flex h-12 items-center gap-2 rounded-full border border-neutral-700 px-6 text-neutral-300 transition-all hover:border-primary hover:text-primary"
           >
-            <span className="font-medium">Ver projetos</span>
+            <span className="font-medium">{t('viewProjects')}</span>
           </Link>
         </motion.div>
       </motion.div>

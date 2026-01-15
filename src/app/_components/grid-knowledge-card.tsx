@@ -3,26 +3,12 @@
 import { KNOWLEDGE, type KnowledgeCategory } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { useMediaQuery } from '../_hooks/use-media-query';
 
 type CategoryFilter = KnowledgeCategory | 'all';
-
-const CATEGORY_LABELS: Record<CategoryFilter, string> = {
-  all: 'Todos',
-  frontend: 'Frontend',
-  backend: 'Backend',
-  tools: 'Ferramentas',
-};
-
-const LEVEL_LABELS: Record<number, string> = {
-  1: 'Iniciante',
-  2: 'Básico',
-  3: 'Intermediário',
-  4: 'Avançado',
-  5: 'Expert',
-};
 
 // Componente de indicador de proficiência
 const ProficiencyIndicator = ({ level }: { level: number }) => (
@@ -67,9 +53,25 @@ const descriptionVariants = {
 };
 
 export const GridKnowledgeCard = () => {
+  const t = useTranslations('knowledge');
   const [selected, setSelected] = useState<string | null>(null);
   const [category, setCategory] = useState<CategoryFilter>('all');
   const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const CATEGORY_LABELS: Record<CategoryFilter, string> = {
+    all: t('categories.all'),
+    frontend: t('categories.frontend'),
+    backend: t('categories.backend'),
+    tools: t('categories.tools'),
+  };
+
+  const LEVEL_LABELS: Record<number, string> = {
+    1: t('levels.1'),
+    2: t('levels.2'),
+    3: t('levels.3'),
+    4: t('levels.4'),
+    5: t('levels.5'),
+  };
 
   // Filtra conhecimentos por categoria
   const filteredKnowledge = useMemo(
@@ -103,7 +105,7 @@ export const GridKnowledgeCard = () => {
       {/* Header com título e descrição */}
       <div className="flex flex-col gap-4">
         <h2 className="font-bold text-4xl">
-          Conhecimento <span className="text-primary">.</span>
+          {t('title')} <span className="text-primary">.</span>
         </h2>
 
         {/* Descrição animada */}
@@ -118,9 +120,7 @@ export const GridKnowledgeCard = () => {
                 exit="exit"
                 className="block text-neutral-500 italic"
               >
-                {isMobile
-                  ? '*Toque em uma tecnologia para ver a descrição*'
-                  : '*Passe o mouse para ler a descrição*'}
+                {isMobile ? t('tapHint') : t('hoverHint')}
               </motion.span>
             ) : (
               <motion.div

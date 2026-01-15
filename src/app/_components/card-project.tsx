@@ -1,5 +1,8 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import { ArrowUpRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 interface CardProjectProps {
@@ -15,6 +18,8 @@ export const CardProject = ({
   title,
   technologies,
 }: CardProjectProps) => {
+  const t = useTranslations('common');
+
   return (
     <div
       className={cn(
@@ -57,7 +62,7 @@ export const CardProject = ({
         target="_blank"
         className="relative z-10 inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
       >
-        Visualizar projeto
+        {t('viewProject')}
         <ArrowUpRight className="size-4" />
       </Link>
     </div>

@@ -3,11 +3,14 @@
 import { PROJECTS } from '@/lib/constants';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatedSection } from './animate-section';
 import { CardProject } from './card-project';
 
 export const Projects = () => {
+  const t = useTranslations('projects');
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     loop: true,
@@ -36,6 +39,9 @@ export const Projects = () => {
     emblaApi.on('reInit', onSelect);
   }, [emblaApi, onSelect]);
 
+  // Mapeamento de projetos para chaves de tradução
+  const projectKeys = ['alvo', 'converseia', 'fe', 'devstore'] as const;
+
   return (
     <AnimatedSection
       className="mx-auto mb-4 flex w-full max-w-7xl scroll-mt-32 flex-col gap-8"
@@ -43,7 +49,7 @@ export const Projects = () => {
     >
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-4xl">
-          Projetos <span className="text-primary">.</span>
+          {t('title')} <span className="text-primary">.</span>
         </h2>
 
         {/* Navegação */}
@@ -72,14 +78,14 @@ export const Projects = () => {
       {/* Carousel */}
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex gap-4">
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, index) => (
             <div
               key={project.link}
               className="min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] last:pr-4"
             >
               <CardProject
-                title={project.title}
-                paragraph={project.paragraph}
+                title={t(`items.${projectKeys[index]}.title`)}
+                paragraph={t(`items.${projectKeys[index]}.description`)}
                 link={project.link}
                 technologies={project.technologies}
               />
