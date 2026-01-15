@@ -69,6 +69,8 @@ type PROJECTS_TYPE = {
   title: string;
   paragraph: string;
   link: string;
+  technologies: string[];
+  image?: string;
 };
 
 export const PROJECTS: PROJECTS_TYPE[] = [
@@ -77,24 +79,28 @@ export const PROJECTS: PROJECTS_TYPE[] = [
     paragraph:
       "Landing page desenvolvida para uma empresa de terceirização de serviços, oferecendo uma apresentação profissional e eficiente.",
     link: "https://lp-alvo.vercel.app/",
+    technologies: ["React", "Next.js", "TailwindCSS"],
   },
   {
     title: "ConverseIA - Landing Page",
     paragraph:
       "Landing page desenvolvida para uma empresa de gerenciamento de clientes que utiliza inteligência artificial para otimizar a comunicação e a experiência do usuário.",
     link: "https://www.converseia.com/",
+    technologies: ["React", "Next.js", "TailwindCSS", "Framer Motion"],
   },
   {
     title: "FE (Front-end) - Perguntas de Entrevista",
     paragraph:
       "Projeto desenvolvido após vários dias de pesquisa sobre entrevistas de emprego para desenvolvedores front-end. Neste projeto, compilei as principais perguntas feitas durante as entrevistas.",
     link: "https://github.com/BernardoFOFG/fe-interview-questions",
+    technologies: ["React", "TypeScript", "Markdown"],
   },
   {
     title: "Devstore - Rocketseat",
     paragraph:
       "Este projeto foi desenvolvido durante o curso Ignite da Rocketseat, que explora em profundidade as melhores práticas e estratégias para aumentar as taxas de conversão em e-commerces.",
     link: "https://github.com/BernardoFOFG/ignite-devstore-api",
+    technologies: ["React", "Next.js", "TypeScript", "TailwindCSS"],
   },
 ];
 
