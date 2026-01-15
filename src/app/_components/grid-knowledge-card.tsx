@@ -46,12 +46,6 @@ const cardVariants = {
   },
 };
 
-const descriptionVariants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  exit: { opacity: 0, y: 10, transition: { duration: 0.2 } },
-};
-
 export const GridKnowledgeCard = () => {
   const t = useTranslations('knowledge');
   const [selected, setSelected] = useState<string | null>(null);
@@ -82,9 +76,6 @@ export const GridKnowledgeCard = () => {
     [category],
   );
 
-  // Encontra o conhecimento selecionado
-  const selectedKnowledge = KNOWLEDGE.find((k) => k.technology === selected);
-
   // Handler para interação (hover no desktop, tap no mobile)
   const handleInteraction = (technology: string) => {
     if (isMobile) {
@@ -102,51 +93,14 @@ export const GridKnowledgeCard = () => {
 
   return (
     <div className="flex flex-col gap-8 w-full">
-      {/* Header com título e descrição */}
-      <div className="flex flex-col gap-4">
+      {/* Header com título */}
+      <div className="flex flex-col gap-2">
         <h2 className="font-bold text-4xl">
           {t('title')} <span className="text-primary">.</span>
         </h2>
-
-        {/* Descrição animada */}
-        <div className="min-h-[60px]">
-          <AnimatePresence mode="wait">
-            {!selected ? (
-              <motion.span
-                key="placeholder"
-                variants={descriptionVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="block text-neutral-500 italic"
-              >
-                {isMobile ? t('tapHint') : t('hoverHint')}
-              </motion.span>
-            ) : (
-              <motion.div
-                key={selected}
-                variants={descriptionVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="flex flex-col gap-2"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-semibold text-lg text-primary">
-                    {selectedKnowledge?.technology}
-                  </span>
-                  <span className="text-neutral-500 text-sm">
-                    {LEVEL_LABELS[selectedKnowledge?.level ?? 1]}
-                  </span>
-                  <ProficiencyIndicator level={selectedKnowledge?.level ?? 1} />
-                </div>
-                <span className="max-w-4xl text-neutral-400">
-                  {selectedKnowledge?.description}
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <p className="text-neutral-500 text-sm">
+          {isMobile ? t('tapHint') : t('hoverHint')}
+        </p>
       </div>
 
       {/* Tabs de categorias */}
@@ -217,9 +171,9 @@ export const GridKnowledgeCard = () => {
               {/* Indicador de proficiência no card */}
               <ProficiencyIndicator level={know.level} />
 
-              {/* Descrição expandida no mobile quando ativo */}
+              {/* Descrição expandida quando ativo */}
               <AnimatePresence>
-                {isMobile && isActive && (
+                {isActive && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
@@ -227,9 +181,16 @@ export const GridKnowledgeCard = () => {
                     transition={{ duration: 0.3 }}
                     className="w-full overflow-hidden"
                   >
-                    <p className="pt-3 text-center text-neutral-400 text-xs leading-relaxed">
-                      {know.description}
-                    </p>
+                    <div className="border-t border-neutral-700 pt-3 mt-2">
+                      <p className="text-center text-neutral-400 text-xs leading-relaxed">
+                        {know.description}
+                      </p>
+                      <div className="flex items-center justify-center gap-2 mt-2">
+                        <span className="text-neutral-500 text-xs">
+                          {LEVEL_LABELS[know.level]}
+                        </span>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
