@@ -52,8 +52,8 @@ export const Header = () => {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={cn(
         'sticky top-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl'
+        isScrolled || !isDesktop
+          ? 'border-b border-white/10 bg-neutral-950/95 backdrop-blur-xl'
           : 'bg-transparent',
       )}
     >
