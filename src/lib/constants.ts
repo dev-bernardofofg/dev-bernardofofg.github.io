@@ -98,77 +98,204 @@ export const PROJECTS: PROJECTS_TYPE[] = [
   },
 ];
 
+export type KnowledgeCategory = "frontend" | "backend" | "tools";
+
 type KNOWLEDGE_TYPE = {
   icon: string;
   description: string;
   technology: string;
+  category: KnowledgeCategory;
+  level: 1 | 2 | 3 | 4 | 5;
 };
 
 export const KNOWLEDGE: KNOWLEDGE_TYPE[] = [
+  // Frontend Core
   {
     technology: "HTML",
     description:
-      "HTML (Hypertext Markup Language): Linguagem de marcação utilizada para estruturar o conteúdo da web, definindo elementos como textos, imagens, links e botões.",
+      "Linguagem de marcação para estruturar conteúdo web, definindo elementos semânticos, acessibilidade e SEO.",
     icon: "/knowledge/html.svg",
+    category: "frontend",
+    level: 5,
   },
   {
     technology: "CSS",
     description:
-      "CSS (Cascading Style Sheets): Linguagem usada para estilizar páginas web, controlando a aparência dos elementos HTML, como cores, fontes, espaçamentos e layout.",
+      "Linguagem para estilização de páginas web, controlando layout, responsividade, animações e design systems.",
     icon: "/knowledge/css.svg",
+    category: "frontend",
+    level: 5,
   },
   {
     technology: "Javascript",
     description:
-      "Linguagem de programação que permite adicionar interatividade às páginas web. Executa no navegador e pode manipular HTML, CSS e outras APIs.",
+      "Linguagem de programação para interatividade web, manipulação do DOM, APIs assíncronas e lógica de aplicação.",
     icon: "/knowledge/javascript.svg",
+    category: "frontend",
+    level: 5,
   },
   {
     technology: "Typescript",
     description:
-      "Superset do JavaScript que adiciona tipagem estática opcional, permitindo detectar erros de tipo durante o desenvolvimento e melhorar a manutenção de grandes aplicações.",
+      "Superset do JavaScript com tipagem estática em modo strict, garantindo type safety, manutenibilidade e escalabilidade.",
     icon: "/knowledge/typescript.svg",
+    category: "frontend",
+    level: 5,
   },
   {
     technology: "ReactJS",
     description:
-      "Biblioteca JavaScript para construir interfaces de usuário baseadas em componentes, permitindo a criação de UIs dinâmicas e reativas.",
+      "Biblioteca para construção de UIs baseadas em componentes, com foco em composição, hooks e padrões modernos de desenvolvimento.",
     icon: "/knowledge/reactjs.svg",
-  },
-  {
-    technology: "TailwindCSS",
-    description:
-      "Framework de CSS utilitário que facilita o desenvolvimento de layouts e estilos personalizados diretamente no HTML, usando classes pré-definidas.",
-    icon: "/knowledge/tailwindcss.svg",
+    category: "frontend",
+    level: 5,
   },
   {
     technology: "NextJS",
     description:
-      "Framework React focado em funcionalidades de servidor, como renderização do lado do servidor (SSR), geração estática de páginas e API routes, tornando o desenvolvimento full-stack mais eficiente.",
+      "Framework React com App Router e Server Components, SSR, SSG, API routes e otimizações de performance para produção.",
     icon: "/knowledge/nextjs.svg",
+    category: "frontend",
+    level: 5,
+  },
+  // UI & Styling
+  {
+    technology: "TailwindCSS",
+    description:
+      "Framework CSS utilitário para desenvolvimento rápido de layouts responsivos e design systems consistentes.",
+    icon: "/knowledge/tailwindcss.svg",
+    category: "tools",
+    level: 5,
   },
   {
     technology: "ShadcnUI",
     description:
-      "Coleção de componentes de UI altamente customizáveis para React, construída com integração ao TailwindCSS, proporcionando flexibilidade no design.",
+      "Coleção de componentes acessíveis e customizáveis para React, integrada com TailwindCSS e Radix UI.",
     icon: "/knowledge/shadcn.svg",
+    category: "tools",
+    level: 5,
   },
+  {
+    technology: "Framer Motion",
+    description:
+      "Biblioteca de animações para React, utilizada para criar micro-interações, transições e experiências de UX fluidas.",
+    icon: "/knowledge/framer-motion.svg",
+    category: "tools",
+    level: 4,
+  },
+  // State & Data
+  {
+    technology: "TanStack Query",
+    description:
+      "Gerenciamento de estado servidor com data fetching, caching, revalidação e sincronização automática.",
+    icon: "/knowledge/tanstack-query.svg",
+    category: "tools",
+    level: 5,
+  },
+  {
+    technology: "Zustand",
+    description:
+      "Biblioteca leve para gerenciamento de estado global em React, com API simples e performance otimizada.",
+    icon: "/knowledge/zustand.svg",
+    category: "tools",
+    level: 4,
+  },
+  {
+    technology: "React Hook Form",
+    description:
+      "Biblioteca para formulários performáticos em React, com validação integrada via Zod e controle de campos.",
+    icon: "/knowledge/react-hook-form.svg",
+    category: "tools",
+    level: 5,
+  },
+  {
+    technology: "Zod",
+    description:
+      "Biblioteca de validação de schemas TypeScript-first, usada para validação de formulários e dados de API.",
+    icon: "/knowledge/zod.svg",
+    category: "tools",
+    level: 5,
+  },
+  // Backend
   {
     technology: "NodeJS",
     description:
-      "Ambiente de execução JavaScript no lado do servidor que permite criar aplicações escaláveis e de alta performance, baseado no motor V8 do Google.",
+      "Runtime JavaScript no servidor para construção de APIs REST, autenticação, regras de negócio e integrações.",
     icon: "/knowledge/nodejs.svg",
+    category: "backend",
+    level: 4,
   },
   {
     technology: "ExpressJS",
     description:
-      "Framework minimalista para Node.js que simplifica o desenvolvimento de APIs e aplicações web com uma estrutura robusta e flexível.",
+      "Framework minimalista para Node.js, usado para construção de APIs REST com middlewares e rotas.",
     icon: "/knowledge/express.svg",
+    category: "backend",
+    level: 4,
   },
   {
     technology: "Fastify",
     description:
-      "Framework web para Node.js focado em alta performance e baixa sobrecarga, projetado para ser rápido e eficiente, com uma arquitetura modular.",
+      "Framework web de alta performance para Node.js, com arquitetura modular e validação de schemas.",
     icon: "/knowledge/fastify.svg",
+    category: "backend",
+    level: 3,
+  },
+  {
+    technology: "Drizzle ORM",
+    description:
+      "ORM TypeScript-first para PostgreSQL, com queries type-safe, migrations e performance otimizada.",
+    icon: "/knowledge/drizzle.svg",
+    category: "backend",
+    level: 4,
+  },
+  {
+    technology: "PostgreSQL",
+    description:
+      "Banco de dados relacional robusto, usado para persistência de dados com queries complexas e integridade.",
+    icon: "/knowledge/postgresql.svg",
+    category: "backend",
+    level: 4,
+  },
+  {
+    technology: "MongoDB",
+    description:
+      "Banco de dados NoSQL orientado a documentos, utilizado em projetos MERN para dados flexíveis.",
+    icon: "/knowledge/mongodb.svg",
+    category: "backend",
+    level: 3,
+  },
+  // DevOps & Testing
+  {
+    technology: "Docker",
+    description:
+      "Plataforma de containerização para consistência de ambientes de desenvolvimento e deploy.",
+    icon: "/knowledge/docker.svg",
+    category: "tools",
+    level: 4,
+  },
+  {
+    technology: "Git",
+    description:
+      "Sistema de controle de versão distribuído para gerenciamento de código e colaboração em equipe.",
+    icon: "/knowledge/git.svg",
+    category: "tools",
+    level: 5,
+  },
+  {
+    technology: "GitHub Actions",
+    description:
+      "Plataforma de CI/CD para automação de testes, builds e deploys integrada ao GitHub.",
+    icon: "/knowledge/github-actions.svg",
+    category: "tools",
+    level: 4,
+  },
+  {
+    technology: "Playwright",
+    description:
+      "Framework de testes end-to-end para aplicações web, com suporte a múltiplos navegadores.",
+    icon: "/knowledge/playwright.svg",
+    category: "tools",
+    level: 3,
   },
 ];

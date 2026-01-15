@@ -1,56 +1,242 @@
 'use client';
 
-import { KNOWLEDGE } from '@/lib/constants';
+import { KNOWLEDGE, type KnowledgeCategory } from '@/lib/constants';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
-import { HoverCard } from './hover-card';
+import { useMemo, useState } from 'react';
+import { useMediaQuery } from '../_hooks/use-media-query';
+
+type CategoryFilter = KnowledgeCategory | 'all';
+
+const CATEGORY_LABELS: Record<CategoryFilter, string> = {
+  all: 'Todos',
+  frontend: 'Frontend',
+  backend: 'Backend',
+  tools: 'Ferramentas',
+};
+
+const LEVEL_LABELS: Record<number, string> = {
+  1: 'Iniciante',
+  2: 'Básico',
+  3: 'Intermediário',
+  4: 'Avançado',
+  5: 'Expert',
+};
+
+// Componente de indicador de proficiência
+const ProficiencyIndicator = ({ level }: { level: number }) => (
+  <div className="flex items-center gap-1">
+    {[1, 2, 3, 4, 5].map((dot) => (
+      <div
+        key={dot}
+        className={cn(
+          'size-2 rounded-full transition-colors',
+          dot <= level ? 'bg-primary' : 'bg-neutral-700',
+        )}
+      />
+    ))}
+  </div>
+);
+
+// Variantes de animação
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
+  },
+};
+
+const descriptionVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, y: 10, transition: { duration: 0.2 } },
+};
 
 export const GridKnowledgeCard = () => {
-	const [hovered, setHovered] = useState('');
+  const [selected, setSelected] = useState<string | null>(null);
+  const [category, setCategory] = useState<CategoryFilter>('all');
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
-	const handleHovered = (hover: string) => {
-		setHovered(hover);
-	};
+  // Filtra conhecimentos por categoria
+  const filteredKnowledge = useMemo(
+    () =>
+      category === 'all'
+        ? KNOWLEDGE
+        : KNOWLEDGE.filter((k) => k.category === category),
+    [category],
+  );
 
-	// Encontrar o objeto com base no `hovered`
-	const hoveredKnowledge = KNOWLEDGE.find(
-		(know) => know.technology === hovered,
-	);
+  // Encontra o conhecimento selecionado
+  const selectedKnowledge = KNOWLEDGE.find((k) => k.technology === selected);
 
-	return (
-		<>
-			<div className="flex flex-1 flex-col gap-4">
-				<h2 className="font-bold text-4xl">
-					Conhecimento <span className="text-primary">.</span>
-				</h2>
-				{hovered === '' && (
-					<span className="text-neutral-400">
-						*Passe o mouse para ler a descrição*
-					</span>
-				)}
-				{hovered !== '' && (
-					<span className="max-w-4xl text-neutral-400">
-						{hoveredKnowledge ? hoveredKnowledge.description : ''}
-					</span>
-				)}
-			</div>
+  // Handler para interação (hover no desktop, tap no mobile)
+  const handleInteraction = (technology: string) => {
+    if (isMobile) {
+      setSelected((prev) => (prev === technology ? null : technology));
+    } else {
+      setSelected(technology);
+    }
+  };
 
-			<div className="grid flex-1 base:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-				{KNOWLEDGE.map((know) => (
-					<HoverCard description={know.technology} key={know.icon}>
-						<div
-							className="flex items-center justify-center rounded-lg border-2 p-4 shadow-md transition-all hover:border-primary"
-							onMouseOver={() => handleHovered(know.technology)}
-							onMouseLeave={() => handleHovered('')}
-							onFocus={() => handleHovered(know.technology)}
-						>
-							<div className="relative size-16">
-								<Image src={know.icon} fill alt={know.technology} />
-							</div>
-						</div>
-					</HoverCard>
-				))}
-			</div>
-		</>
-	);
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      setSelected(null);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-8 w-full">
+      {/* Header com título e descrição */}
+      <div className="flex flex-col gap-4">
+        <h2 className="font-bold text-4xl">
+          Conhecimento <span className="text-primary">.</span>
+        </h2>
+
+        {/* Descrição animada */}
+        <div className="min-h-[60px]">
+          <AnimatePresence mode="wait">
+            {!selected ? (
+              <motion.span
+                key="placeholder"
+                variants={descriptionVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="block text-neutral-500 italic"
+              >
+                {isMobile
+                  ? '*Toque em uma tecnologia para ver a descrição*'
+                  : '*Passe o mouse para ler a descrição*'}
+              </motion.span>
+            ) : (
+              <motion.div
+                key={selected}
+                variants={descriptionVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="flex flex-col gap-2"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="font-semibold text-lg text-primary">
+                    {selectedKnowledge?.technology}
+                  </span>
+                  <span className="text-neutral-500 text-sm">
+                    {LEVEL_LABELS[selectedKnowledge?.level ?? 1]}
+                  </span>
+                  <ProficiencyIndicator level={selectedKnowledge?.level ?? 1} />
+                </div>
+                <span className="max-w-4xl text-neutral-400">
+                  {selectedKnowledge?.description}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Tabs de categorias */}
+      <div className="flex flex-wrap gap-2">
+        {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            onClick={() => setCategory(cat)}
+            className={cn(
+              'rounded-full px-4 py-2 text-sm font-medium transition-all',
+              category === cat
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-neutral-800 text-neutral-400 hover:bg-neutral-700 hover:text-neutral-200',
+            )}
+          >
+            {CATEGORY_LABELS[cat]}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid de cards */}
+      <motion.div
+        key={category}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4"
+      >
+        {filteredKnowledge.map((know) => {
+          const isActive = selected === know.technology;
+
+          return (
+            <motion.div
+              key={know.technology}
+              variants={cardVariants}
+              onClick={() => handleInteraction(know.technology)}
+              onMouseEnter={() => !isMobile && handleInteraction(know.technology)}
+              onMouseLeave={handleMouseLeave}
+              onFocus={() => handleInteraction(know.technology)}
+              tabIndex={0}
+              className={cn(
+                'group relative flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 p-4 transition-all duration-300',
+                isActive
+                  ? 'border-primary bg-primary/5 shadow-lg shadow-primary/20'
+                  : 'border-neutral-800 hover:border-primary/50',
+              )}
+            >
+              {/* Ícone */}
+              <motion.div
+                className="relative size-14 md:size-16"
+                animate={{ scale: isActive ? 1.1 : 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+              >
+                <Image src={know.icon} fill alt={know.technology} />
+              </motion.div>
+
+              {/* Nome da tecnologia */}
+              <span
+                className={cn(
+                  'text-sm font-medium transition-colors',
+                  isActive ? 'text-primary' : 'text-neutral-400',
+                )}
+              >
+                {know.technology}
+              </span>
+
+              {/* Indicador de proficiência no card */}
+              <ProficiencyIndicator level={know.level} />
+
+              {/* Descrição expandida no mobile quando ativo */}
+              <AnimatePresence>
+                {isMobile && isActive && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full overflow-hidden"
+                  >
+                    <p className="pt-3 text-center text-neutral-400 text-xs leading-relaxed">
+                      {know.description}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+    </div>
+  );
 };
