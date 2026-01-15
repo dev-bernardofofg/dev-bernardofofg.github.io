@@ -68,11 +68,27 @@ const config = {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' },
 				},
+				'spin-slow': {
+					from: { transform: 'rotate(0deg)' },
+					to: { transform: 'rotate(360deg)' },
+				},
+				'counter-spin': {
+					from: { transform: 'rotate(0deg)' },
+					to: { transform: 'rotate(-360deg)' },
+				},
+				blink: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				levitate: 'levitate 4s ease-in-out infinite',
+				'spin-slow': 'spin-slow 20s linear infinite',
+				'spin-slower': 'spin-slow 30s linear infinite reverse',
+				'counter-spin': 'counter-spin 20s linear infinite',
+				blink: 'blink 1s step-end infinite',
 			},
 			screens: {
 				base: '320px',
