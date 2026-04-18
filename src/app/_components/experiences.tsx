@@ -42,7 +42,7 @@ export const Experiences = () => {
 
   return (
     <AnimatedSection
-      className="mx-auto flex w-full max-w-7xl scroll-mt-28 flex-col items-center gap-8"
+      className="mx-auto flex w-full max-w-7xl scroll-mt-28 flex-col items-center gap-8 px-4"
       id="experience"
     >
       <div className="w-full font-bold text-4xl">

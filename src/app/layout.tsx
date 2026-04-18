@@ -14,6 +14,9 @@ const chakra = Chakra_Petch({
 
 export const metadata: Metadata = {
   title: 'Portfólio - Bernardo Filipe',
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 export default async function RootLayout({
@@ -26,10 +29,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${chakra.className} dark bg-neutral-800`}>
+      <body className={`${chakra.className} dark bg-neutral-800`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <div className="h-svh w-full base:p-0 lg:p-4">
-            <div className="size-full space-y-16 overflow-y-auto base:rounded-none bg-neutral-900 shadow-lg md:rounded-2xl [&::-webkit-scrollbar]:hidden">
+          <div className="min-h-svh w-full base:p-0 lg:p-4">
+            <div className="min-h-[calc(100svh-2rem)] space-y-16 base:rounded-none bg-neutral-900 shadow-lg md:rounded-2xl">
               <Header />
               <div className="base:px-2 md:px-4">{children}</div>
               <Toaster />

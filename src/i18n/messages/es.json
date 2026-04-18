@@ -23,9 +23,9 @@
     "viewProjects": "Ver proyectos"
   },
   "about": {
-    "label": "Sobre mí",
+    "label": "Quién soy",
     "name": "Bernardo Filipe",
-    "role": "Desarrollador Full-Stack",
+    "role": "Full-Stack Developer",
     "description": "Desarrollador full-stack especializado en front-end con React y Next.js. Enfocado en crear experiencias digitales de alta calidad, con código limpio y rendimiento optimizado. Actualmente abierto a nuevas oportunidades laborales."
   },
   "experiences": {

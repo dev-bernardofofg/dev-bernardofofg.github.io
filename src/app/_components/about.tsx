@@ -7,6 +7,7 @@ import { Download } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCvUrl } from '../_hooks/use-cv-url';
 import { SocialLink } from './social-link';
 
 const containerVariants = {
@@ -25,6 +26,7 @@ const itemVariants = {
 export const About = () => {
   const t = useTranslations('about');
   const tCommon = useTranslations('common');
+  const cvUrl = useCvUrl();
 
   return (
     <section className="mx-auto w-full max-w-7xl scroll-mt-12 px-4" id="about">
@@ -88,7 +90,7 @@ export const About = () => {
 
             {/* Botão Download CV */}
             <Button variant="outline" className="gap-2" asChild>
-              <Link href="/cv.pdf" target="_blank" download>
+              <Link href={cvUrl} target="_blank" download>
                 <Download className="size-4" />
                 {tCommon('downloadCV')}
               </Link>

@@ -44,7 +44,7 @@ export const Projects = () => {
 
   return (
     <AnimatedSection
-      className="mx-auto mb-4 flex w-full max-w-7xl scroll-mt-32 flex-col gap-8"
+      className="mx-auto mb-4 flex w-full max-w-7xl scroll-mt-32 flex-col gap-8 px-4"
       id="projects"
     >
       <div className="flex items-center justify-between">

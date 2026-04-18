@@ -2,9 +2,10 @@
 
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useCvUrl } from '../_hooks/use-cv-url';
 import { useTypewriter } from '../_hooks/use-typewriter';
 import { TechOrbit } from './tech-orbit';
 
@@ -39,6 +40,8 @@ const buttonVariants = {
 
 export const Hero = () => {
   const t = useTranslations('hero');
+  const tCommon = useTranslations('common');
+  const cvUrl = useCvUrl();
 
   const { displayText, isComplete } = useTypewriter({
     text: t('role'),
@@ -48,7 +51,7 @@ export const Hero = () => {
 
   return (
     <section
-      className="relative mx-auto flex min-h-[calc(100vh-100px)] w-full max-w-7xl scroll-mt-64 items-center overflow-hidden px-4"
+      className="relative mx-auto -mt-16 flex min-h-[calc(100svh-80px)] w-full max-w-7xl scroll-mt-64 items-center overflow-hidden px-4 py-12"
       id="hero"
     >
       {/* Background decorativo */}
@@ -86,7 +89,7 @@ export const Hero = () => {
 
         {/* Título */}
         <motion.div variants={itemVariants} className="flex flex-col gap-2">
-          <h1 className="bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text font-bold text-transparent base:text-5xl md:text-7xl">
+          <h1 className="bg-linear-to-r from-white via-white to-neutral-400 bg-clip-text font-bold text-transparent base:text-5xl md:text-7xl">
             {t('name')}
           </h1>
 
@@ -118,12 +121,15 @@ export const Hero = () => {
               <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-          <Link
-            href="#projects"
-            className="flex h-12 items-center gap-2 rounded-full border border-neutral-700 px-6 text-neutral-300 transition-all hover:border-primary hover:text-primary"
-          >
-            <span className="font-medium">{t('viewProjects')}</span>
-          </Link>
+          <Button size="lg" variant="outline" className="group gap-2 text-base" asChild>
+            <Link href={cvUrl} target="_blank" download>
+              <Download className="size-4 transition-transform group-hover:translate-y-0.5" />
+              {tCommon('downloadCV')}
+            </Link>
+          </Button>
+          <Button size="lg" variant="ghost" className="text-base" asChild>
+            <Link href="#projects">{t('viewProjects')}</Link>
+          </Button>
         </motion.div>
       </motion.div>
 

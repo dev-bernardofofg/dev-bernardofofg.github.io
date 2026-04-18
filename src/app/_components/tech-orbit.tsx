@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 
+const RADIUS = 125;
+
 const ORBIT_TECHS = [
   { icon: '/knowledge/reactjs.svg', name: 'React' },
   { icon: '/knowledge/nextjs.svg', name: 'Next.js' },
@@ -9,7 +11,16 @@ const ORBIT_TECHS = [
   { icon: '/knowledge/tailwindcss.svg', name: 'Tailwind' },
   { icon: '/knowledge/nodejs.svg', name: 'Node.js' },
   { icon: '/knowledge/postgresql.svg', name: 'PostgreSQL' },
-];
+].map((tech, index, arr) => {
+  const angle = (index * 360) / arr.length;
+  const radians = (angle * Math.PI) / 180;
+  return {
+    ...tech,
+    angle,
+    x: Math.round(Math.cos(radians) * RADIUS * 1000) / 1000,
+    y: Math.round(Math.sin(radians) * RADIUS * 1000) / 1000,
+  };
+});
 
 export const TechOrbit = () => {
   return (
@@ -24,44 +35,30 @@ export const TechOrbit = () => {
       {/* Órbita dos tomoes/techs - gira como Sharingan */}
       <div className="absolute inset-4 animate-spin-slow">
         {/* Linhas conectando ao centro (estilo Sharingan) */}
-        {ORBIT_TECHS.map((_, index) => {
-          const angle = (index * 360) / ORBIT_TECHS.length;
-          return (
-            <div
-              key={`line-${angle}`}
-              className="absolute left-1/2 top-1/2 h-0.5 w-[45%] origin-left bg-gradient-to-r from-primary/60 to-transparent"
-              style={{ transform: `rotate(${angle}deg)` }}
-            />
-          );
-        })}
+        {ORBIT_TECHS.map(({ angle }) => (
+          <div
+            key={`line-${angle}`}
+            className="absolute left-1/2 top-1/2 h-0.5 w-[45%] origin-left bg-linear-to-r from-primary/60 to-transparent"
+            style={{ transform: `rotate(${angle}deg)` }}
+          />
+        ))}
 
         {/* Techs como "tomoes" */}
-        {ORBIT_TECHS.map((tech, index) => {
-          const angle = (index * 360) / ORBIT_TECHS.length;
-          const radians = (angle * Math.PI) / 180;
-          const radius = 125;
-
-          return (
-            <div
-              key={tech.name}
-              className="absolute left-1/2 top-1/2"
-              style={{
-                transform: `translate(-50%, -50%) translate(${Math.cos(radians) * radius}px, ${Math.sin(radians) * radius}px)`,
-              }}
-            >
-              <div className="animate-counter-spin">
-                <div className="flex size-14 items-center justify-center rounded-full border-2 border-primary/50 bg-neutral-950 p-2 shadow-lg shadow-primary/30 transition-all hover:scale-110 hover:border-primary hover:shadow-primary/50">
-                  <Image
-                    src={tech.icon}
-                    width={32}
-                    height={32}
-                    alt={tech.name}
-                  />
-                </div>
+        {ORBIT_TECHS.map(({ icon, name, x, y }) => (
+          <div
+            key={name}
+            className="absolute left-1/2 top-1/2"
+            style={{
+              transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+            }}
+          >
+            <div className="animate-counter-spin">
+              <div className="flex size-14 items-center justify-center rounded-full border-2 border-primary/50 bg-neutral-950 p-2 shadow-lg shadow-primary/30 transition-all hover:scale-110 hover:border-primary hover:shadow-primary/50">
+                <Image src={icon} width={32} height={32} alt={name} />
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       {/* Anel interno */}
