@@ -64,13 +64,13 @@
 				"title": "Alvo - Landing Page",
 				"description": "Landing page desenvolvida para uma empresa de terceirização de serviços, oferecendo uma apresentação profissional e eficiente."
 			},
-			"converseia": {
-				"title": "ConverseIA - Landing Page",
-				"description": "Landing page desenvolvida para uma empresa de gerenciamento de clientes que utiliza inteligência artificial para otimizar a comunicação e a experiência do usuário."
+			"moneyly": {
+				"title": "Moneyly",
+				"description": "Aplicação web completa de gestão financeira pessoal com dashboard inteligente, controle de transações, orçamentos e metas de poupança."
 			},
-			"fe": {
-				"title": "FE (Front-end) - Perguntas de Entrevista",
-				"description": "Projeto desenvolvido após vários dias de pesquisa sobre entrevistas de emprego para desenvolvedores front-end. Neste projeto, compilei as principais perguntas feitas durante as entrevistas."
+			"fortuba": {
+				"title": "Fortuba",
+				"description": "Rede social para músicos compartilharem e descobrirem partituras, com feed, comentários e perfis de artistas."
 			},
 			"devstore": {
 				"title": "Devstore - Rocketseat",

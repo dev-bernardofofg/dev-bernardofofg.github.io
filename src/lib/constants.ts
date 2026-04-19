@@ -71,7 +71,7 @@ type PROJECTS_TYPE = {
 	link: string;
 	technologies: string[];
 	image?: string;
-	translationKey: 'alvo' | 'converseia' | 'fe' | 'devstore';
+	translationKey: 'alvo' | 'moneyly' | 'fortuba' | 'devstore';
 };
 
 export const PROJECTS: PROJECTS_TYPE[] = [
@@ -84,20 +84,34 @@ export const PROJECTS: PROJECTS_TYPE[] = [
 		translationKey: 'alvo',
 	},
 	{
-		title: 'ConverseIA - Landing Page',
+		title: 'Moneyly',
 		paragraph:
-			'Landing page desenvolvida para uma empresa de gerenciamento de clientes que utiliza inteligência artificial para otimizar a comunicação e a experiência do usuário.',
-		link: 'https://www.converseia.com/',
-		technologies: ['React', 'Next.js', 'TailwindCSS', 'Framer Motion'],
-		translationKey: 'converseia',
+			'Aplicação web completa de gestão financeira pessoal com dashboard, controle de transações, orçamentos e metas de poupança.',
+		link: 'https://moneyly-front.vercel.app/',
+		technologies: [
+			'Next.js',
+			'TypeScript',
+			'TailwindCSS',
+			'TanStack Query',
+			'Drizzle ORM',
+			'PostgreSQL',
+		],
+		translationKey: 'moneyly',
 	},
 	{
-		title: 'FE (Front-end) - Perguntas de Entrevista',
+		title: 'Fortuba',
 		paragraph:
-			'Projeto desenvolvido após vários dias de pesquisa sobre entrevistas de emprego para desenvolvedores front-end. Neste projeto, compilei as principais perguntas feitas durante as entrevistas.',
-		link: 'https://github.com/BernardoFOFG/fe-interview-questions',
-		technologies: ['React', 'TypeScript', 'Markdown'],
-		translationKey: 'fe',
+			'Rede social para músicos compartilharem e descobrirem partituras, com feed, comentários e perfis de artistas.',
+		link: 'https://github.com/dev-bernardofofg/fortuba-be',
+		technologies: [
+			'Next.js',
+			'TypeScript',
+			'TailwindCSS',
+			'TanStack Query',
+			'Prisma',
+			'PostgreSQL',
+		],
+		translationKey: 'fortuba',
 	},
 	{
 		title: 'Devstore - Rocketseat',
