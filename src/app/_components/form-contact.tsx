@@ -1,7 +1,7 @@
 'use client';
 
-import Lottie from 'lottie-react';
 import FormAnimation from '@/app/_lottie/form-animation.json';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,15 +10,14 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import z from 'zod';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import emailjs from 'emailjs-com';
 import { toast } from '@/hooks/use-toast';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Lottie from 'lottie-react';
 import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import z from 'zod';
 
 export const FormContact = () => {
   const t = useTranslations('contact');
@@ -40,17 +39,15 @@ export const FormContact = () => {
 
   const handleSendContact = async (data: FormDataContactUs) => {
     try {
-      const serviceId = process.env.NEXT_PUBLIC_MAIL_SERVICE!;
-      const templateId = process.env.NEXT_PUBLIC_MAIL_TEMPLATE!;
-      const userId = process.env.NEXT_PUBLIC_MAIL_USERID!;
-
-      await emailjs.send(serviceId, templateId, data, userId);
-      form.reset({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) throw new Error('send failed');
+
+      form.reset({ name: '', email: '', phone: '', message: '' });
 
       toast({
         title: t('toast.successTitle'),
@@ -61,7 +58,7 @@ export const FormContact = () => {
         title: t('toast.errorTitle'),
         description: t('toast.errorDescription'),
       });
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -70,7 +67,7 @@ export const FormContact = () => {
       <Lottie
         animationData={FormAnimation}
         loop
-        className="base:-z-0 base:absolute base:opacity-40 base:blur-sm md:static md:opacity-100 md:blur-none"
+        className="base:z-0 base:absolute base:opacity-40 base:blur-sm md:static md:opacity-100 md:blur-none"
       />
       <Form {...form}>
         <form
