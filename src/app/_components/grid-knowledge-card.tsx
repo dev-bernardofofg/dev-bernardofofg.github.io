@@ -95,6 +95,7 @@ export const GridKnowledgeCard = () => {
 		<div className="flex w-full flex-col gap-8">
 			{/* Header com título */}
 			<div className="flex flex-col gap-2">
+				<span className="text-sm font-medium text-primary">{t('label')}</span>
 				<h2 className="font-bold text-4xl">
 					{t('title')} <span className="text-primary">.</span>
 				</h2>

@@ -25,7 +25,8 @@ export const ContactUs = () => {
 				<div className="-bottom-20 -left-20 pointer-events-none absolute size-40 rounded-full bg-primary/5 blur-3xl" />
 
 				{/* Título */}
-				<motion.div variants={itemVariants} className="text-center">
+				<motion.div variants={itemVariants} className="space-y-2 text-center">
+					<span className="text-sm font-medium text-primary">{t('label')}</span>
 					<h2 className="font-bold text-4xl">
 						{t('title')} <span className="text-primary">.</span>
 					</h2>

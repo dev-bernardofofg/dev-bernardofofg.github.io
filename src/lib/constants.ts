@@ -120,7 +120,7 @@ type KNOWLEDGE_TYPE = {
 };
 
 export const KNOWLEDGE: KNOWLEDGE_TYPE[] = [
-	// Frontend Core
+	// Frontend
 	{
 		technology: 'HTML',
 		description:
@@ -167,64 +167,6 @@ export const KNOWLEDGE: KNOWLEDGE_TYPE[] = [
 			'Framework React com App Router e Server Components, SSR, SSG, API routes e otimizações de performance para produção.',
 		icon: '/knowledge/nextjs.svg',
 		category: 'frontend',
-		level: 5,
-	},
-	// UI & Styling
-	{
-		technology: 'TailwindCSS',
-		description:
-			'Framework CSS utilitário para desenvolvimento rápido de layouts responsivos e design systems consistentes.',
-		icon: '/knowledge/tailwindcss.svg',
-		category: 'tools',
-		level: 5,
-	},
-	{
-		technology: 'ShadcnUI',
-		description:
-			'Coleção de componentes acessíveis e customizáveis para React, integrada com TailwindCSS e Radix UI.',
-		icon: '/knowledge/shadcn.svg',
-		category: 'tools',
-		level: 5,
-	},
-	{
-		technology: 'Framer Motion',
-		description:
-			'Biblioteca de animações para React, utilizada para criar micro-interações, transições e experiências de UX fluidas.',
-		icon: '/knowledge/framer-motion.svg',
-		category: 'tools',
-		level: 4,
-	},
-	// State & Data
-	{
-		technology: 'TanStack Query',
-		description:
-			'Gerenciamento de estado servidor com data fetching, caching, revalidação e sincronização automática.',
-		icon: '/knowledge/tanstack-query.svg',
-		category: 'tools',
-		level: 5,
-	},
-	{
-		technology: 'Zustand',
-		description:
-			'Biblioteca leve para gerenciamento de estado global em React, com API simples e performance otimizada.',
-		icon: '/knowledge/zustand.svg',
-		category: 'tools',
-		level: 4,
-	},
-	{
-		technology: 'React Hook Form',
-		description:
-			'Biblioteca para formulários performáticos em React, com validação integrada via Zod e controle de campos.',
-		icon: '/knowledge/react-hook-form.svg',
-		category: 'tools',
-		level: 5,
-	},
-	{
-		technology: 'Zod',
-		description:
-			'Biblioteca de validação de schemas TypeScript-first, usada para validação de formulários e dados de API.',
-		icon: '/knowledge/zod.svg',
-		category: 'tools',
 		level: 5,
 	},
 	// Backend
@@ -276,14 +218,62 @@ export const KNOWLEDGE: KNOWLEDGE_TYPE[] = [
 		category: 'backend',
 		level: 3,
 	},
-	// DevOps & Testing
+	// Ferramentas
 	{
-		technology: 'Docker',
+		technology: 'TailwindCSS',
 		description:
-			'Plataforma de containerização para consistência de ambientes de desenvolvimento e deploy.',
-		icon: '/knowledge/docker.svg',
+			'Framework CSS utilitário para desenvolvimento rápido de layouts responsivos e design systems consistentes.',
+		icon: '/knowledge/tailwindcss.svg',
+		category: 'tools',
+		level: 5,
+	},
+	{
+		technology: 'ShadcnUI',
+		description:
+			'Coleção de componentes acessíveis e customizáveis para React, integrada com TailwindCSS e Radix UI.',
+		icon: '/knowledge/shadcn.svg',
+		category: 'tools',
+		level: 5,
+	},
+	{
+		technology: 'Framer Motion',
+		description:
+			'Biblioteca de animações para React, utilizada para criar micro-interações, transições e experiências de UX fluidas.',
+		icon: '/knowledge/framer-motion.svg',
 		category: 'tools',
 		level: 4,
+	},
+	{
+		technology: 'TanStack Query',
+		description:
+			'Gerenciamento de estado servidor com data fetching, caching, revalidação e sincronização automática.',
+		icon: '/knowledge/tanstack-query.svg',
+		category: 'tools',
+		level: 5,
+	},
+	{
+		technology: 'Zustand',
+		description:
+			'Biblioteca leve para gerenciamento de estado global em React, com API simples e performance otimizada.',
+		icon: '/knowledge/zustand.svg',
+		category: 'tools',
+		level: 4,
+	},
+	{
+		technology: 'React Hook Form',
+		description:
+			'Biblioteca para formulários performáticos em React, com validação integrada via Zod e controle de campos.',
+		icon: '/knowledge/react-hook-form.svg',
+		category: 'tools',
+		level: 5,
+	},
+	{
+		technology: 'Zod',
+		description:
+			'Biblioteca de validação de schemas TypeScript-first, usada para validação de formulários e dados de API.',
+		icon: '/knowledge/zod.svg',
+		category: 'tools',
+		level: 5,
 	},
 	{
 		technology: 'Git',
@@ -292,6 +282,14 @@ export const KNOWLEDGE: KNOWLEDGE_TYPE[] = [
 		icon: '/knowledge/git.svg',
 		category: 'tools',
 		level: 5,
+	},
+	{
+		technology: 'Docker',
+		description:
+			'Plataforma de containerização para consistência de ambientes de desenvolvimento e deploy.',
+		icon: '/knowledge/docker.svg',
+		category: 'tools',
+		level: 4,
 	},
 	{
 		technology: 'GitHub Actions',
@@ -308,5 +306,13 @@ export const KNOWLEDGE: KNOWLEDGE_TYPE[] = [
 		icon: '/knowledge/playwright.svg',
 		category: 'tools',
 		level: 3,
+	},
+	{
+		technology: 'Figma',
+		description:
+			'Ferramenta de design e prototipação utilizada para transformar layouts em código fiel, colaborando diretamente com designers.',
+		icon: '/knowledge/figma.svg',
+		category: 'tools',
+		level: 4,
 	},
 ];

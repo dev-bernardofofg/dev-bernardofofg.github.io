@@ -31,6 +31,7 @@
 		"description": "Desenvolvedor full-stack especializado em front-end com React e Next.js. Focado em criar experiências digitais de alta qualidade, com código limpo e performance otimizada. Atualmente aberto a novas oportunidades de trabalho."
 	},
 	"experiences": {
+		"label": "Trajetória",
 		"title": "Experiências",
 		"jobs": {
 			"senfio": {
@@ -56,6 +57,7 @@
 		}
 	},
 	"projects": {
+		"label": "O que construí",
 		"title": "Projetos",
 		"items": {
 			"alvo": {
@@ -77,6 +79,7 @@
 		}
 	},
 	"knowledge": {
+		"label": "Meu arsenal",
 		"title": "Conhecimento",
 		"hoverHint": "*Passe o mouse para ler a descrição*",
 		"tapHint": "*Toque em uma tecnologia para ver a descrição*",
@@ -95,6 +98,7 @@
 		}
 	},
 	"contact": {
+		"label": "Vamos conversar",
 		"title": "Entre em contato conosco",
 		"form": {
 			"name": "Nome completo",
@@ -118,6 +122,8 @@
 		}
 	},
 	"footer": {
-		"madeBy": "Feito por Bernardo Filipe"
+		"madeBy": "Feito por Bernardo Filipe • 2025",
+		"navigation": "Navegação",
+		"social": "Redes Sociais"
 	}
 }

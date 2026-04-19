@@ -26,7 +26,8 @@ export const Experiences = () => {
 			className="mx-auto flex w-full max-w-7xl scroll-mt-28 flex-col items-center gap-8 px-4"
 			id="experience"
 		>
-			<div className="w-full font-bold text-4xl">
+			<div className="w-full space-y-2 font-bold text-4xl">
+				<span className="text-sm font-medium text-primary">{t('label')}</span>
 				<h2>
 					{t('title')} <span className="text-primary">.</span>
 				</h2>

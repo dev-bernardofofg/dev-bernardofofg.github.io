@@ -45,9 +45,12 @@ export const Projects = () => {
 			id="projects"
 		>
 			<div className="flex items-center justify-between">
-				<h2 className="font-bold text-4xl">
-					{t('title')} <span className="text-primary">.</span>
-				</h2>
+				<div className="space-y-2">
+					<span className="text-sm font-medium text-primary">{t('label')}</span>
+					<h2 className="font-bold text-4xl">
+						{t('title')} <span className="text-primary">.</span>
+					</h2>
+				</div>
 
 				{/* Navegação */}
 				<div className="flex gap-2">
