@@ -4,13 +4,13 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'pt-BR';
 
 export const localeNames: Record<Locale, string> = {
-  'pt-BR': 'Português',
-  en: 'English',
-  es: 'Español',
+	'pt-BR': 'Português',
+	en: 'English',
+	es: 'Español',
 };
 
 export const localeFlags: Record<Locale, string> = {
-  'pt-BR': '🇧🇷',
-  en: '🇺🇸',
-  es: '🇪🇸',
+	'pt-BR': '🇧🇷',
+	en: '🇺🇸',
+	es: '🇪🇸',
 };

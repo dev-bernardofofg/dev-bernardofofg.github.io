@@ -29,7 +29,7 @@
 				"noNonNullAssertion": "off"
 			},
 			"nursery": {
-				"useSortedClasses":"warn"
+				"useSortedClasses": "warn"
 			}
 		}
 	},

@@ -4,7 +4,7 @@ import { GridKnowledgeCard } from './grid-knowledge-card';
 export const Knowledge = () => {
 	return (
 		<AnimatedSection
-			className="mx-auto mb-4 flex w-full max-w-7xl scroll-mt-28 base:flex-col justify-between gap-8 px-4 md:flex-row"
+			className="mx-auto mb-4 flex w-full max-w-7xl scroll-mt-28 base:flex-col gap-8 px-4"
 			id="knowledge"
 		>
 			<GridKnowledgeCard />
