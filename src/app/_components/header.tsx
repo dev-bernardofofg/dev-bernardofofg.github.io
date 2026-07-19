@@ -63,14 +63,14 @@ export const Header = () => {
 					})}
 					<Link
 						href="/#sobre"
-						className="rounded-full px-3 py-2 text-muted transition-colors hover:text-foreground md:px-4"
+						className="hidden rounded-full px-3 py-2 text-muted transition-colors hover:text-foreground md:inline md:px-4"
 					>
 						{t('about')}
 					</Link>
 				</nav>
 				<Link
 					href="/#contato"
-					className="rounded-full px-4 py-2 font-bold text-[13px] text-white accent-gradient transition-[filter] hover:brightness-[1.08]"
+					className="hidden rounded-full px-4 py-2 font-bold text-[13px] text-white accent-gradient transition-[filter] hover:brightness-[1.08] sm:inline"
 				>
 					{t('contact')}
 				</Link>
