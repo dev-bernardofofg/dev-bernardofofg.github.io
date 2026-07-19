@@ -24,6 +24,7 @@ export type Post = {
 	id: string;
 	cat: PostCategory;
 	date: string;
+	dateIso: string;
 	min: number;
 	title: string;
 	excerpt: string;
@@ -72,7 +73,7 @@ export const profile = {
 	email: 'dev.bernardofofg@gmail.com',
 	github: 'https://github.com/dev-bernardofofg',
 	linkedin: 'https://linkedin.com/in/bernardofofg',
-	cv: 'https://bernardofofg-github-io.vercel.app/Bernardo%20Filipe%20-%20Curriculo.pdf',
+	cv: '/Bernardo%20Filipe%20-%20Curriculo.pdf',
 };
 
 export const stack: StackItem[] = [
@@ -111,6 +112,7 @@ export const posts: Post[] = [
 		id: 'zod',
 		cat: 'PATTERN',
 		date: '08 jul 2026',
+		dateIso: '2026-07-08',
 		min: 6,
 		title: 'Zod como fonte única do contrato: parse, não validate',
 		excerpt:
@@ -141,6 +143,7 @@ export const posts: Post[] = [
 		id: 'supertest',
 		cat: 'TIL',
 		date: '03 jul 2026',
+		dateIso: '2026-07-03',
 		min: 2,
 		title: 'supertest aceita o app do Express direto, sem listen()',
 		excerpt:
@@ -163,6 +166,7 @@ export const posts: Post[] = [
 		id: 'drizzle-tx',
 		cat: 'DEEP DIVE',
 		date: '30 jun 2026',
+		dateIso: '2026-06-30',
 		min: 9,
 		title: 'Transações no Drizzle: onde o rollback silencioso mora',
 		excerpt:
@@ -193,6 +197,7 @@ export const posts: Post[] = [
 		id: 'jwt',
 		cat: 'PATTERN',
 		date: '19 jun 2026',
+		dateIso: '2026-06-19',
 		min: 7,
 		title: 'Refresh tokens sem sessão: rotação com JWT em 80 linhas',
 		excerpt:
@@ -218,6 +223,7 @@ export const posts: Post[] = [
 		id: 'pg-index',
 		cat: 'DEEP DIVE',
 		date: '11 jun 2026',
+		dateIso: '2026-06-11',
 		min: 8,
 		title: 'Índices parciais no Postgres que cortaram 40% do p95',
 		excerpt: 'Quando o WHERE do índice importa mais que a coluna.',

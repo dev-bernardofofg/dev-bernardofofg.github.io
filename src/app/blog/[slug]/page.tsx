@@ -1,4 +1,5 @@
 import { getPost, posts, profile } from '@/lib/data';
+import { siteUrl } from '@/lib/site';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -33,8 +34,24 @@ export default async function PostPage({ params }: PostPageProps) {
 
 	const t = await getTranslations('blog');
 
+	const postJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: post.title,
+		description: post.excerpt,
+		datePublished: post.dateIso,
+		inLanguage: 'pt-BR',
+		url: `${siteUrl}/blog/${post.id}`,
+		author: { '@type': 'Person', name: profile.name, url: siteUrl },
+	};
+
 	return (
 		<article className="mx-auto w-full max-w-[760px] animate-page-in px-6 pt-12 md:px-8">
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático gerado do data layer
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }}
+			/>
 			<Link
 				href="/blog"
 				className="glass-card inline-block rounded-full px-[18px] py-[9px] font-bold text-[13px] text-secondary backdrop-blur-[10px] transition-colors hover:bg-glass-strong hover:text-foreground"

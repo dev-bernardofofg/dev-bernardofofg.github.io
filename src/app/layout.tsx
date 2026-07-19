@@ -1,3 +1,4 @@
+import { siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -20,10 +21,7 @@ const fira = Fira_Code({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		process.env.NEXT_PUBLIC_SITE_URL ??
-			'https://bernardofofg-github-io.vercel.app',
-	),
+	metadataBase: new URL(siteUrl),
 	title: 'Bernardo Filipe — Full-stack',
 	description:
 		'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
