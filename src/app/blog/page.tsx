@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
 import { BlogList } from '../_components/blog-list';
 
 export const metadata: Metadata = {
@@ -19,7 +20,9 @@ export default function BlogPage() {
 			<p className="mt-2.5 max-w-[560px] text-[16px] text-secondary leading-[1.6]">
 				{t('description')}
 			</p>
-			<BlogList />
+			<Suspense>
+				<BlogList />
+			</Suspense>
 		</div>
 	);
 }

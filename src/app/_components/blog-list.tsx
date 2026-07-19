@@ -4,13 +4,30 @@ import { posts } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { type CategoryFilter, CategoryFilters } from './category-filters';
+
+const slugToFilter: Record<string, CategoryFilter> = {
+	pattern: 'pattern',
+	'deep-dive': 'deep dive',
+	til: 'til',
+};
+
+const filterToSlug = (filter: CategoryFilter) => filter.replace(' ', '-');
 
 export const BlogList = () => {
 	const t = useTranslations('blog');
 	const locale = useLocale();
-	const [filter, setFilter] = useState<CategoryFilter>('tudo');
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const filter = slugToFilter[searchParams.get('cat') ?? ''] ?? 'tudo';
+
+	const setFilter = (next: CategoryFilter) => {
+		const query = next === 'tudo' ? '' : `?cat=${filterToSlug(next)}`;
+		router.replace(`${pathname}${query}`, { scroll: false });
+	};
 
 	const filtered =
 		filter === 'tudo'
