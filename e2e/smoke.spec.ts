@@ -19,8 +19,20 @@ test.describe('routes render', () => {
 		const total = await posts.count();
 
 		await page.getByRole('button', { name: 'til' }).click();
+		await expect(page).toHaveURL(/\?cat=til/);
 		await expect(posts.first()).toBeVisible();
 		expect(await posts.count()).toBeLessThan(total);
+	});
+
+	test('blog filter is restored from the URL', async ({ page }) => {
+		await page.goto('/blog?cat=deep-dive');
+		const posts = page.locator('a[href^="/blog/"]');
+		await expect(posts.first()).toBeVisible();
+		for (const cat of await page
+			.locator('span.text-accent-a', { hasText: /DEEP DIVE|PATTERN|TIL/ })
+			.allTextContents()) {
+			expect(cat).toBe('DEEP DIVE');
+		}
 	});
 
 	test('post opens with highlighted code', async ({ page }) => {
@@ -57,4 +69,16 @@ test('sitemap and robots respond', async ({ request }) => {
 
 	const robots = await request.get('/robots.txt');
 	expect(robots.ok()).toBeTruthy();
+});
+
+test('rss feed and og image respond', async ({ request }) => {
+	const feed = await request.get('/feed.xml');
+	expect(feed.ok()).toBeTruthy();
+	const xml = await feed.text();
+	expect(xml).toContain('<rss');
+	expect(xml).toContain('/blog/zod');
+
+	const og = await request.get('/blog/zod/opengraph-image');
+	expect(og.ok()).toBeTruthy();
+	expect(og.headers()['content-type']).toContain('image/png');
 });
