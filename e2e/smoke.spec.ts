@@ -53,6 +53,16 @@ test.describe('routes render', () => {
 	});
 });
 
+test('english locale renders at /en', async ({ page }) => {
+	await page.goto('/en');
+	await expect(page.getByRole('heading', { level: 1 })).toContainText(
+		'Full-stack',
+	);
+	await expect(
+		page.getByRole('navigation').getByRole('link', { name: 'Projects' }),
+	).toBeVisible();
+});
+
 test('theme toggle switches dark mode', async ({ page }) => {
 	await page.goto('/');
 	const html = page.locator('html');
