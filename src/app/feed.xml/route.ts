@@ -1,6 +1,8 @@
 import { posts, profile } from '@/lib/data';
 import { siteUrl } from '@/lib/site';
 
+export const dynamic = 'force-static';
+
 const escapeXml = (value: string) =>
 	value
 		.replaceAll('&', '&amp;')
