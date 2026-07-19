@@ -1,129 +1,61 @@
 {
-	"common": {
-		"viewProject": "Visualizar projeto",
-		"downloadCV": "Download CV",
-		"contact": "Fale comigo",
-		"sending": "Enviando...",
-		"send": "Enviar"
-	},
 	"nav": {
 		"home": "Início",
-		"about": "Sobre",
-		"experiences": "Experiências",
+		"blog": "Blog",
 		"projects": "Projetos",
-		"knowledge": "Conhecimentos",
+		"about": "Sobre",
 		"contact": "Contato",
-		"drawerTitle": "Para onde deseja ir?",
-		"drawerDescription": "Clique em uma das opções para navegar."
+		"toggleTheme": "Alternar tema"
 	},
 	"hero": {
 		"available": "Disponível para projetos",
-		"name": "Bernardo Filipe",
-		"role": "Desenvolvedor Full-Stack",
-		"description": "Especializado em front-end com React e Next.js, focado em entregar soluções de alta qualidade e performance para sua empresa.",
-		"cta": "Entre em contato",
-		"viewProjects": "Ver projetos"
+		"title": "Full-stack especializado em front-end, com código limpo e <highlight>alta performance.</highlight>",
+		"description": "React, Next.js e TypeScript em produção — do componente ao deploy. Sou o Bernardo: entrego experiências digitais de alta qualidade e escrevo sobre as decisões no caminho.",
+		"viewProjects": "Ver projetos",
+		"readBlog": "Ler o blog",
+		"downloadCv": "Download CV"
 	},
 	"about": {
-		"label": "Quem sou",
-		"name": "Bernardo Filipe",
-		"role": "Full-Stack Developer",
-		"description": "Desenvolvedor full-stack especializado em front-end com React e Next.js. Focado em criar experiências digitais de alta qualidade, com código limpo e performance otimizada. Atualmente aberto a novas oportunidades de trabalho."
+		"title": "Sobre"
 	},
-	"experiences": {
-		"label": "Trajetória",
-		"title": "Experiências",
-		"jobs": {
-			"senfio": {
-				"title": "Desenvolvedor Front-end Pleno",
-				"company": "Senfio",
-				"description": "Desenvolvimento de backoffices para o setor de monitoramento de saúde utilizando principalmente as seguintes tecnologias: React.JS, Next.JS, TailwindCSS, ShadcnUI e Context API."
-			},
-			"watechnology": {
-				"title": "Desenvolvedor Front-end Pleno",
-				"company": "WA Technology",
-				"description": "Fui integrado a esta empresa após um projeto desenvolvido pela NETec alcançar escala global, o que abriu novas oportunidades de mercado. Nesse projeto, atuei como líder do desenvolvimento front-end, utilizando principalmente as seguintes tecnologias: React.JS, Next.JS, Chakra UI e Context API."
-			},
-			"netec": {
-				"title": "Desenvolvedor Front-end Junior",
-				"company": "NETec",
-				"description": "Desenvolvimento de websites utilizando HTML, CSS e Javascript, destacando-se o uso predominante do framework React.JS/Next.JS e a integração de diversas bibliotecas, tais como Date-fns, React Hook Form e Chakra.UI. Além de estar sempre tendo que transformar protótipos do Figma em código de forma fiel, garantindo uma implementação idêntica e eficiente."
-			},
-			"emprel": {
-				"title": "Estágio em Desenvolvimento",
-				"company": "EMPREL",
-				"description": "Trabalhei como estagiário na EMPREL, onde trabalhei diretamente com alguns projetos do estado de Pernambuco, e basicamente meu trabalho no período foi dar manutenção em sistemas legados utilizando principalmente PHP e Symfony."
-			}
-		}
+	"stack": {
+		"title": "Stack em produção",
+		"subtitle": "domínio medido por uso real, não por badges"
+	},
+	"blog": {
+		"title": "Blog",
+		"description": "Curiosidades de desenvolvimento, padrões de código e boas práticas — com os snippets que provam o ponto.",
+		"viewAll": "ver todos",
+		"continueReading": "continuar lendo",
+		"readPost": "ler post",
+		"filterAll": "tudo",
+		"min": "min",
+		"minRead": "min de leitura",
+		"backToAll": "todos os posts",
+		"backToBlog": "voltar ao blog",
+		"copy": "copiar",
+		"copied": "✓ copiado"
 	},
 	"projects": {
-		"label": "O que construí",
 		"title": "Projetos",
-		"items": {
-			"alvo": {
-				"title": "Alvo - Landing Page",
-				"description": "Landing page desenvolvida para uma empresa de terceirização de serviços, oferecendo uma apresentação profissional e eficiente."
-			},
-			"moneyly": {
-				"title": "Moneyly",
-				"description": "Aplicação web completa de gestão financeira pessoal com dashboard inteligente, controle de transações, orçamentos e metas de poupança."
-			},
-			"fortuba": {
-				"title": "Fortuba",
-				"description": "Rede social para músicos compartilharem e descobrirem partituras, com feed, comentários e perfis de artistas."
-			},
-			"devstore": {
-				"title": "Devstore - Rocketseat",
-				"description": "Este projeto foi desenvolvido durante o curso Ignite da Rocketseat, que explora em profundidade as melhores práticas e estratégias para aumentar as taxas de conversão em e-commerces."
-			}
-		}
-	},
-	"knowledge": {
-		"label": "Meu arsenal",
-		"title": "Conhecimento",
-		"hoverHint": "*Passe o mouse para ler a descrição*",
-		"tapHint": "*Toque em uma tecnologia para ver a descrição*",
-		"categories": {
-			"all": "Todos",
-			"frontend": "Frontend",
-			"backend": "Backend",
-			"tools": "Ferramentas"
-		},
-		"levels": {
-			"1": "Iniciante",
-			"2": "Básico",
-			"3": "Intermediário",
-			"4": "Avançado",
-			"5": "Expert"
-		}
+		"selectedTitle": "Projetos selecionados",
+		"description": "O que construí, com o contexto técnico: problema, decisões de arquitetura e resultado.",
+		"viewAll": "ver todos",
+		"caseStudy": "estudo de caso",
+		"caseStudyLabel": "ESTUDO DE CASO",
+		"backToAll": "todos os projetos",
+		"back": "voltar",
+		"problem": "PROBLEMA",
+		"decision": "DECISÃO",
+		"result": "RESULTADO"
 	},
 	"contact": {
-		"label": "Vamos conversar",
-		"title": "Entre em contato conosco",
-		"form": {
-			"name": "Nome completo",
-			"email": "Email",
-			"phone": "Telefone",
-			"message": "Descreva o motivo do contato",
-			"submit": "Enviar",
-			"submitting": "Enviando..."
-		},
-		"validation": {
-			"nameRequired": "Nome é obrigatório",
-			"emailRequired": "Email é obrigatório",
-			"emailInvalid": "Verifique o formato do email.",
-			"phoneRequired": "Telefone é obrigatório"
-		},
-		"toast": {
-			"successTitle": "Pedido de contato enviado com sucesso!",
-			"successDescription": "Entraremos em contato com você o mais rápido possível!",
-			"errorTitle": "Ops... houve um problema",
-			"errorDescription": "Estaremos corrigindo o mais rápido possível"
-		}
+		"title": "Vamos conversar sobre o seu produto?",
+		"description": "Aberto a novas oportunidades, projetos e boas discussões técnicas. Respondo em até 24h.",
+		"copied": "✓ copiado!",
+		"cv": "CV"
 	},
 	"footer": {
-		"madeBy": "Feito por Bernardo Filipe • 2025",
-		"navigation": "Navegação",
-		"social": "Redes Sociais"
+		"madeBy": "Feito por Bernardo Filipe • {year}"
 	}
 }
