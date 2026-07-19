@@ -40,6 +40,9 @@ export const metadata: Metadata = {
 		images: ['/og-image.png'],
 	},
 	icons: { icon: '/favicon.svg' },
+	alternates: {
+		types: { 'application/rss+xml': '/feed.xml' },
+	},
 };
 
 const themeInitScript = `try{if(localStorage.theme==='dark'||(!('theme' in localStorage)&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;
