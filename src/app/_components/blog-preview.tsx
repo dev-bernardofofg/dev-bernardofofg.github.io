@@ -1,9 +1,9 @@
 'use client';
 
+import { Link } from '@/i18n/navigation';
 import { posts } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { useState } from 'react';
 import { type CategoryFilter, CategoryFilters } from './category-filters';
 

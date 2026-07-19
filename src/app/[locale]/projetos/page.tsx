@@ -1,7 +1,7 @@
+import { Link } from '@/i18n/navigation';
 import { projects } from '@/lib/data';
 import type { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
 	title: 'Projetos — Bernardo Filipe',
@@ -9,8 +9,14 @@ export const metadata: Metadata = {
 		'O que construí, com o contexto técnico: problema, decisões de arquitetura e resultado.',
 };
 
-export default function ProjectsPage() {
-	const t = useTranslations('projects');
+export default async function ProjectsPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+	const t = await getTranslations('projects');
 
 	return (
 		<div className="mx-auto w-full max-w-[980px] animate-page-in px-6 pt-14 md:px-8">

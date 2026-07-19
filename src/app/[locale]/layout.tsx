@@ -1,12 +1,14 @@
+import { Footer } from '@/app/_components/footer';
+import { Header } from '@/app/_components/header';
+import { routing } from '@/i18n/routing';
 import { siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
 import { Fira_Code, Plus_Jakarta_Sans } from 'next/font/google';
-import { Footer } from './_components/footer';
-import { Header } from './_components/header';
-import './globals.css';
+import { notFound } from 'next/navigation';
+import '../globals.css';
 
 const jakarta = Plus_Jakarta_Sans({
 	subsets: ['latin'],
@@ -47,13 +49,20 @@ export const metadata: Metadata = {
 
 const themeInitScript = `try{if(localStorage.theme==='dark'||(!('theme' in localStorage)&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;
 
-export default async function RootLayout({
+export function generateStaticParams() {
+	return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function LocaleLayout({
 	children,
+	params,
 }: Readonly<{
 	children: React.ReactNode;
+	params: Promise<{ locale: string }>;
 }>) {
-	const locale = await getLocale();
-	const messages = await getMessages();
+	const { locale } = await params;
+	if (!hasLocale(routing.locales, locale)) notFound();
+	setRequestLocale(locale);
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
@@ -62,7 +71,7 @@ export default async function RootLayout({
 				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 			</head>
 			<body className={cn(jakarta.variable, fira.variable, 'font-sans')}>
-				<NextIntlClientProvider messages={messages}>
+				<NextIntlClientProvider>
 					<div className="flex min-h-svh flex-col pb-10">
 						<Header />
 						<main className="flex-1">{children}</main>

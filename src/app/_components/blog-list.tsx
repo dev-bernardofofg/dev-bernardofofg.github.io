@@ -1,10 +1,10 @@
 'use client';
 
+import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { posts } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { type CategoryFilter, CategoryFilters } from './category-filters';
 
 const slugToFilter: Record<string, CategoryFilter> = {

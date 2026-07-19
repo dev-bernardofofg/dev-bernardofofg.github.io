@@ -1,10 +1,10 @@
 'use client';
 
+import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 import { LanguageSwitcher } from './language-switcher';
 import { ThemeToggle } from './theme-toggle';
 
@@ -76,7 +76,9 @@ export const Header = () => {
 				</Link>
 				<div className="flex items-center gap-1">
 					<ThemeToggle />
-					<LanguageSwitcher />
+					<Suspense fallback={<div className="size-9" />}>
+						<LanguageSwitcher />
+					</Suspense>
 				</div>
 			</div>
 		</div>

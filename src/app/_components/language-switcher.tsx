@@ -1,22 +1,26 @@
 'use client';
 
 import { type Locale, localeFlags, localeNames, locales } from '@/i18n/config';
+import { usePathname, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 export const LanguageSwitcher = () => {
 	const locale = useLocale() as Locale;
 	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
 	const [isPending, startTransition] = useTransition();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleLocaleChange = (newLocale: Locale) => {
-		document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000`;
+		const query = searchParams.toString();
+		const href = query ? `${pathname}?${query}` : pathname;
 
 		startTransition(() => {
-			router.refresh();
+			router.replace(href, { locale: newLocale });
 		});
 
 		setIsOpen(false);

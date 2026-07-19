@@ -1,6 +1,6 @@
+import { Link } from '@/i18n/navigation';
 import { projects } from '@/lib/data';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 
 export const ProjectsPreview = () => {
 	const t = useTranslations('projects');

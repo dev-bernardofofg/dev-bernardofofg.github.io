@@ -1,14 +1,14 @@
+import { BlocksRenderer } from '@/app/_components/blocks-renderer';
+import { Link } from '@/i18n/navigation';
 import { getPost, posts, profile } from '@/lib/data';
 import { siteUrl } from '@/lib/site';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
-import { getLocale, getTranslations } from 'next-intl/server';
-import Link from 'next/link';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { BlocksRenderer } from '../../_components/blocks-renderer';
 
 type PostPageProps = {
-	params: Promise<{ slug: string }>;
+	params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
@@ -29,12 +29,13 @@ export async function generateMetadata({
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-	const { slug } = await params;
+	const { locale, slug } = await params;
+	setRequestLocale(locale);
+
 	const post = getPost(slug);
 	if (!post) notFound();
 
 	const t = await getTranslations('blog');
-	const locale = await getLocale();
 	const displayDate = formatDate(post.dateIso, locale);
 
 	const postJsonLd = {

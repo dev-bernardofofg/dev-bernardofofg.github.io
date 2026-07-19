@@ -1,7 +1,7 @@
+import { BlogList } from '@/app/_components/blog-list';
 import type { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
-import { BlogList } from '../_components/blog-list';
 
 export const metadata: Metadata = {
 	title: 'Blog — Bernardo Filipe',
@@ -9,8 +9,14 @@ export const metadata: Metadata = {
 		'Curiosidades de desenvolvimento, padrões de código e boas práticas — com os snippets que provam o ponto.',
 };
 
-export default function BlogPage() {
-	const t = useTranslations('blog');
+export default async function BlogPage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+	const t = await getTranslations('blog');
 
 	return (
 		<div className="mx-auto w-full max-w-[880px] animate-page-in px-6 pt-14 md:px-8">

@@ -1,6 +1,6 @@
+import { Link } from '@/i18n/navigation';
 import { getCv } from '@/lib/data';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
 
 export const Hero = () => {
 	const t = useTranslations('hero');

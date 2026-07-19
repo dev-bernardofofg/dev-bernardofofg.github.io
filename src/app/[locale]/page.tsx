@@ -1,11 +1,12 @@
+import { AboutSection } from '@/app/_components/about-section';
+import { BlogPreview } from '@/app/_components/blog-preview';
+import { ContactCta } from '@/app/_components/contact-cta';
+import { Hero } from '@/app/_components/hero';
+import { ProjectsPreview } from '@/app/_components/projects-preview';
+import { StackSection } from '@/app/_components/stack-section';
 import { profile } from '@/lib/data';
 import { siteUrl } from '@/lib/site';
-import { AboutSection } from './_components/about-section';
-import { BlogPreview } from './_components/blog-preview';
-import { ContactCta } from './_components/contact-cta';
-import { Hero } from './_components/hero';
-import { ProjectsPreview } from './_components/projects-preview';
-import { StackSection } from './_components/stack-section';
+import { setRequestLocale } from 'next-intl/server';
 
 const personJsonLd = {
 	'@context': 'https://schema.org',
@@ -17,7 +18,14 @@ const personJsonLd = {
 	sameAs: [profile.github, profile.linkedin],
 };
 
-export default function Home() {
+export default async function Home({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+
 	return (
 		<>
 			<script
