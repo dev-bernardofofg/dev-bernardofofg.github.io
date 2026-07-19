@@ -1,33 +1,50 @@
-import { Toaster } from '@/components/ui/toaster';
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
-import { Chakra_Petch } from 'next/font/google';
+import { Fira_Code, Plus_Jakarta_Sans } from 'next/font/google';
 import { Footer } from './_components/footer';
 import { Header } from './_components/header';
-import { ScrollProgress } from './_components/scroll-progress';
 import './globals.css';
 
-const chakra = Chakra_Petch({
+const jakarta = Plus_Jakarta_Sans({
 	subsets: ['latin'],
-	weight: ['300', '400', '500', '600', '700'],
+	weight: ['400', '500', '600', '700', '800'],
+	variable: '--font-jakarta',
+});
+
+const fira = Fira_Code({
+	subsets: ['latin'],
+	weight: ['400', '500', '600'],
+	variable: '--font-fira',
 });
 
 export const metadata: Metadata = {
-	title: 'Portfólio - Bernardo Filipe',
-	description: 'Portfólio de Bernardo Filipe, desenvolvedor frontend.',
+	metadataBase: new URL(
+		process.env.NEXT_PUBLIC_SITE_URL ??
+			'https://bernardofofg-github-io.vercel.app',
+	),
+	title: 'Bernardo Filipe — Full-stack',
+	description:
+		'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
 	openGraph: {
-		title: 'Portfólio - Bernardo Filipe',
-		description: 'Portfólio de Bernardo Filipe, desenvolvedor frontend.',
+		title: 'Bernardo Filipe — Full-stack',
+		description:
+			'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
 		type: 'website',
+		images: ['/og-image.png'],
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Portfólio - Bernardo Filipe',
-		description: 'Portfólio de Bernardo Filipe, desenvolvedor frontend.',
+		title: 'Bernardo Filipe — Full-stack',
+		description:
+			'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
+		images: ['/og-image.png'],
 	},
-	icons: { icon: '/icon.svg' },
+	icons: { icon: '/favicon.svg' },
 };
+
+const themeInitScript = `try{if(localStorage.theme==='dark'||(!('theme' in localStorage)&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;
 
 export default async function RootLayout({
 	children,
@@ -38,17 +55,16 @@ export default async function RootLayout({
 	const messages = await getMessages();
 
 	return (
-		<html lang={locale}>
-			<body
-				className={`${chakra.className} dark bg-neutral-950`}
-				suppressHydrationWarning
-			>
+		<html lang={locale} suppressHydrationWarning>
+			<head>
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: script estático anti-FOUC do tema */}
+				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+			</head>
+			<body className={cn(jakarta.variable, fira.variable, 'font-sans')}>
 				<NextIntlClientProvider messages={messages}>
-					<div className="min-h-svh w-full">
-						<ScrollProgress />
+					<div className="flex min-h-svh flex-col pb-10">
 						<Header />
-						<main className="px-4 md:px-6">{children}</main>
-						<Toaster />
+						<main className="flex-1">{children}</main>
 						<Footer />
 					</div>
 				</NextIntlClientProvider>
