@@ -15,7 +15,7 @@ export const Hero = () => {
 				<span className="size-[7px] rounded-full bg-emerald-500" />
 				{t('available')}
 			</div>
-			<h1 className="mt-5 max-w-[760px] font-extrabold text-[38px] text-foreground leading-[1.12] tracking-[-0.032em] md:text-[54px]">
+			<h1 className="mt-5 max-w-[760px] font-extrabold text-[32px] text-foreground leading-[1.14] tracking-[-0.032em] sm:text-[42px] md:text-[54px]">
 				{t.rich('title', {
 					highlight: (chunks) => (
 						<span className="text-accent-gradient">{chunks}</span>
@@ -25,16 +25,16 @@ export const Hero = () => {
 			<p className="mt-[18px] max-w-[560px] text-[17px] text-secondary leading-[1.65]">
 				{t('description')}
 			</p>
-			<div className="mt-7 flex flex-wrap gap-3">
+			<div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 				<Link
 					href="/projetos"
-					className="rounded-[14px] px-6 py-[13px] font-bold text-[14.5px] text-white accent-gradient shadow-[0_8px_22px_rgba(240,83,83,0.25)] transition-[filter] hover:brightness-[1.08]"
+					className="rounded-[14px] px-6 py-[13px] text-center font-bold text-[14.5px] text-white accent-gradient shadow-[0_8px_22px_rgba(240,83,83,0.25)] transition-[filter] hover:brightness-[1.08]"
 				>
 					{t('viewProjects')}
 				</Link>
 				<Link
 					href="/blog"
-					className="glass-card rounded-[14px] px-6 py-[13px] font-bold text-[14.5px] text-foreground shadow-card backdrop-blur-[10px] transition-colors hover:bg-glass-strong"
+					className="glass-card rounded-[14px] px-6 py-[13px] text-center font-bold text-[14.5px] text-foreground shadow-card backdrop-blur-[10px] transition-colors hover:bg-glass-strong"
 				>
 					{t('readBlog')}
 				</Link>
@@ -42,7 +42,7 @@ export const Hero = () => {
 					href={getCv(locale)}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="inline-flex items-center rounded-[14px] border border-foreground/15 px-6 py-[13px] font-bold text-[14.5px] text-secondary transition-colors hover:bg-glass hover:text-foreground"
+					className="inline-flex items-center justify-center rounded-[14px] border border-foreground/15 px-6 py-[13px] font-bold text-[14.5px] text-secondary transition-colors hover:bg-glass hover:text-foreground"
 				>
 					{t('downloadCv')} ↓
 				</a>

@@ -20,9 +20,9 @@ export const ContactCta = () => {
 			id="contato"
 			className="mx-auto w-full max-w-[1120px] px-6 md:px-8"
 		>
-			<div className="glass-card-strong grid grid-cols-1 items-center gap-8 rounded-3xl p-8 shadow-card md:grid-cols-[1.4fr_1fr] md:gap-10 md:px-11 md:py-10">
+			<div className="glass-card-strong grid grid-cols-1 items-center gap-8 rounded-3xl p-6 shadow-card sm:p-8 md:grid-cols-[1.4fr_1fr] md:gap-10 md:px-11 md:py-10">
 				<div>
-					<h2 className="font-extrabold text-[28px] text-foreground tracking-[-0.02em]">
+					<h2 className="font-extrabold text-[23px] text-foreground tracking-[-0.02em] md:text-[28px]">
 						{t('title')}
 					</h2>
 					<p className="mt-2.5 max-w-[440px] text-[15px] text-secondary leading-[1.6]">
@@ -33,7 +33,7 @@ export const ContactCta = () => {
 					<button
 						type="button"
 						onClick={copyEmail}
-						className="cursor-pointer rounded-[14px] px-[22px] py-3.5 text-left font-mono font-semibold text-[14px] text-white accent-gradient transition-[filter] hover:brightness-[1.08]"
+						className="cursor-pointer truncate rounded-[14px] px-[22px] py-3.5 text-left font-mono font-semibold text-[13px] text-white accent-gradient transition-[filter] hover:brightness-[1.08] sm:text-[14px]"
 					>
 						{copied ? t('copied') : `${profile.email}  ⧉`}
 					</button>

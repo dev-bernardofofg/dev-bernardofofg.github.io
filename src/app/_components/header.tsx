@@ -28,7 +28,7 @@ export const Header = () => {
 
 	return (
 		<div className="sticky top-4 z-50 flex justify-center px-4 pt-5 md:px-6">
-			<div className="glass-card flex items-center gap-2 rounded-full py-2 pr-2 pl-4 shadow-card backdrop-blur-lg md:gap-4 md:pl-5">
+			<div className="glass-card flex items-center gap-1 rounded-full py-1.5 pr-1.5 pl-3 shadow-card backdrop-blur-lg md:gap-4 md:py-2 md:pr-2 md:pl-5">
 				<Link
 					href="/"
 					className="mr-1 flex items-center gap-2 font-extrabold text-[15px] text-foreground tracking-[-0.02em]"
@@ -51,7 +51,7 @@ export const Header = () => {
 								href={link.href}
 								aria-current={active ? 'page' : undefined}
 								className={cn(
-									'rounded-full px-3 py-2 transition-colors md:px-4',
+									'rounded-full px-2.5 py-2 transition-colors md:px-4',
 									active
 										? 'nav-pill-active text-foreground'
 										: 'text-muted hover:text-foreground',

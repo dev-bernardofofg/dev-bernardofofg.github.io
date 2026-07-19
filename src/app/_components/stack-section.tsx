@@ -10,7 +10,7 @@ export const StackSection = () => {
 			className="mx-auto w-full max-w-[1120px] px-6 pb-16 md:px-8"
 		>
 			<div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
-				<h2 className="font-extrabold text-[26px] text-foreground tracking-[-0.02em]">
+				<h2 className="font-extrabold text-[22px] text-foreground tracking-[-0.02em] md:text-[26px]">
 					{t('title')}
 				</h2>
 				<span className="text-[13px] text-muted">{t('subtitle')}</span>

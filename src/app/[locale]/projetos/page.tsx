@@ -20,7 +20,7 @@ export default async function ProjectsPage({
 
 	return (
 		<div className="mx-auto w-full max-w-[980px] animate-page-in px-6 pt-14 md:px-8">
-			<h1 className="font-extrabold text-[42px] text-foreground tracking-[-0.03em]">
+			<h1 className="font-extrabold text-[34px] text-foreground tracking-[-0.03em] md:text-[42px]">
 				{t('title')}
 			</h1>
 			<p className="mt-2.5 max-w-[560px] text-[16px] text-secondary leading-[1.6]">

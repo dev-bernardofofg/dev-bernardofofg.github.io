@@ -9,7 +9,7 @@ export const AboutSection = () => {
 			id="sobre"
 			className="mx-auto w-full max-w-[1120px] px-6 pb-16 md:px-8"
 		>
-			<h2 className="mb-5 font-extrabold text-[26px] text-foreground tracking-[-0.02em]">
+			<h2 className="mb-5 font-extrabold text-[22px] text-foreground tracking-[-0.02em] md:text-[26px]">
 				{t('title')}
 			</h2>
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-[1.5fr_1fr]">

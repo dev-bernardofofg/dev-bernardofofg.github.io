@@ -27,7 +27,7 @@ export const BlogPreview = () => {
 		>
 			<div className="mb-5 flex flex-wrap items-center justify-between gap-3">
 				<div className="flex items-baseline gap-3.5">
-					<h2 className="font-extrabold text-[26px] text-foreground tracking-[-0.02em]">
+					<h2 className="font-extrabold text-[22px] text-foreground tracking-[-0.02em] md:text-[26px]">
 						{t('title')}
 					</h2>
 					<Link
@@ -52,7 +52,7 @@ export const BlogPreview = () => {
 						{featured.min} {t('min')}
 					</span>
 				</div>
-				<div className="mt-2.5 font-extrabold text-[24px] tracking-[-0.015em]">
+				<div className="mt-2.5 font-extrabold text-[20px] tracking-[-0.015em] md:text-[24px]">
 					{featured.title}
 				</div>
 				<p className="mt-2 mb-[18px] max-w-[640px] text-[15px] text-secondary leading-[1.6]">

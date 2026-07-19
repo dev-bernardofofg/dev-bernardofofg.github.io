@@ -11,7 +11,7 @@ export const ProjectsPreview = () => {
 			className="mx-auto w-full max-w-[1120px] px-6 pb-16 md:px-8"
 		>
 			<div className="mb-5 flex items-baseline gap-3.5">
-				<h2 className="font-extrabold text-[26px] text-foreground tracking-[-0.02em]">
+				<h2 className="font-extrabold text-[22px] text-foreground tracking-[-0.02em] md:text-[26px]">
 					{t('selectedTitle')}
 				</h2>
 				<Link
