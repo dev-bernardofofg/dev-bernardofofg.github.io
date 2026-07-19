@@ -1,5 +1,6 @@
 import { Footer } from '@/app/_components/footer';
 import { Header } from '@/app/_components/header';
+import { ThemeProvider } from '@/app/_components/theme-provider';
 import { routing } from '@/i18n/routing';
 import { siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
@@ -47,8 +48,6 @@ export const metadata: Metadata = {
 	},
 };
 
-const themeInitScript = `try{if(localStorage.theme==='dark'||(!('theme' in localStorage)&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;
-
 export function generateStaticParams() {
 	return routing.locales.map((locale) => ({ locale }));
 }
@@ -66,18 +65,16 @@ export default async function LocaleLayout({
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
-			<head>
-				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: script estático anti-FOUC do tema */}
-				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-			</head>
 			<body className={cn(jakarta.variable, fira.variable, 'font-sans')}>
-				<NextIntlClientProvider>
-					<div className="flex min-h-svh flex-col pb-10">
-						<Header />
-						<main className="flex-1">{children}</main>
-						<Footer />
-					</div>
-				</NextIntlClientProvider>
+				<ThemeProvider>
+					<NextIntlClientProvider>
+						<div className="flex min-h-svh flex-col pb-10">
+							<Header />
+							<main className="flex-1">{children}</main>
+							<Footer />
+						</div>
+					</NextIntlClientProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	);
