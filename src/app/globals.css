@@ -148,8 +148,23 @@
 	}
 }
 
+.code-highlight pre {
+	margin: 0;
+	padding: 18px 22px;
+	overflow-x: auto;
+	font-family: var(--font-fira), monospace;
+	font-size: 13px;
+	line-height: 1.85;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	* {
 		scroll-behavior: smooth;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-page-in {
+		animation: none;
 	}
 }

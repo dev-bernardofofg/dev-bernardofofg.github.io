@@ -6,9 +6,10 @@ import { useState } from 'react';
 type CodeBlockProps = {
 	file?: string;
 	code: string;
+	html?: string;
 };
 
-export const CodeBlock = ({ file, code }: CodeBlockProps) => {
+export const CodeBlock = ({ file, code, html }: CodeBlockProps) => {
 	const t = useTranslations('blog');
 	const [copied, setCopied] = useState(false);
 
@@ -30,9 +31,17 @@ export const CodeBlock = ({ file, code }: CodeBlockProps) => {
 					{copied ? t('copied') : t('copy')}
 				</button>
 			</div>
-			<div className="overflow-x-auto whitespace-pre bg-code px-[22px] py-[18px] font-mono text-[13px] text-code-text leading-[1.85]">
-				{code}
-			</div>
+			{html ? (
+				<div
+					className="code-highlight"
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: HTML gerado pelo Shiki no servidor a partir do data layer
+					dangerouslySetInnerHTML={{ __html: html }}
+				/>
+			) : (
+				<div className="overflow-x-auto whitespace-pre bg-code px-[22px] py-[18px] font-mono text-[13px] text-code-text leading-[1.85]">
+					{code}
+				</div>
+			)}
 		</div>
 	);
 };
