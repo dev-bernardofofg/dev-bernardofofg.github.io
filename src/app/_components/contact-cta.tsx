@@ -1,11 +1,12 @@
 'use client';
 
-import { profile } from '@/lib/data';
-import { useTranslations } from 'next-intl';
+import { getCv, profile } from '@/lib/data';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 export const ContactCta = () => {
 	const t = useTranslations('contact');
+	const locale = useLocale();
 	const [copied, setCopied] = useState(false);
 
 	const copyEmail = () => {
@@ -54,7 +55,7 @@ export const ContactCta = () => {
 							LinkedIn
 						</a>
 						<a
-							href={profile.cv}
+							href={getCv(locale)}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="glass-card flex-1 rounded-xl py-[11px] text-center font-bold text-[13px] text-foreground transition-colors hover:bg-glass-strong"

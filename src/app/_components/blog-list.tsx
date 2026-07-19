@@ -1,13 +1,15 @@
 'use client';
 
 import { posts } from '@/lib/data';
-import { useTranslations } from 'next-intl';
+import { formatDate } from '@/lib/utils';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { type CategoryFilter, CategoryFilters } from './category-filters';
 
 export const BlogList = () => {
 	const t = useTranslations('blog');
+	const locale = useLocale();
 	const [filter, setFilter] = useState<CategoryFilter>('tudo');
 
 	const filtered =
@@ -29,7 +31,7 @@ export const BlogList = () => {
 					>
 						<div className="flex items-baseline gap-2.5 font-mono text-[11px] text-faint">
 							<span className="font-semibold text-accent-a">{post.cat}</span>
-							<span>{post.date}</span>
+							<span>{formatDate(post.dateIso, locale)}</span>
 							<span>·</span>
 							<span>
 								{post.min} {t('min')}

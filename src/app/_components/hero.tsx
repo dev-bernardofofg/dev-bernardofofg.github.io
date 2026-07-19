@@ -1,9 +1,10 @@
-import { profile } from '@/lib/data';
-import { useTranslations } from 'next-intl';
+import { getCv } from '@/lib/data';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export const Hero = () => {
 	const t = useTranslations('hero');
+	const locale = useLocale();
 
 	return (
 		<section
@@ -38,7 +39,7 @@ export const Hero = () => {
 					{t('readBlog')}
 				</Link>
 				<a
-					href={profile.cv}
+					href={getCv(locale)}
 					target="_blank"
 					rel="noopener noreferrer"
 					className="inline-flex items-center rounded-[14px] border border-foreground/15 px-6 py-[13px] font-bold text-[14.5px] text-secondary transition-colors hover:bg-glass hover:text-foreground"

@@ -1,7 +1,8 @@
 import { getPost, posts, profile } from '@/lib/data';
 import { siteUrl } from '@/lib/site';
+import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BlocksRenderer } from '../../_components/blocks-renderer';
@@ -33,6 +34,8 @@ export default async function PostPage({ params }: PostPageProps) {
 	if (!post) notFound();
 
 	const t = await getTranslations('blog');
+	const locale = await getLocale();
+	const displayDate = formatDate(post.dateIso, locale);
 
 	const postJsonLd = {
 		'@context': 'https://schema.org',
@@ -60,7 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
 			</Link>
 			<div className="mt-7 flex items-baseline gap-2.5 font-mono text-[11.5px] text-faint">
 				<span className="font-semibold text-accent-a">{post.cat}</span>
-				<span>{post.date}</span>
+				<span>{displayDate}</span>
 				<span>·</span>
 				<span>
 					{post.min} {t('minRead')}
@@ -79,7 +82,7 @@ export default async function PostPage({ params }: PostPageProps) {
 					← {t('backToBlog')}
 				</Link>
 				<span className="font-mono text-[12px] text-faint">
-					{profile.name} · {post.date}
+					{profile.name} · {displayDate}
 				</span>
 			</div>
 		</article>

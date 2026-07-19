@@ -1,13 +1,15 @@
 'use client';
 
 import { posts } from '@/lib/data';
-import { useTranslations } from 'next-intl';
+import { formatDate } from '@/lib/utils';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { type CategoryFilter, CategoryFilters } from './category-filters';
 
 export const BlogPreview = () => {
 	const t = useTranslations('blog');
+	const locale = useLocale();
 	const [filter, setFilter] = useState<CategoryFilter>('tudo');
 
 	const [featured, ...rest] = posts;
@@ -44,7 +46,7 @@ export const BlogPreview = () => {
 			>
 				<div className="flex items-baseline gap-2.5 font-mono text-[11px] text-faint">
 					<span className="font-semibold text-accent-a">{featured.cat}</span>
-					<span>{featured.date}</span>
+					<span>{formatDate(featured.dateIso, locale)}</span>
 					<span>·</span>
 					<span>
 						{featured.min} {t('min')}
@@ -85,7 +87,7 @@ export const BlogPreview = () => {
 							</div>
 						</div>
 						<span className="whitespace-nowrap font-mono text-[11px] text-faint">
-							{post.date} · {post.min} {t('min')}
+							{formatDate(post.dateIso, locale)} · {post.min} {t('min')}
 						</span>
 					</Link>
 				))}
