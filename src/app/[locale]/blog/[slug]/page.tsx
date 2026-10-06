@@ -1,9 +1,12 @@
 import { BlocksRenderer } from '@/app/_components/blocks-renderer';
+import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 import { getPost, posts, profile } from '@/lib/data';
-import { siteUrl } from '@/lib/site';
+import { hreflangAlternates, localeUrls, ogLocale, siteUrl } from '@/lib/site';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
+import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
@@ -18,13 +21,36 @@ export function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: PostPageProps): Promise<Metadata> {
-	const { slug } = await params;
+	const { locale: raw, slug } = await params;
 	const post = getPost(slug);
 	if (!post) return {};
 
+	const locale: Locale = hasLocale(routing.locales, raw) ? raw : defaultLocale;
+	const path = `/blog/${post.id}`;
+	const urls = localeUrls(path);
+	const title = `${post.title} — ${profile.name}`;
+
 	return {
-		title: `${post.title} — ${profile.name}`,
+		title,
 		description: post.excerpt,
+		openGraph: {
+			title,
+			description: post.excerpt,
+			type: 'article',
+			url: urls[locale],
+			locale: ogLocale[locale],
+			publishedTime: post.dateIso,
+			authors: [profile.name],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description: post.excerpt,
+		},
+		alternates: {
+			canonical: urls[locale],
+			languages: hreflangAlternates(path),
+		},
 	};
 }
 
@@ -44,8 +70,8 @@ export default async function PostPage({ params }: PostPageProps) {
 		headline: post.title,
 		description: post.excerpt,
 		datePublished: post.dateIso,
-		inLanguage: 'pt-BR',
-		url: `${siteUrl}/blog/${post.id}`,
+		inLanguage: locale,
+		url: localeUrls(`/blog/${post.id}`)[locale as Locale],
 		author: { '@type': 'Person', name: profile.name, url: siteUrl },
 	};
 

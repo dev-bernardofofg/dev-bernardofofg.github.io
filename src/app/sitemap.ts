@@ -1,22 +1,18 @@
 import { posts, projects } from '@/lib/data';
-import { siteUrl } from '@/lib/site';
+import { localeUrls } from '@/lib/site';
 import type { MetadataRoute } from 'next';
-
-// localePrefix 'as-needed': pt-BR sem prefixo, en/es com.
-const localized = (path: string) => ({
-	'pt-BR': `${siteUrl}${path === '/' ? '' : path}`,
-	en: `${siteUrl}/en${path === '/' ? '' : path}`,
-	es: `${siteUrl}/es${path === '/' ? '' : path}`,
-});
 
 const entry = (
 	path: string,
 	extra: Partial<MetadataRoute.Sitemap[number]> = {},
-): MetadataRoute.Sitemap[number] => ({
-	url: localized(path)['pt-BR'],
-	alternates: { languages: localized(path) },
-	...extra,
-});
+): MetadataRoute.Sitemap[number] => {
+	const urls = localeUrls(path);
+	return {
+		url: urls['pt-BR'],
+		alternates: { languages: urls },
+		...extra,
+	};
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
 	return [

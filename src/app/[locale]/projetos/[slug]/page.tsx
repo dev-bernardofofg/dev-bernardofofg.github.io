@@ -1,7 +1,11 @@
 import { BlocksRenderer } from '@/app/_components/blocks-renderer';
+import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 import { getProject, profile, projects } from '@/lib/data';
+import { hreflangAlternates, localeUrls, ogLocale } from '@/lib/site';
 import type { Metadata } from 'next';
+import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
@@ -16,13 +20,34 @@ export function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: ProjectPageProps): Promise<Metadata> {
-	const { slug } = await params;
+	const { locale: raw, slug } = await params;
 	const project = getProject(slug);
 	if (!project) return {};
 
+	const locale: Locale = hasLocale(routing.locales, raw) ? raw : defaultLocale;
+	const path = `/projetos/${project.id}`;
+	const urls = localeUrls(path);
+	const title = `${project.name} — ${profile.name}`;
+
 	return {
-		title: `${project.name} — ${profile.name}`,
+		title,
 		description: project.summary,
+		openGraph: {
+			title,
+			description: project.summary,
+			type: 'article',
+			url: urls[locale],
+			locale: ogLocale[locale],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description: project.summary,
+		},
+		alternates: {
+			canonical: urls[locale],
+			languages: hreflangAlternates(path),
+		},
 	};
 }
 

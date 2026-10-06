@@ -1,8 +1,9 @@
 import { Footer } from '@/app/_components/footer';
 import { Header } from '@/app/_components/header';
 import { ThemeProvider } from '@/app/_components/theme-provider';
+import { type Locale, defaultLocale } from '@/i18n/config';
 import { routing } from '@/i18n/routing';
-import { siteUrl } from '@/lib/site';
+import { hreflangAlternates, localeUrls, ogLocale, siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
@@ -23,30 +24,48 @@ const fira = Fira_Code({
 	variable: '--font-fira',
 });
 
-export const metadata: Metadata = {
-	metadataBase: new URL(siteUrl),
-	title: 'Bernardo Filipe — Full-stack',
-	description:
-		'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
-	openGraph: {
-		title: 'Bernardo Filipe — Full-stack',
-		description:
-			'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
-		type: 'website',
-		images: ['/og-image.png'],
-	},
-	twitter: {
-		card: 'summary_large_image',
-		title: 'Bernardo Filipe — Full-stack',
-		description:
-			'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.',
-		images: ['/og-image.png'],
-	},
-	icons: { icon: '/favicon.svg' },
-	alternates: {
-		types: { 'application/rss+xml': '/feed.xml' },
-	},
-};
+const title = 'Bernardo Filipe — Full-stack';
+const description =
+	'Full-stack especializado em front-end: React, Next.js e TypeScript em produção — do componente ao deploy.';
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale: raw } = await params;
+	const locale: Locale = hasLocale(routing.locales, raw) ? raw : defaultLocale;
+	const urls = localeUrls('/');
+
+	return {
+		metadataBase: new URL(siteUrl),
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			type: 'website',
+			url: urls[locale],
+			locale: ogLocale[locale],
+			alternateLocale: routing.locales
+				.filter((l) => l !== locale)
+				.map((l) => ogLocale[l]),
+			images: ['/og-image.png'],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description,
+			images: ['/og-image.png'],
+		},
+		icons: { icon: '/favicon.svg' },
+		alternates: {
+			canonical: urls[locale],
+			languages: hreflangAlternates('/'),
+			types: { 'application/rss+xml': '/feed.xml' },
+		},
+	};
+}
 
 export function generateStaticParams() {
 	return routing.locales.map((locale) => ({ locale }));
