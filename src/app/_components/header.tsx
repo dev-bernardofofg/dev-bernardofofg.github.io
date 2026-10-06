@@ -1,30 +1,19 @@
-'use client';
-
-import { Link, usePathname } from '@/i18n/navigation';
-import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import { LanguageSwitcher } from './language-switcher';
+import { type NavItem, NavLinks } from './nav-links';
 import { ThemeToggle } from './theme-toggle';
 
-const links = [
-	{ href: '/', key: 'home', match: (path: string) => path === '/' },
-	{
-		href: '/blog',
-		key: 'blog',
-		match: (path: string) => path.startsWith('/blog'),
-	},
-	{
-		href: '/projetos',
-		key: 'projects',
-		match: (path: string) => path.startsWith('/projetos'),
-	},
-] as const;
+export const Header = async () => {
+	const t = await getTranslations('nav');
 
-export const Header = () => {
-	const t = useTranslations('nav');
-	const pathname = usePathname();
+	const navItems: NavItem[] = [
+		{ href: '/', label: t('home') },
+		{ href: '/blog', label: t('blog') },
+		{ href: '/projetos', label: t('projects') },
+	];
 
 	return (
 		<div className="sticky top-4 z-50 flex justify-center px-4 pt-5 md:px-6">
@@ -43,24 +32,7 @@ export const Header = () => {
 					<span className="hidden sm:inline">Bernardo Filipe</span>
 				</Link>
 				<nav className="flex items-center gap-0.5 font-semibold text-[13px]">
-					{links.map((link) => {
-						const active = link.match(pathname);
-						return (
-							<Link
-								key={link.href}
-								href={link.href}
-								aria-current={active ? 'page' : undefined}
-								className={cn(
-									'rounded-full px-2.5 py-2 transition-colors md:px-4',
-									active
-										? 'nav-pill-active text-foreground'
-										: 'text-muted hover:text-foreground',
-								)}
-							>
-								{t(link.key)}
-							</Link>
-						);
-					})}
+					<NavLinks items={navItems} />
 					<Link
 						href="/#sobre"
 						className="hidden rounded-full px-3 py-2 text-muted transition-colors hover:text-foreground md:inline md:px-4"
