@@ -57,5 +57,20 @@
 	},
 	"footer": {
 		"madeBy": "Made by Bernardo Filipe • {year}"
+	},
+	"errors": {
+		"notFound": {
+			"title": "Page not found",
+			"description": "This path does not exist or was moved. Head back home or check out the blog.",
+			"home": "Back home",
+			"blog": "Go to blog"
+		},
+		"error": {
+			"label": "ERROR",
+			"title": "Something went wrong",
+			"description": "An unexpected failure happened while rendering this page. You can try again or head back home.",
+			"retry": "Try again",
+			"home": "Back home"
+		}
 	}
 }
