@@ -5,15 +5,12 @@ import { posts } from '@/lib/data';
 import { formatDate } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { type CategoryFilter, CategoryFilters } from './category-filters';
-
-const slugToFilter: Record<string, CategoryFilter> = {
-	pattern: 'pattern',
-	'deep-dive': 'deep dive',
-	til: 'til',
-};
-
-const filterToSlug = (filter: CategoryFilter) => filter.replace(' ', '-');
+import {
+	type CategoryFilter,
+	CategoryFilters,
+	filterToSlug,
+	slugToFilter,
+} from './category-filters';
 
 export const BlogList = () => {
 	const t = useTranslations('blog');
@@ -22,17 +19,15 @@ export const BlogList = () => {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const filter = slugToFilter[searchParams.get('cat') ?? ''] ?? 'tudo';
+	const filter = slugToFilter(searchParams.get('cat'));
 
 	const setFilter = (next: CategoryFilter) => {
-		const query = next === 'tudo' ? '' : `?cat=${filterToSlug(next)}`;
+		const query = next === 'ALL' ? '' : `?cat=${filterToSlug(next)}`;
 		router.replace(`${pathname}${query}`, { scroll: false });
 	};
 
 	const filtered =
-		filter === 'tudo'
-			? posts
-			: posts.filter((post) => post.cat === filter.toUpperCase());
+		filter === 'ALL' ? posts : posts.filter((post) => post.cat === filter);
 
 	return (
 		<>

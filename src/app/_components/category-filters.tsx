@@ -1,16 +1,26 @@
 'use client';
 
+import type { PostCategory } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 
-export type CategoryFilter = 'tudo' | 'pattern' | 'deep dive' | 'til';
+export type CategoryFilter = 'ALL' | PostCategory;
 
 export const categoryFilters: CategoryFilter[] = [
-	'tudo',
-	'pattern',
-	'deep dive',
-	'til',
+	'ALL',
+	'PATTERN',
+	'DEEP DIVE',
+	'TIL',
 ];
+
+export const filterToSlug = (filter: CategoryFilter) =>
+	filter.toLowerCase().replace(' ', '-');
+
+export const slugToFilter = (slug: string | null): CategoryFilter => {
+	if (!slug) return 'ALL';
+	const match = categoryFilters.find((f) => filterToSlug(f) === slug);
+	return match ?? 'ALL';
+};
 
 type CategoryFiltersProps = {
 	value: CategoryFilter;
@@ -36,7 +46,7 @@ export const CategoryFilters = ({ value, onChange }: CategoryFiltersProps) => {
 								: 'border-glass-border bg-glass text-muted',
 						)}
 					>
-						{filter === 'tudo' ? t('filterAll') : filter}
+						{filter === 'ALL' ? t('filterAll') : filter.toLowerCase()}
 					</button>
 				);
 			})}

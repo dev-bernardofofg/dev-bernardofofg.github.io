@@ -10,15 +10,13 @@ import { type CategoryFilter, CategoryFilters } from './category-filters';
 export const BlogPreview = () => {
 	const t = useTranslations('blog');
 	const locale = useLocale();
-	const [filter, setFilter] = useState<CategoryFilter>('tudo');
+	const [filter, setFilter] = useState<CategoryFilter>('ALL');
 
 	const [featured, ...rest] = posts;
 	if (!featured) return null;
 
 	const filtered =
-		filter === 'tudo'
-			? rest
-			: rest.filter((post) => post.cat === filter.toUpperCase());
+		filter === 'ALL' ? rest : rest.filter((post) => post.cat === filter);
 
 	return (
 		<section
