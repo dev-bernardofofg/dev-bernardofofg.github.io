@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { BR, ES, US } from 'country-flag-icons/react/3x2';
 import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 const localeFlags: Record<
 	Locale,
@@ -24,6 +24,15 @@ export const LanguageSwitcher = () => {
 	const searchParams = useSearchParams();
 	const [isPending, startTransition] = useTransition();
 	const [isOpen, setIsOpen] = useState(false);
+
+	useEffect(() => {
+		if (!isOpen) return;
+		const onKey = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setIsOpen(false);
+		};
+		window.addEventListener('keydown', onKey);
+		return () => window.removeEventListener('keydown', onKey);
+	}, [isOpen]);
 
 	const CurrentFlag = localeFlags[locale];
 
@@ -43,7 +52,6 @@ export const LanguageSwitcher = () => {
 			<button
 				type="button"
 				onClick={() => setIsOpen(!isOpen)}
-				onKeyDown={(e) => e.key === 'Escape' && setIsOpen(false)}
 				disabled={isPending}
 				aria-expanded={isOpen}
 				aria-label={localeNames[locale]}
@@ -57,11 +65,12 @@ export const LanguageSwitcher = () => {
 
 			{isOpen && (
 				<>
-					<div
-						role="presentation"
-						className="fixed inset-0 z-40"
+					<button
+						type="button"
+						aria-label="Close language menu"
+						tabIndex={-1}
+						className="fixed inset-0 z-40 cursor-default"
 						onClick={() => setIsOpen(false)}
-						onKeyDown={(e) => e.key === 'Escape' && setIsOpen(false)}
 					/>
 
 					<div className="glass-card-strong absolute top-full right-0 z-50 mt-2 min-w-[150px] overflow-hidden rounded-2xl p-1 shadow-card-hover">
