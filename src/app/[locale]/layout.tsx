@@ -5,6 +5,8 @@ import { type Locale, defaultLocale } from '@/i18n/config';
 import { routing } from '@/i18n/routing';
 import { hreflangAlternates, localeUrls, ogLocale, siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -94,6 +96,8 @@ export default async function LocaleLayout({
 						</div>
 					</NextIntlClientProvider>
 				</ThemeProvider>
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
