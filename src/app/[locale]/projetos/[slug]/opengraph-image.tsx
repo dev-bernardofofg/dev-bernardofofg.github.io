@@ -1,4 +1,5 @@
 import { getProject, profile, projects } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { ImageResponse } from 'next/og';
 
 export const size = { width: 1200, height: 630 };
@@ -11,9 +12,9 @@ export function generateStaticParams() {
 export default async function Image({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: Promise<{ locale: string; slug: string }>;
 }) {
-	const { slug } = await params;
+	const { locale, slug } = await params;
 	const project = getProject(slug);
 
 	return new ImageResponse(
@@ -80,7 +81,7 @@ export default async function Image({
 						maxWidth: 900,
 					}}
 				>
-					{project?.summary ?? 'bernardo.dev_'}
+					{project ? localize(project.summary, locale) : 'bernardo.dev_'}
 				</div>
 			</div>
 		</div>,

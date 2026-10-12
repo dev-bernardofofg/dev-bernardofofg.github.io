@@ -58,6 +58,10 @@
 	"footer": {
 		"madeBy": "Hecho por Bernardo Filipe • {year}"
 	},
+	"languageSwitcher": {
+		"open": "Cambiar idioma — actual: {language}",
+		"close": "Cerrar menú de idiomas"
+	},
 	"errors": {
 		"notFound": {
 			"title": "Página no encontrada",

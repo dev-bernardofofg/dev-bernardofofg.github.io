@@ -5,18 +5,9 @@ import { Hero } from '@/app/_components/hero';
 import { ProjectsPreview } from '@/app/_components/projects-preview';
 import { StackSection } from '@/app/_components/stack-section';
 import { profile } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { siteUrl } from '@/lib/site';
 import { setRequestLocale } from 'next-intl/server';
-
-const personJsonLd = {
-	'@context': 'https://schema.org',
-	'@type': 'Person',
-	name: profile.name,
-	jobTitle: profile.role,
-	url: siteUrl,
-	email: `mailto:${profile.email}`,
-	sameAs: [profile.github, profile.linkedin],
-};
 
 export default async function Home({
 	params,
@@ -25,6 +16,17 @@ export default async function Home({
 }) {
 	const { locale } = await params;
 	setRequestLocale(locale);
+
+	const personJsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: profile.name,
+		jobTitle: localize(profile.role, locale),
+		description: localize(profile.bio1, locale),
+		url: siteUrl,
+		email: `mailto:${profile.email}`,
+		sameAs: [profile.github, profile.linkedin],
+	};
 
 	return (
 		<>

@@ -1,13 +1,21 @@
 import { Link } from '@/i18n/navigation';
 import { projects } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-export const metadata: Metadata = {
-	title: 'Projetos — Bernardo Filipe',
-	description:
-		'O que construí, com o contexto técnico: problema, decisões de arquitetura e resultado.',
-};
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: 'projects' });
+	return {
+		title: `${t('title')} — Bernardo Filipe`,
+		description: t('description'),
+	};
+}
 
 export default async function ProjectsPage({
 	params,
@@ -42,7 +50,7 @@ export default async function ProjectsPage({
 							</span>
 						</div>
 						<div className="mt-1.5 flex-1 text-[14px] text-secondary leading-[1.6]">
-							{project.summary}
+							{localize(project.summary, locale)}
 						</div>
 						<div className="mt-4 flex flex-wrap gap-1.5">
 							{project.tags.map((tag) => (

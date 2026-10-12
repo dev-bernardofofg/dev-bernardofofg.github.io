@@ -3,6 +3,7 @@ import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { getProject, profile, projects } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { hreflangAlternates, localeUrls, ogLocale } from '@/lib/site';
 import type { Metadata } from 'next';
 import { hasLocale } from 'next-intl';
@@ -27,14 +28,15 @@ export async function generateMetadata({
 	const locale: Locale = hasLocale(routing.locales, raw) ? raw : defaultLocale;
 	const path = `/projetos/${project.id}`;
 	const urls = localeUrls(path);
+	const summary = localize(project.summary, locale);
 	const title = `${project.name} — ${profile.name}`;
 
 	return {
 		title,
-		description: project.summary,
+		description: summary,
 		openGraph: {
 			title,
-			description: project.summary,
+			description: summary,
 			type: 'article',
 			url: urls[locale],
 			locale: ogLocale[locale],
@@ -42,7 +44,7 @@ export async function generateMetadata({
 		twitter: {
 			card: 'summary_large_image',
 			title,
-			description: project.summary,
+			description: summary,
 		},
 		alternates: {
 			canonical: urls[locale],
@@ -96,7 +98,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 					rel="noopener noreferrer"
 					className="inline-block rounded-[14px] px-[22px] py-3 font-bold text-[14px] text-white accent-gradient shadow-[0_8px_22px_rgba(240,83,83,0.25)] transition-[filter] hover:brightness-[1.08]"
 				>
-					{project.linkLabel}
+					{localize(project.linkLabel, locale)}
 				</a>
 				{project.repos
 					?.filter((repo) => repo.url !== project.link)
@@ -108,7 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 							rel="noopener noreferrer"
 							className="glass-card rounded-[14px] px-[22px] py-3 font-bold text-[14px] text-foreground transition-colors hover:bg-glass-strong"
 						>
-							{repo.label}
+							{localize(repo.label, locale)}
 						</a>
 					))}
 				<Link

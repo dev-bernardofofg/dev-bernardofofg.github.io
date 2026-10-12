@@ -1,4 +1,6 @@
 import type { ContentBlock } from '@/lib/data';
+import { localize } from '@/lib/i18n';
+import { getLocale } from 'next-intl/server';
 import { codeToHtml } from 'shiki';
 import { CodeBlock } from './code-block';
 
@@ -20,6 +22,7 @@ const highlight = (code: string, file?: string) =>
 	});
 
 export const BlocksRenderer = async ({ blocks }: BlocksRendererProps) => {
+	const locale = await getLocale();
 	const highlighted = await Promise.all(
 		blocks.map((block) =>
 			block.code ? highlight(block.code, block.file) : null,
@@ -33,12 +36,12 @@ export const BlocksRenderer = async ({ blocks }: BlocksRendererProps) => {
 				<div key={index}>
 					{block.heading && (
 						<h2 className="mt-[34px] font-extrabold font-mono text-[13px] text-accent-a tracking-[0.12em]">
-							{block.heading}
+							{localize(block.heading, locale)}
 						</h2>
 					)}
 					{block.text && (
 						<p className="mt-4 text-[16.5px] text-secondary leading-[1.75]">
-							{block.text}
+							{localize(block.text, locale)}
 						</p>
 					)}
 					{block.code && (
@@ -50,7 +53,7 @@ export const BlocksRenderer = async ({ blocks }: BlocksRendererProps) => {
 					)}
 					{block.note && (
 						<div className="glass-card mt-[22px] rounded-xl border-l-[3px] border-l-accent-a px-[22px] py-4 text-[15px] text-secondary leading-[1.65]">
-							{block.note}
+							{localize(block.note, locale)}
 						</div>
 					)}
 				</div>

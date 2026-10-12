@@ -1,4 +1,5 @@
 import { getPost, posts, profile } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { ImageResponse } from 'next/og';
 
 export const size = { width: 1200, height: 630 };
@@ -11,9 +12,9 @@ export function generateStaticParams() {
 export default async function Image({
 	params,
 }: {
-	params: Promise<{ slug: string }>;
+	params: Promise<{ locale: string; slug: string }>;
 }) {
-	const { slug } = await params;
+	const { locale, slug } = await params;
 	const post = getPost(slug);
 
 	return new ImageResponse(
@@ -69,7 +70,7 @@ export default async function Image({
 						lineHeight: 1.15,
 					}}
 				>
-					{post?.title ?? profile.name}
+					{post ? localize(post.title, locale) : profile.name}
 				</div>
 				<div
 					style={{

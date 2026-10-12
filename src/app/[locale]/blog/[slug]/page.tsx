@@ -3,6 +3,7 @@ import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { getPost, posts, profile } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { hreflangAlternates, localeUrls, ogLocale, siteUrl } from '@/lib/site';
 import { formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -28,14 +29,16 @@ export async function generateMetadata({
 	const locale: Locale = hasLocale(routing.locales, raw) ? raw : defaultLocale;
 	const path = `/blog/${post.id}`;
 	const urls = localeUrls(path);
-	const title = `${post.title} — ${profile.name}`;
+	const postTitle = localize(post.title, locale);
+	const postExcerpt = localize(post.excerpt, locale);
+	const title = `${postTitle} — ${profile.name}`;
 
 	return {
 		title,
-		description: post.excerpt,
+		description: postExcerpt,
 		openGraph: {
 			title,
-			description: post.excerpt,
+			description: postExcerpt,
 			type: 'article',
 			url: urls[locale],
 			locale: ogLocale[locale],
@@ -45,7 +48,7 @@ export async function generateMetadata({
 		twitter: {
 			card: 'summary_large_image',
 			title,
-			description: post.excerpt,
+			description: postExcerpt,
 		},
 		alternates: {
 			canonical: urls[locale],
@@ -67,8 +70,8 @@ export default async function PostPage({ params }: PostPageProps) {
 	const postJsonLd = {
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
-		headline: post.title,
-		description: post.excerpt,
+		headline: localize(post.title, locale),
+		description: localize(post.excerpt, locale),
 		datePublished: post.dateIso,
 		inLanguage: locale,
 		url: localeUrls(`/blog/${post.id}`)[locale as Locale],
@@ -97,7 +100,7 @@ export default async function PostPage({ params }: PostPageProps) {
 				</span>
 			</div>
 			<h1 className="mt-3 font-extrabold text-[30px] text-foreground leading-[1.15] tracking-[-0.025em] md:text-[36px]">
-				{post.title}
+				{localize(post.title, locale)}
 			</h1>
 			<div className="mt-5 mb-2 h-1 w-14 rounded-full accent-gradient" />
 			<BlocksRenderer blocks={post.blocks} />

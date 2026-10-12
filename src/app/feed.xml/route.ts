@@ -1,4 +1,5 @@
 import { posts, profile } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { siteUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -14,10 +15,10 @@ export function GET() {
 	const items = posts
 		.map(
 			(post) => `    <item>
-      <title>${escapeXml(post.title)}</title>
+      <title>${escapeXml(localize(post.title, 'pt-BR'))}</title>
       <link>${siteUrl}/blog/${post.id}</link>
       <guid>${siteUrl}/blog/${post.id}</guid>
-      <description>${escapeXml(post.excerpt)}</description>
+      <description>${escapeXml(localize(post.excerpt, 'pt-BR'))}</description>
       <category>${escapeXml(post.cat)}</category>
       <pubDate>${new Date(`${post.dateIso}T12:00:00Z`).toUTCString()}</pubDate>
     </item>`,

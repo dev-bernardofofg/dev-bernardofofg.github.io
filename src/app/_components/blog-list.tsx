@@ -2,6 +2,7 @@
 
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { posts } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { formatDate } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
@@ -50,10 +51,10 @@ export const BlogList = () => {
 							</span>
 						</div>
 						<div className="mt-2 font-extrabold text-[20px] text-foreground tracking-[-0.015em]">
-							{post.title}
+							{localize(post.title, locale)}
 						</div>
 						<div className="mt-1.5 text-[14.5px] text-secondary leading-[1.6]">
-							{post.excerpt}
+							{localize(post.excerpt, locale)}
 						</div>
 						{post.teaser && (
 							<div className="mt-3.5 overflow-x-auto whitespace-pre rounded-[14px] bg-code px-[18px] py-3.5 font-mono text-[12.5px] text-code-text leading-[1.8]">

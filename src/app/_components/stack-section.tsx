@@ -1,8 +1,10 @@
 import { stack } from '@/lib/data';
-import { useTranslations } from 'next-intl';
+import { localize } from '@/lib/i18n';
+import { useLocale, useTranslations } from 'next-intl';
 
 export const StackSection = () => {
 	const t = useTranslations('stack');
+	const locale = useLocale();
 
 	return (
 		<section
@@ -16,33 +18,36 @@ export const StackSection = () => {
 				<span className="text-[13px] text-muted">{t('subtitle')}</span>
 			</div>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-				{stack.map((item) => (
-					<div
-						key={item.layer}
-						className="glass-card hover:-translate-y-[3px] rounded-[20px] px-6 py-[22px] shadow-card transition-[transform,box-shadow] duration-200 hover:shadow-card-hover"
-					>
-						<div className="font-extrabold text-[11px] text-accent-a tracking-[0.12em]">
-							{item.layer}
-						</div>
-						<div className="mt-2.5 font-bold text-[16.5px] text-foreground">
-							{item.tools}
-						</div>
-						<div className="mt-1.5 text-[13px] text-muted leading-[1.55]">
-							{item.proof}
-						</div>
-						<div className="mt-4 flex items-center gap-2">
-							<div className="h-[5px] flex-1 rounded-full bg-foreground/8">
-								<div
-									className="h-[5px] rounded-full accent-gradient"
-									style={{ width: `${item.level}%` }}
-								/>
+				{stack.map((item) => {
+					const layer = localize(item.layer, locale);
+					return (
+						<div
+							key={layer}
+							className="glass-card hover:-translate-y-[3px] rounded-[20px] px-6 py-[22px] shadow-card transition-[transform,box-shadow] duration-200 hover:shadow-card-hover"
+						>
+							<div className="font-extrabold text-[11px] text-accent-a tracking-[0.12em]">
+								{layer}
 							</div>
-							<span className="font-mono text-[10.5px] text-muted">
-								{item.since}
-							</span>
+							<div className="mt-2.5 font-bold text-[16.5px] text-foreground">
+								{item.tools}
+							</div>
+							<div className="mt-1.5 text-[13px] text-muted leading-[1.55]">
+								{localize(item.proof, locale)}
+							</div>
+							<div className="mt-4 flex items-center gap-2">
+								<div className="h-[5px] flex-1 rounded-full bg-foreground/8">
+									<div
+										className="h-[5px] rounded-full accent-gradient"
+										style={{ width: `${item.level}%` }}
+									/>
+								</div>
+								<span className="font-mono text-[10.5px] text-muted">
+									{item.since}
+								</span>
+							</div>
 						</div>
-					</div>
-				))}
+					);
+				})}
 			</div>
 		</section>
 	);

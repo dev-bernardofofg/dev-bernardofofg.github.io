@@ -4,7 +4,7 @@ import { type Locale, localeNames, locales } from '@/i18n/config';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { BR, ES, US } from 'country-flag-icons/react/3x2';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
 
@@ -18,6 +18,7 @@ const localeFlags: Record<
 };
 
 export const LanguageSwitcher = () => {
+	const t = useTranslations('languageSwitcher');
 	const locale = useLocale() as Locale;
 	const router = useRouter();
 	const pathname = usePathname();
@@ -54,7 +55,7 @@ export const LanguageSwitcher = () => {
 				onClick={() => setIsOpen(!isOpen)}
 				disabled={isPending}
 				aria-expanded={isOpen}
-				aria-label={localeNames[locale]}
+				aria-label={t('open', { language: localeNames[locale] })}
 				className={cn(
 					'flex size-9 items-center justify-center rounded-full transition-colors hover:bg-tag',
 					isPending && 'opacity-50',
@@ -67,7 +68,7 @@ export const LanguageSwitcher = () => {
 				<>
 					<button
 						type="button"
-						aria-label="Close language menu"
+						aria-label={t('close')}
 						tabIndex={-1}
 						className="fixed inset-0 z-40 cursor-default"
 						onClick={() => setIsOpen(false)}

@@ -2,6 +2,7 @@
 
 import { Link } from '@/i18n/navigation';
 import { posts } from '@/lib/data';
+import { localize } from '@/lib/i18n';
 import { formatDate } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -51,10 +52,10 @@ export const BlogPreview = () => {
 					</span>
 				</div>
 				<div className="mt-2.5 font-extrabold text-[20px] tracking-[-0.015em] md:text-[24px]">
-					{featured.title}
+					{localize(featured.title, locale)}
 				</div>
 				<p className="mt-2 mb-[18px] max-w-[640px] text-[15px] text-secondary leading-[1.6]">
-					{featured.excerpt}
+					{localize(featured.excerpt, locale)}
 				</p>
 				{featured.teaser && (
 					<div className="overflow-x-auto whitespace-pre rounded-2xl bg-code px-6 py-5 font-mono text-[13px] text-code-text leading-[1.85]">
@@ -78,10 +79,10 @@ export const BlogPreview = () => {
 						</span>
 						<div>
 							<div className="font-bold text-[15.5px] text-foreground">
-								{post.title}
+								{localize(post.title, locale)}
 							</div>
 							<div className="mt-0.5 text-[13px] text-muted">
-								{post.excerpt}
+								{localize(post.excerpt, locale)}
 							</div>
 						</div>
 						<span className="whitespace-nowrap font-mono text-[11px] text-faint">

@@ -1,9 +1,11 @@
 import { Link } from '@/i18n/navigation';
 import { projects } from '@/lib/data';
-import { useTranslations } from 'next-intl';
+import { localize } from '@/lib/i18n';
+import { useLocale, useTranslations } from 'next-intl';
 
 export const ProjectsPreview = () => {
 	const t = useTranslations('projects');
+	const locale = useLocale();
 
 	return (
 		<section
@@ -39,16 +41,20 @@ export const ProjectsPreview = () => {
 							<span className="pt-[3px] font-mono text-[10.5px] text-faint">
 								{t('problem')}
 							</span>
-							<span className="text-secondary">{project.problem}</span>
+							<span className="text-secondary">
+								{localize(project.problem, locale)}
+							</span>
 							<span className="pt-[3px] font-mono text-[10.5px] text-faint">
 								{t('decision')}
 							</span>
-							<span className="text-secondary">{project.decision}</span>
+							<span className="text-secondary">
+								{localize(project.decision, locale)}
+							</span>
 							<span className="pt-[3px] font-mono text-[10.5px] text-faint">
 								{t('result')}
 							</span>
 							<span className="font-bold text-foreground">
-								{project.result}
+								{localize(project.result, locale)}
 							</span>
 						</div>
 						<Link

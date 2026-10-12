@@ -3,11 +3,18 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 
-export const metadata: Metadata = {
-	title: 'Blog — Bernardo Filipe',
-	description:
-		'Curiosidades de desenvolvimento, padrões de código e boas práticas — com os snippets que provam o ponto.',
-};
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: 'blog' });
+	return {
+		title: `${t('title')} — Bernardo Filipe`,
+		description: t('description'),
+	};
+}
 
 export default async function BlogPage({
 	params,
