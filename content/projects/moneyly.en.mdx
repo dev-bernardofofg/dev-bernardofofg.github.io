@@ -1,0 +1,24 @@
+---
+locale: en
+---
+
+## PROBLEM
+
+Personal finance scattered across spreadsheets: no consolidated view, no budget alerts and no incentive to stick to savings goals.
+
+## ARCHITECTURE DECISIONS
+
+Front in Next.js and API in Express with Drizzle over PostgreSQL, in separate repos. The contract lives in Zod schemas: they generate the OpenAPI spec and, from it, kubb and orval generate the typed hooks the front consumes — change the schema and the front breaks at compile-time, not in production. TanStack Query handles cache and invalidation.
+
+<Snippet file="db/schema.ts" lang="ts">
+{`export const transactions = pgTable('transactions', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  amount: numeric('amount').notNull(),
+  categoryId: uuid('category_id').references(() => categories.id),
+  occurredAt: timestamp('occurred_at').notNull(),
+});`}
+</Snippet>
+
+## RESULT
+
+Full app in production: monthly dashboard, transactions tracked by category, budgets with progress and savings goals.

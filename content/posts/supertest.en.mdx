@@ -1,0 +1,19 @@
+---
+locale: en
+---
+
+I used to spin up the server in a beforeAll, pick a random port and pray CI did not collide. I found out supertest accepts the app instance directly — it binds to an ephemeral port per request on its own.
+
+<Snippet file="users.test.ts" lang="ts">
+{`import request from 'supertest';
+import { app } from '../src/app'; // no app.listen()
+
+it('rejects invalid email', async () => {
+  const res = await request(app).post('/users').send({ email: 'x' });
+  expect(res.status).toBe(400);
+});`}
+</Snippet>
+
+<Callout>
+The requirement: export the app separately from listen(). That split also makes serverless and load testing easier.
+</Callout>

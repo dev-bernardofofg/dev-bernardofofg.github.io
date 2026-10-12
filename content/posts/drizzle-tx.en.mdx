@@ -1,0 +1,28 @@
+---
+locale: en
+---
+
+The bug: inside db.transaction, one query used db instead of tx. It ran outside the transaction — it committed on its own even when the rest rolled back. No error, no log. Just inconsistent data days later.
+
+<Snippet file="services/transfer.ts" lang="ts">
+{`await db.transaction(async (tx) => {
+  await tx.insert(entries).values(debit);
+  await db.insert(entries).values(credit); // 🐛 outside the transaction!
+});`}
+</Snippet>
+
+The fix is trivial (use tx), but the bigger lesson was about isolation: Postgres defaults to READ COMMITTED, and for a ledger that allows read anomalies between the two legs of the entry. Financial transactions call for SERIALIZABLE — plus retry on conflict.
+
+<Snippet file="services/transfer.ts" lang="ts">
+{`await db.transaction(
+  async (tx) => {
+    await tx.insert(entries).values(debit);
+    await tx.insert(entries).values(credit);
+  },
+  { isolationLevel: 'serializable' },
+);`}
+</Snippet>
+
+<Callout>
+A lint rule I adopted: forbid references to db inside transaction callbacks. A no-restricted-syntax rule does the job.
+</Callout>

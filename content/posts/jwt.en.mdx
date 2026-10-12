@@ -1,0 +1,24 @@
+---
+locale: en
+---
+
+Pure stateless JWT has a famous problem: you cannot revoke it. The middle ground I use: a short access token (15 min), fully stateless, plus an opaque refresh token, persisted and rotated on every use.
+
+<Snippet file="auth/refresh.ts" lang="ts">
+{`export async function refresh(oldToken: string) {
+  const stored = await findRefreshToken(hash(oldToken));
+  if (!stored || stored.usedAt) {
+    // token reuse = possible theft: tear down the whole family
+    if (stored) await revokeFamily(stored.familyId);
+    throw new UnauthorizedError();
+  }
+  await markUsed(stored.id);
+  return issuePair(stored.userId, stored.familyId);
+}`}
+</Snippet>
+
+The detail almost no one implements: reuse detection. If an already-used refresh token shows up again, someone stole it — revoking the whole family logs out the attacker and the legit user, who simply logs in again.
+
+<Callout>
+Real cost: one database read per refresh (every ~15 min per user), not per request. The access token stays 100% stateless.
+</Callout>

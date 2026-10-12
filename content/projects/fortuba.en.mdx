@@ -1,0 +1,24 @@
+---
+locale: en
+---
+
+## PROBLEM
+
+Musicians lack a dedicated place to share and discover sheet music — the material circulates in loose PDFs, with no context, authorship or discussion.
+
+## ARCHITECTURE DECISIONS
+
+Full-stack with front and back separated: API in Express with Prisma over PostgreSQL, front in Next.js with TanStack Query. The feed uses cursor pagination — more stable than offset when new posts arrive mid-scroll.
+
+<Snippet file="server/feed.ts" lang="ts">
+{`const posts = await prisma.post.findMany({
+  take: 20,
+  ...(cursor && { skip: 1, cursor: { id: cursor } }),
+  orderBy: { createdAt: 'desc' },
+  include: { author: true, _count: { select: { comments: true } } },
+});`}
+</Snippet>
+
+## RESULT
+
+Working network with feed, comments and artist profiles — from schema to front, with front and back public on GitHub.

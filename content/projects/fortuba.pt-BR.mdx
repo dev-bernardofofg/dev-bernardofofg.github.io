@@ -1,0 +1,24 @@
+---
+locale: pt-BR
+---
+
+## PROBLEMA
+
+Músicos não têm um lugar dedicado para compartilhar e descobrir partituras — o material circula em PDFs soltos, sem contexto, autoria ou discussão.
+
+## DECISÕES DE ARQUITETURA
+
+Full-stack com front e back separados: API em Express com Prisma sobre PostgreSQL, front em Next.js com TanStack Query. O feed usa paginação por cursor — mais estável que offset quando novos posts chegam no meio da rolagem.
+
+<Snippet file="server/feed.ts" lang="ts">
+{`const posts = await prisma.post.findMany({
+  take: 20,
+  ...(cursor && { skip: 1, cursor: { id: cursor } }),
+  orderBy: { createdAt: 'desc' },
+  include: { author: true, _count: { select: { comments: true } } },
+});`}
+</Snippet>
+
+## RESULTADO
+
+Rede funcional com feed, comentários e perfis de artistas — do schema ao front, com front e back públicos no GitHub.

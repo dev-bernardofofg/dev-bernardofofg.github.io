@@ -1,0 +1,19 @@
+---
+locale: es
+---
+
+Levantaba el servidor en un beforeAll, elegía puerto aleatorio y rezaba para que CI no colisionara. Descubrí que supertest acepta la instancia de la app directamente — él mismo hace el bind a un puerto efímero por request.
+
+<Snippet file="users.test.ts" lang="ts">
+{`import request from 'supertest';
+import { app } from '../src/app'; // sin app.listen()
+
+it('rechaza email inválido', async () => {
+  const res = await request(app).post('/users').send({ email: 'x' });
+  expect(res.status).toBe(400);
+});`}
+</Snippet>
+
+<Callout>
+El requisito: exportar la app separada del listen(). Esa separación también facilita serverless y pruebas de carga.
+</Callout>

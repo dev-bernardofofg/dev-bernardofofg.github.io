@@ -1,0 +1,24 @@
+---
+locale: pt-BR
+---
+
+## PROBLEMA
+
+Gestão financeira pessoal espalhada em planilhas: sem visão consolidada, sem alertas de orçamento e nenhum incentivo para manter metas de poupança.
+
+## DECISÕES DE ARQUITETURA
+
+Front em Next.js e API em Express com Drizzle sobre PostgreSQL, em repositórios separados. O contrato vive nos schemas Zod: eles geram a spec OpenAPI e, a partir dela, kubb e orval geram os hooks tipados que o front consome — mudou o schema, o front quebra em compile-time, não em produção. TanStack Query cuida do cache e da invalidação.
+
+<Snippet file="db/schema.ts" lang="ts">
+{`export const transactions = pgTable('transactions', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  amount: numeric('amount').notNull(),
+  categoryId: uuid('category_id').references(() => categories.id),
+  occurredAt: timestamp('occurred_at').notNull(),
+});`}
+</Snippet>
+
+## RESULTADO
+
+App completo em produção: dashboard com visão mensal, controle de transações por categoria, orçamentos com progresso e metas de poupança.

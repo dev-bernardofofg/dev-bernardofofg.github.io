@@ -1,0 +1,24 @@
+---
+locale: en
+---
+
+## CONTEXT
+
+Project built during Rocketseat Ignite, focused on practices that lift e-commerce conversion: server rendering, aggressive cache and instant search.
+
+## DECISIONS
+
+Next.js App Router with Server Components and per-route cache: product pages are static with revalidation, search runs on the server and the cart lives in Context on the client — each thing on the cheapest possible layer.
+
+<Snippet file="app/product/[slug]/page.tsx" lang="tsx">
+{`export async function generateStaticParams() {
+  const products = await api('/products/featured');
+  return products.map((p) => ({ slug: p.slug }));
+}
+// revalidates every 1h — price refreshes without rebuild
+export const revalidate = 3600;`}
+</Snippet>
+
+## RESULT
+
+API published on GitHub as study material on SSR, caching and conversion.

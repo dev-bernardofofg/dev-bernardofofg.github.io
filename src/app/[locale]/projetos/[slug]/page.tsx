@@ -1,7 +1,7 @@
-import { BlocksRenderer } from '@/app/_components/blocks-renderer';
 import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
+import { getProjectBody } from '@/lib/content';
 import { getProject, profile, projects } from '@/lib/data';
 import { localize } from '@/lib/i18n';
 import { hreflangAlternates, localeUrls, ogLocale } from '@/lib/site';
@@ -61,6 +61,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 	if (!project) notFound();
 
 	const t = await getTranslations('projects');
+	const body = await getProjectBody(project.id, locale);
 
 	return (
 		<article className="mx-auto w-full max-w-[760px] animate-page-in px-6 pt-12 md:px-8">
@@ -90,7 +91,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 				))}
 			</div>
 			<div className="mt-5 mb-2 h-1 w-14 rounded-full accent-gradient" />
-			<BlocksRenderer blocks={project.blocks} />
+			{body}
 			<div className="mt-9 flex flex-wrap gap-2.5">
 				<a
 					href={project.link}

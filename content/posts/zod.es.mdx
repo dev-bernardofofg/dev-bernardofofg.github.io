@@ -1,0 +1,29 @@
+---
+locale: es
+---
+
+Durante mucho tiempo mantenía tres versiones del mismo contrato: la interfaz TypeScript, el validador del request y el DTO que consumía el front. Cada cambio de campo era una caza del tesoro — y el drift entre ellos era la causa nº 1 de bugs tontos en producción.
+
+<Snippet file="schemas/user.ts" lang="ts">
+{`import { z } from 'zod';
+
+export const CreateUser = z.object({
+  email: z.string().email(),
+  name: z.string().min(2),
+});
+
+export type CreateUser = z.infer<typeof CreateUser>;`}
+</Snippet>
+
+El giro clave es tratar el schema como la fuente única: el tipo se infiere de él, nunca se escribe a mano. Y en el handler, parse — no validate. Parse devuelve un valor nuevo, tipado y limpio; validar y seguir usando el objeto original deja pasar campos extra y coerción silenciosa.
+
+<Snippet file="routes/users.ts" lang="ts">
+{`app.post('/users', (req, res) => {
+  const input = CreateUser.parse(req.body); // lanza 400 si inválido
+  // input es CreateUser — garantizado en runtime Y en compile-time
+});`}
+</Snippet>
+
+<Callout>
+Bonus: publica los schemas en un paquete compartido y el front valida formularios con exactamente el mismo contrato — React Hook Form + zodResolver cierran el ciclo.
+</Callout>

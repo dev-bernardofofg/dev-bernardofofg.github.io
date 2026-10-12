@@ -1,0 +1,24 @@
+---
+locale: es
+---
+
+JWT stateless puro tiene un problema famoso: no se puede revocar. El término medio que uso: access token corto (15 min) totalmente stateless + refresh token opaco, persistido y rotado en cada uso.
+
+<Snippet file="auth/refresh.ts" lang="ts">
+{`export async function refresh(oldToken: string) {
+  const stored = await findRefreshToken(hash(oldToken));
+  if (!stored || stored.usedAt) {
+    // reuso de token = posible robo: derriba la familia entera
+    if (stored) await revokeFamily(stored.familyId);
+    throw new UnauthorizedError();
+  }
+  await markUsed(stored.id);
+  return issuePair(stored.userId, stored.familyId);
+}`}
+</Snippet>
+
+El detalle que casi nadie implementa: detección de reuso. Si un refresh token ya usado aparece de nuevo, alguien lo robó — revocar la familia entera desloga al atacante y al usuario legítimo, que simplemente vuelve a loguearse.
+
+<Callout>
+Costo real: una lectura a la base por refresh (cada ~15 min por usuario), no por request. El access token sigue 100% stateless.
+</Callout>

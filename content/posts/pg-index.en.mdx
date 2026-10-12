@@ -1,0 +1,17 @@
+---
+locale: en
+---
+
+The hottest query in the system always filtered by `status = 'pending'` — less than 2% of the rows. The full index on status was almost useless: the planner preferred seq scan because the index was indexing 98% junk.
+
+<Snippet file="migrations/0042_partial_idx.sql" lang="sql">
+{`CREATE INDEX CONCURRENTLY idx_jobs_pending
+  ON jobs (created_at)
+  WHERE status = 'pending';`}
+</Snippet>
+
+A partial index indexes only the rows the query actually looks for: 50x smaller, always in cache, and the planner starts using it. The endpoint p95 dropped 40% without touching a single line of application code.
+
+<Callout>
+Drizzle supports partial indexes in the schema via `.where()` on the index builder — you can version it alongside the rest.
+</Callout>

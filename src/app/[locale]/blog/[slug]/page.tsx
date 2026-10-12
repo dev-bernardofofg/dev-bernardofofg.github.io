@@ -1,7 +1,7 @@
-import { BlocksRenderer } from '@/app/_components/blocks-renderer';
 import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
+import { getPostBody } from '@/lib/content';
 import { getPost, posts, profile } from '@/lib/data';
 import { localize } from '@/lib/i18n';
 import { hreflangAlternates, localeUrls, ogLocale, siteUrl } from '@/lib/site';
@@ -66,6 +66,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
 	const t = await getTranslations('blog');
 	const displayDate = formatDate(post.dateIso, locale);
+	const body = await getPostBody(post.id, locale);
 
 	const postJsonLd = {
 		'@context': 'https://schema.org',
@@ -103,7 +104,7 @@ export default async function PostPage({ params }: PostPageProps) {
 				{localize(post.title, locale)}
 			</h1>
 			<div className="mt-5 mb-2 h-1 w-14 rounded-full accent-gradient" />
-			<BlocksRenderer blocks={post.blocks} />
+			{body}
 			<div className="mt-10 flex items-center justify-between border-foreground/10 border-t pt-[22px]">
 				<Link
 					href="/blog"
