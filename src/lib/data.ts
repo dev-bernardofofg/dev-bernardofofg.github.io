@@ -2,7 +2,18 @@
 // Hoje os dados vivem aqui; quando houver backend real, troque o corpo de getDb()
 // por um fetch para a API e mantenha os tipos como contrato.
 
+import readingTimes from '../../content/reading-times.json';
 import type { Translated } from './i18n';
+
+const readingMinutes = (slug: string): number => {
+	const value = (readingTimes as Record<string, number>)[slug];
+	if (typeof value !== 'number') {
+		throw new Error(
+			`No reading time for post "${slug}". Run \`node scripts/compute-reading-times.mjs\`.`,
+		);
+	}
+	return value;
+};
 
 export type PostCategory = 'PATTERN' | 'TIL' | 'DEEP DIVE';
 
@@ -202,7 +213,7 @@ export const posts: Post[] = [
 		id: 'zod',
 		cat: 'PATTERN',
 		dateIso: '2026-07-08',
-		min: 6,
+		min: readingMinutes('zod'),
 		title: {
 			'pt-BR': 'Zod como fonte única do contrato: parse, não validate',
 			en: 'Zod as the single source of the contract: parse, not validate',
@@ -221,7 +232,7 @@ export const posts: Post[] = [
 		id: 'supertest',
 		cat: 'TIL',
 		dateIso: '2026-07-03',
-		min: 2,
+		min: readingMinutes('supertest'),
 		title: {
 			'pt-BR': 'supertest aceita o app do Express direto, sem listen()',
 			en: 'supertest accepts the Express app directly, no listen() needed',
@@ -239,7 +250,7 @@ export const posts: Post[] = [
 		id: 'drizzle-tx',
 		cat: 'DEEP DIVE',
 		dateIso: '2026-06-30',
-		min: 9,
+		min: readingMinutes('drizzle-tx'),
 		title: {
 			'pt-BR': 'Transações no Drizzle: onde o rollback silencioso mora',
 			en: 'Drizzle transactions: where silent rollback lives',
@@ -258,7 +269,7 @@ export const posts: Post[] = [
 		id: 'jwt',
 		cat: 'PATTERN',
 		dateIso: '2026-06-19',
-		min: 7,
+		min: readingMinutes('jwt'),
 		title: {
 			'pt-BR': 'Refresh tokens sem sessão: rotação com JWT em 80 linhas',
 			en: 'Sessionless refresh tokens: JWT rotation in 80 lines',
@@ -276,7 +287,7 @@ export const posts: Post[] = [
 		id: 'pg-index',
 		cat: 'DEEP DIVE',
 		dateIso: '2026-06-11',
-		min: 8,
+		min: readingMinutes('pg-index'),
 		title: {
 			'pt-BR': 'Índices parciais no Postgres que cortaram 40% do p95',
 			en: 'Partial indexes in Postgres that cut 40% of p95',

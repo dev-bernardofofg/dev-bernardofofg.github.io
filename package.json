@@ -13,6 +13,8 @@
 		"lint": "biome check src",
 		"typecheck": "tsc --noEmit",
 		"test:e2e": "playwright test",
+		"content:reading-times": "node scripts/compute-reading-times.mjs",
+		"prebuild": "node scripts/compute-reading-times.mjs",
 		"prepare": "husky"
 	},
 	"dependencies": {

@@ -1,0 +1,7 @@
+{
+	"drizzle-tx": 1,
+	"jwt": 1,
+	"pg-index": 1,
+	"supertest": 1,
+	"zod": 1
+}
