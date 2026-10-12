@@ -53,14 +53,45 @@ test.describe('routes render', () => {
 	});
 });
 
-test('english locale renders at /en', async ({ page }) => {
-	await page.goto('/en');
-	await expect(page.getByRole('heading', { level: 1 })).toContainText(
-		'Full-stack',
-	);
-	await expect(
-		page.getByRole('navigation').getByRole('link', { name: 'Projects' }),
-	).toBeVisible();
+test.describe('locales', () => {
+	test('english home renders translated nav and content', async ({ page }) => {
+		await page.goto('/en');
+		await expect(page.getByRole('heading', { level: 1 })).toContainText(
+			'Full-stack',
+		);
+		await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+		await expect(
+			page.getByRole('navigation').getByRole('link', { name: 'Projects' }),
+		).toBeVisible();
+		await expect(page.locator('#sobre')).toContainText(/full-stack developer/i);
+	});
+
+	test('spanish home renders translated nav and content', async ({ page }) => {
+		await page.goto('/es');
+		await expect(page.getByRole('heading', { level: 1 })).toContainText(
+			'Full-stack',
+		);
+		await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+		await expect(
+			page.getByRole('navigation').getByRole('link', { name: 'Proyectos' }),
+		).toBeVisible();
+		await expect(page.locator('#sobre')).toContainText(/desarrollador/i);
+	});
+
+	test('english post slug renders translated title', async ({ page }) => {
+		await page.goto('/en/blog/zod');
+		await expect(page.getByRole('heading', { level: 1 })).toContainText(
+			'single source of the contract',
+		);
+		await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+	});
+
+	test('spanish project slug renders translated summary', async ({ page }) => {
+		await page.goto('/es/projetos/moneyly');
+		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Moneyly');
+		await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+		await expect(page.locator('article')).toContainText(/gestión/i);
+	});
 });
 
 test('theme toggle switches dark mode', async ({ page }) => {
