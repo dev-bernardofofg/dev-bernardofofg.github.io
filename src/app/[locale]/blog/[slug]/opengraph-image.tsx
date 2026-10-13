@@ -1,5 +1,6 @@
 import { getPost, posts, profile } from '@/lib/data';
 import { localize } from '@/lib/i18n';
+import { ogFonts } from '@/lib/og-fonts';
 import { ImageResponse } from 'next/og';
 
 export const size = { width: 1200, height: 630 };
@@ -16,6 +17,7 @@ export default async function Image({
 }) {
 	const { locale, slug } = await params;
 	const post = getPost(slug);
+	const fonts = await ogFonts();
 
 	return new ImageResponse(
 		<div
@@ -29,7 +31,7 @@ export default async function Image({
 				background: '#F4F6FB',
 				backgroundImage:
 					'radial-gradient(ellipse 700px 440px at 10% -10%, rgba(240,83,83,0.25), transparent 60%), radial-gradient(ellipse 640px 400px at 95% 5%, rgba(251,146,60,0.20), transparent 60%)',
-				fontFamily: 'sans-serif',
+				fontFamily: '"Plus Jakarta Sans", sans-serif',
 			}}
 		>
 			<div
@@ -84,6 +86,6 @@ export default async function Image({
 				</div>
 			</div>
 		</div>,
-		size,
+		{ ...size, fonts },
 	);
 }
