@@ -1,3 +1,4 @@
+import { RelatedPosts } from '@/app/_components/related-posts';
 import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -105,6 +106,7 @@ export default async function PostPage({ params }: PostPageProps) {
 			</h1>
 			<div className="mt-5 mb-2 h-1 w-14 rounded-full accent-gradient" />
 			{body}
+			<RelatedPosts current={post} />
 			<div className="mt-10 flex items-center justify-between border-foreground/10 border-t pt-[22px]">
 				<Link
 					href="/blog"
