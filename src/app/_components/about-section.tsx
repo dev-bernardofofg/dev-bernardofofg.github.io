@@ -1,6 +1,7 @@
 import { profile } from '@/lib/data';
 import { localize } from '@/lib/i18n';
 import { useLocale, useTranslations } from 'next-intl';
+import { AuthorAvatar } from './author-avatar';
 
 export const AboutSection = () => {
 	const t = useTranslations('about');
@@ -16,6 +17,17 @@ export const AboutSection = () => {
 			</h2>
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-[1.5fr_1fr]">
 				<div className="glass-card-strong rounded-[22px] px-8 py-7 shadow-card">
+					<div className="mb-5 flex items-center gap-4">
+						<AuthorAvatar size={64} />
+						<div>
+							<div className="font-extrabold text-[17px] text-foreground tracking-[-0.015em]">
+								{profile.name}
+							</div>
+							<div className="font-mono text-[12px] text-accent-a tracking-[0.08em]">
+								{localize(profile.role, locale)}
+							</div>
+						</div>
+					</div>
 					<p className="text-[15.5px] text-secondary leading-[1.7]">
 						{localize(profile.bio1, locale)}
 					</p>
