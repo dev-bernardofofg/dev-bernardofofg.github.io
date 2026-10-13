@@ -3,6 +3,7 @@ import { Header } from '@/app/_components/header';
 import { ThemeProvider } from '@/app/_components/theme-provider';
 import { type Locale, defaultLocale } from '@/i18n/config';
 import { routing } from '@/i18n/routing';
+import { feedPathFor } from '@/lib/rss';
 import { hreflangAlternates, localeUrls, ogLocale, siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/next';
@@ -64,7 +65,7 @@ export async function generateMetadata({
 		alternates: {
 			canonical: urls[locale],
 			languages: hreflangAlternates('/'),
-			types: { 'application/rss+xml': '/feed.xml' },
+			types: { 'application/rss+xml': feedPathFor(locale) },
 		},
 	};
 }
