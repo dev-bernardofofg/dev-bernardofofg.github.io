@@ -1,3 +1,4 @@
+import { ReadingProgress } from '@/app/_components/reading-progress';
 import { RelatedPosts } from '@/app/_components/related-posts';
 import { type Locale, defaultLocale } from '@/i18n/config';
 import { Link } from '@/i18n/navigation';
@@ -82,6 +83,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
 	return (
 		<article className="mx-auto w-full max-w-[760px] animate-page-in px-6 pt-12 md:px-8">
+			<ReadingProgress />
 			<script
 				type="application/ld+json"
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático gerado do data layer
