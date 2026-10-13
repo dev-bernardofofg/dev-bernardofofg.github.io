@@ -1,5 +1,7 @@
 ---
 locale: en
+title: 'Zod as the single source of the contract: parse, not validate'
+excerpt: 'The type already lives in the schema — inferring instead of duplicating changed how I design APIs. Duplicated DTOs were the #1 source of drift between front and back.'
 ---
 
 For a long time I kept three versions of the same contract: the TypeScript interface, the request validator and the DTO consumed by the front-end. Every field change was a treasure hunt — and the drift between them was the #1 cause of silly bugs in production.

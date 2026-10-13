@@ -1,5 +1,7 @@
 ---
 locale: en
+title: 'Drizzle transactions: where silent rollback lives'
+excerpt: 'A production bug, a three-line fix, one lesson about isolation levels.'
 ---
 
 The bug: inside db.transaction, one query used db instead of tx. It ran outside the transaction — it committed on its own even when the rest rolled back. No error, no log. Just inconsistent data days later.

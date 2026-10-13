@@ -1,5 +1,7 @@
 ---
 locale: es
+title: 'supertest acepta la app de Express directo, sin listen()'
+excerpt: 'Tests de integración sin puerto ocupado, sin beforeAll de servidor, sin flakiness de puerto en uso en CI.'
 ---
 
 Levantaba el servidor en un beforeAll, elegía puerto aleatorio y rezaba para que CI no colisionara. Descubrí que supertest acepta la instancia de la app directamente — él mismo hace el bind a un puerto efímero por request.

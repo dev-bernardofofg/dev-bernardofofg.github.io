@@ -1,5 +1,7 @@
 ---
 locale: es
+title: 'Transacciones en Drizzle: dónde vive el rollback silencioso'
+excerpt: 'Un bug de producción, tres líneas de fix, una lección sobre niveles de aislamiento.'
 ---
 
 El bug: dentro de db.transaction, una de las queries usaba db en vez de tx. Corría fuera de la transacción — hacía commit sola incluso cuando el resto sufría rollback. Ningún error, ningún log. Solo datos inconsistentes días después.

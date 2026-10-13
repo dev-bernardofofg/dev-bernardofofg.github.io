@@ -1,5 +1,10 @@
 ---
 locale: pt-BR
+title: 'supertest aceita o app do Express direto, sem listen()'
+excerpt: 'Testes de integração sem porta ocupada, sem beforeAll de servidor, sem flakiness de porta em uso no CI.'
+cat: TIL
+dateIso: '2026-07-03'
+teaser: null
 ---
 
 Eu subia o servidor num beforeAll, escolhia porta aleatória e rezava para o CI não colidir. Descobri que o supertest aceita a instância do app diretamente — ele mesmo faz o bind numa porta efêmera por request.

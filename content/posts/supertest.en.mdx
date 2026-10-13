@@ -1,5 +1,7 @@
 ---
 locale: en
+title: 'supertest accepts the Express app directly, no listen() needed'
+excerpt: 'Integration tests with no busy port, no server beforeAll, no port-in-use flakiness in CI.'
 ---
 
 I used to spin up the server in a beforeAll, pick a random port and pray CI did not collide. I found out supertest accepts the app instance directly — it binds to an ephemeral port per request on its own.

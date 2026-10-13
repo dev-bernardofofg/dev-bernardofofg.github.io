@@ -1,5 +1,7 @@
 ---
 locale: es
+title: 'Zod como fuente única del contrato: parse, no validate'
+excerpt: 'El tipo ya existe en el schema — inferirlo en vez de duplicarlo cambió cómo diseño APIs. Los DTOs duplicados eran la fuente nº 1 de drift entre front y back.'
 ---
 
 Durante mucho tiempo mantenía tres versiones del mismo contrato: la interfaz TypeScript, el validador del request y el DTO que consumía el front. Cada cambio de campo era una caza del tesoro — y el drift entre ellos era la causa nº 1 de bugs tontos en producción.

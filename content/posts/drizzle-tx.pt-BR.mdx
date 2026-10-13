@@ -1,5 +1,13 @@
 ---
 locale: pt-BR
+title: 'Transações no Drizzle: onde o rollback silencioso mora'
+excerpt: 'Um bug de produção, três linhas de fix, uma lição sobre isolation levels.'
+cat: DEEP DIVE
+dateIso: '2026-06-30'
+teaser: |
+  await db.transaction(async (tx) => {
+    // use SEMPRE tx aqui — não db
+  });
 ---
 
 O bug: dentro de db.transaction, uma das queries usava db em vez de tx. Ela rodava fora da transação — commitava sozinha mesmo quando o resto sofria rollback. Nenhum erro, nenhum log. Só dado inconsistente dias depois.

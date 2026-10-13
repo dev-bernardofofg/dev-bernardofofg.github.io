@@ -1,5 +1,7 @@
 ---
 locale: en
+title: 'Sessionless refresh tokens: JWT rotation in 80 lines'
+excerpt: 'The trade-off between pure stateless and instant revocation — and the middle ground I use in production.'
 ---
 
 Pure stateless JWT has a famous problem: you cannot revoke it. The middle ground I use: a short access token (15 min), fully stateless, plus an opaque refresh token, persisted and rotated on every use.

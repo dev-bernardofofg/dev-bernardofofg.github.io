@@ -1,5 +1,7 @@
 ---
 locale: es
+title: 'Refresh tokens sin sesión: rotación con JWT en 80 líneas'
+excerpt: 'El trade-off entre stateless puro y revocación inmediata — y el término medio que uso en producción.'
 ---
 
 JWT stateless puro tiene un problema famoso: no se puede revocar. El término medio que uso: access token corto (15 min) totalmente stateless + refresh token opaco, persistido y rotado en cada uso.

@@ -1,5 +1,7 @@
 ---
 locale: en
+title: 'Partial indexes in Postgres that cut 40% of p95'
+excerpt: "When the index's WHERE matters more than the column."
 ---
 
 The hottest query in the system always filtered by `status = 'pending'` — less than 2% of the rows. The full index on status was almost useless: the planner preferred seq scan because the index was indexing 98% junk.

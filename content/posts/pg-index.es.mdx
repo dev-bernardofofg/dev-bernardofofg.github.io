@@ -1,5 +1,7 @@
 ---
 locale: es
+title: 'Índices parciales en Postgres que recortaron 40% del p95'
+excerpt: 'Cuando el WHERE del índice importa más que la columna.'
 ---
 
 La query más caliente del sistema siempre filtraba por `status = 'pending'` — menos del 2% de las filas. El índice completo sobre status era casi inútil: el planner prefería seq scan porque el índice indexaba 98% basura.

@@ -1,5 +1,12 @@
 ---
 locale: pt-BR
+title: 'Zod como fonte única do contrato: parse, não validate'
+excerpt: 'O tipo já existe no schema — inferir em vez de duplicar mudou como eu desenho APIs. DTOs duplicados eram a fonte nº 1 de drift entre front e back.'
+cat: PATTERN
+dateIso: '2026-07-08'
+teaser: |
+  const CreateUser = z.object({ email: z.string().email() });
+  type CreateUser = z.infer<typeof CreateUser>; // um só lugar
 ---
 
 Durante muito tempo eu mantinha três versões do mesmo contrato: a interface TypeScript, o validador do request e o DTO que o front consumia. Toda mudança de campo era caça ao tesouro — e o drift entre eles era a causa nº 1 de bug bobo em produção.
